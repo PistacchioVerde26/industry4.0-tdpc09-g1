@@ -25,6 +25,14 @@
             </div>
         </div>
         <div class="row">
+            <div class="col" runat="server" id="div1">
+                <div class="card text-center">
+                    <asp:ImageButton ID="btn_Materiale" CssClass="mx-auto d-block width-70" ImageUrl="~/imgs/icmateriale.png" runat="server" />
+                    <div class="card-title">
+                        <span>Selezione materiale</span>
+                    </div>
+                </div>
+            </div>
             <div class="col" runat="server" id="div_Foratura">
                 <div class="card text-center">
                     <asp:ImageButton ID="btn_Foratura" CssClass="mx-auto d-block width-70" ImageUrl="~/imgs/foratura.png" runat="server" />
@@ -52,6 +60,6 @@
         </div>
 
     </div>
-    
+
 </asp:Content>
 
