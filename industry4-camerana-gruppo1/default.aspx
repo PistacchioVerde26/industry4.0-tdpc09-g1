@@ -8,7 +8,7 @@
 
         <div class="row">
             <div class="col text-center">
-                <h3 runat="server" id="txt_welcomeMessage">Bentornato l Lugi - sei un Amministratore</h3>
+                <h3 runat="server" id="txt_welcomeMessage">Bentornato Luigi - sei un Amministratore</h3>
             </div>
         </div>
 
