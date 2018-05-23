@@ -14,4 +14,10 @@ public class TipoLavorazione {
 
     public TipoLavorazione() {}
 
+    public TipoLavorazione(int ID, string Descrizione) {
+        this.Opzioni = null;
+        this.ID = ID;
+        this.Descrizione = Descrizione;
+    }
+
 }

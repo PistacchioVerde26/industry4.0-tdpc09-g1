@@ -9,8 +9,9 @@ using System.Web;
 public class Lavorazione {
 
     public int ID { get; set; }
+    public int OrdineID { get; set; }
 
-    public string Tipo { get; set; }
+    public TipoLavorazione Tipo { get; set; }
     public string Dettagli { get; set; }
     public DateTime Inizio { get; set; }
     public DateTime Fine { get; set; }
@@ -18,7 +19,7 @@ public class Lavorazione {
 
     public Lavorazione() {}
 
-    public Lavorazione(int ID, string Tipo, string Dettagli, DateTime Inizio, DateTime Fine, int Stato) {
+    public Lavorazione(int ID, TipoLavorazione Tipo, string Dettagli, DateTime Inizio, DateTime Fine, int Stato) {
         this.ID = ID;
         this.Tipo = Tipo;
         this.Dettagli = Dettagli;

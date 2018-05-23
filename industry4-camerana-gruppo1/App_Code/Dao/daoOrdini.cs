@@ -80,4 +80,8 @@ public class daoOrdine {
         return Ordini;
     }
 
+    public int AddNew(Ordine O) {
+
+    }
+
 }

@@ -16,7 +16,7 @@ public class daoLavorazioni {
 
         SqlCommand cmd = new SqlCommand();
         cmd.CommandType = CommandType.Text;
-        cmd.CommandText = String.Format(@"SELECT *
+        cmd.CommandText = String.Format(@"SELECT *, TipoLavorazione.idtipolav
                                         FROM Lavorazioni
                                         INNER JOIN TipoLavorazione ON Lavorazioni.fk_tipolav = TipoLavorazione.idtipolav
                                         WHERE Lavorazioni.fkordine = {0}", ID);
@@ -28,8 +28,8 @@ public class daoLavorazioni {
             foreach(DataRow dr in dt.Rows) {
                 //int ID, string Tipo, string Dettagli, DateTime Inizio, DateTime Fine, int Stato
                 Lavorazione newLav = new Lavorazione();
-                newLav.ID = (int)dr["idlavorazione"];
-                newLav.Tipo = (string)dr["descrizione"];
+                newLav.ID = (int)dr["idlavorazione"]; 
+                newLav.Tipo = new TipoLavorazione((int)dr["idtipolav"], (string)dr["descrizione"]);
                 newLav.Dettagli = (string)dr["dettagli"];
                 newLav.Inizio = (DateTime)dr["inizio"]; //probablimente da fare controlli per campi vuoti
                 newLav.Fine = (DateTime)dr["fine"];
@@ -39,6 +39,10 @@ public class daoLavorazioni {
         }
 
         return lavorazioni;
+    }
+
+    public int AddNew(Lavorazione L) {
+
     }
 
 }
