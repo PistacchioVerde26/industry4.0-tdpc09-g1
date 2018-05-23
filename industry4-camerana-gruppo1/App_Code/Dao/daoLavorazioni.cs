@@ -43,6 +43,38 @@ public class daoLavorazioni {
 
     public int AddNew(Lavorazione L) {
 
+        DbEntity db = new DbEntity();
+
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandType = CommandType.Text;
+        cmd.CommandText = String.Format(@"INSERT dbo.Lavorazioni
+                                            (
+                                                fkordine,
+                                                fk_tipolav,
+                                                dettagli,
+                                                stato
+                                            )
+                                            VALUES
+                                            (
+                                                {0},
+                                                {1},
+                                                '{2}',
+                                                {3}
+                                            );
+                                            SELECT SCOPE_IDENTITY();", L.OrdineID, L.Tipo.ID, L.Dettagli, L.Stato);
+        return db.eseguiInsertIDreturn(cmd);
+        //SELECT SCOPE_IDENTITY();
+    }
+
+    public void AggiornaStato(Lavorazione L) {
+        DbEntity db = new DbEntity();
+
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandType = CommandType.Text;
+        cmd.CommandText = String.Format(@"UPDATE Lavorazioni
+                                            SET stato = {0}
+                                            WHERE idlavorazione = {1}", L.ID, L.Stato);
+        db.eseguiQueryNOreturn(cmd);
     }
 
 }

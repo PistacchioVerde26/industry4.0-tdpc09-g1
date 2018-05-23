@@ -80,7 +80,28 @@ public class daoOrdine {
         return Ordini;
     }
 
-    public int AddNew(Ordine O) {
+    public void AddNew(Ordine O) {
+        DbEntity db = new DbEntity();
+
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandType = CommandType.Text;
+        cmd.CommandText = String.Format(@"INSERT Ordini
+                                            (
+                                                data,
+                                                fk_utente
+                                            )
+                                            VALUES
+                                            (
+                                                GETDATE(),
+                                                {0}
+                                            );
+                                            SELECT SCOPE_IDENTITY();", O.UtenteID);
+        int insertedID = db.eseguiInsertIDreturn(cmd);
+
+        foreach(Lavorazione L in O.Lavorazioni) {
+            L.OrdineID = insertedID;
+            new daoLavorazioni().AddNew(L);
+        }
 
     }
 

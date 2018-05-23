@@ -57,4 +57,13 @@ public class DbEntity
         cmd.ExecuteNonQuery();
         ChiudiConnessione();
     }
+
+    public int eseguiInsertIDreturn(SqlCommand cmd) {
+        //SELECT SCOPE_IDENTITY() --> da inserire dopo la query di insert (dopo il ;)
+        cmd.Connection = conn;
+        ApriConnessione();
+        int insertedID = (int)cmd.ExecuteScalar();
+        ChiudiConnessione();
+        return insertedID;
+    }
 }

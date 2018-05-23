@@ -7,9 +7,6 @@ using System.Web;
 /// Descrizione di riepilogo per Utente
 /// </summary>
 public class Utente {
-    public Utente() {
-        //
-        // TODO: aggiungere qui la logica del costruttore
-        //
-    }
+    public Utente() {}
+
 }
