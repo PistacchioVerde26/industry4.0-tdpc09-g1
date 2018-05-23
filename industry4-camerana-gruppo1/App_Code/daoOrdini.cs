@@ -59,6 +59,8 @@ public class daoOrdine {
         if (Param == 1) query += String.Format("WHERE TipoLavorazione.descrizione = '{0}' AND fine = ''", TipoLavorazione);
         if (Param == 2) query += String.Format("WHERE TipoLavorazione.descrizione = '{0}' AND fine != ''", TipoLavorazione);
 
+        cmd.CommandText = query;
+
         DataTable dt = db.eseguiQuery(cmd);
         List<Ordine> Ordini = null;
 
