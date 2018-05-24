@@ -39,11 +39,11 @@ public class daoOrdine {
         return newOrd;
     }
 
-    // Il parametro Param può avere i seguenti valori
-    // 0 -> Tutte le lavorazioni di quel tipo
-    // 1 -> Lavorazioni da iniziare
-    // 2 -> Lavorazioni da terminare, quindi sia iniziate che non
-    // 3 -> Lavorazioni terminate
+    /// Il parametro Param può avere i seguenti valori
+    /// 0 -> Tutte le lavorazioni di quel tipo
+    /// 1 -> Lavorazioni da iniziare
+    /// 2 -> Lavorazioni da terminare, quindi sia iniziate che non
+    /// 3 -> Lavorazioni terminate
     public List<Ordine> GetByLavorazione(string TipoLavorazione, int Param) {
         DbEntity db = new DbEntity();
 
@@ -57,8 +57,9 @@ public class daoOrdine {
                          INNER JOIN TipoLavorazione ON TipoLavorazione.idtipolav = OpzioniLavorazione.fk_idtipolavorazione ";
 
         if (Param == 0) query += String.Format("WHERE TipoLavorazione.descrizione = '{0}'", TipoLavorazione);
-        if (Param == 1) query += String.Format("WHERE TipoLavorazione.descrizione = '{0}' AND fine = ''", TipoLavorazione);
-        if (Param == 2) query += String.Format("WHERE TipoLavorazione.descrizione = '{0}' AND fine != ''", TipoLavorazione);
+        if (Param == 1) query += String.Format("WHERE TipoLavorazione.descrizione = '{0}' AND inizio = ''", TipoLavorazione);
+        if (Param == 2) query += String.Format("WHERE TipoLavorazione.descrizione = '{0}' AND fine = ''", TipoLavorazione);
+        if (Param == 3) query += String.Format("WHERE TipoLavorazione.descrizione = '{0}' AND fine != ''", TipoLavorazione);
 
         cmd.CommandText = query;
 

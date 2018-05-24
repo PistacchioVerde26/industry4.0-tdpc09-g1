@@ -11,14 +11,8 @@ using System.Web;
 /// </summary>
 public class DbEntity
 {
-    public DbEntity()
-    {
+    public DbEntity(){}
 
-    }
-
-    //
-    // TODO: aggiungere qui la logica del costruttore
-    //
     SqlConnection conn = new SqlConnection();
     private void ApriConnessione()
     {

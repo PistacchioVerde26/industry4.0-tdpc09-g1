@@ -69,14 +69,22 @@ public class daoLavorazioni {
         //SELECT SCOPE_IDENTITY();
     }
 
-    public void AggiornaStato(Lavorazione L) {
+    public void AggiornaStato(Lavorazione L, int PostazioneID) {
         DbEntity db = new DbEntity();
 
         SqlCommand cmd = new SqlCommand();
         cmd.CommandType = CommandType.Text;
-        cmd.CommandText = String.Format(@"UPDATE Lavorazioni
-                                            SET stato = {0}
-                                            WHERE idlavorazione = {1}", L.ID, L.Stato);
+
+        if (PostazioneID == -1) {
+            cmd.CommandText = String.Format(@"UPDATE Lavorazioni
+                                                SET stato = {0}, fk_postazione = NULL
+                                                WHERE idlavorazione = {1}", L.ID, L.Stato);
+        } else {
+            cmd.CommandText = String.Format(@"UPDATE Lavorazioni
+                                                SET stato = {0}, fk_postazione = {1}
+                                                WHERE idlavorazione = {2}", L.ID, L.PostazioneID, L.Stato);
+        }
+            
         db.eseguiQueryNOreturn(cmd);
     }
 

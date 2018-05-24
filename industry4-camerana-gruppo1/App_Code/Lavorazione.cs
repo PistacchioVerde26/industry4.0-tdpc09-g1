@@ -18,6 +18,7 @@ public class Lavorazione {
     public DateTime Inizio { get; set; }
     public DateTime Fine { get; set; }
     public int Stato { get; set; }
+    public int PostazioneID { get; set; }
 
     public Lavorazione() {}
 
