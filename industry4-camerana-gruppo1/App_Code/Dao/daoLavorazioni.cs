@@ -16,23 +16,26 @@ public class daoLavorazioni {
 
         SqlCommand cmd = new SqlCommand();
         cmd.CommandType = CommandType.Text;
-        cmd.CommandText = String.Format(@"SELECT *, TipoLavorazione.idtipolav
-                                        FROM Lavorazioni
-                                        INNER JOIN TipoLavorazione ON Lavorazioni.fk_tipolav = TipoLavorazione.idtipolav
-                                        WHERE Lavorazioni.fkordine = {0}", ID);
+        cmd.CommandText = String.Format(@"SELECT Lavorazioni.*, OpzioniLavorazione.opzione, TipoLavorazione.*
+                                            FROM Lavorazioni
+                                            INNER JOIN OpzioniLavorazione ON OpzioniLavorazione.idopz = Lavorazioni.fk_opzione
+                                            INNER JOIN TipoLavorazione ON TipoLavorazione.idtipolav = OpzioniLavorazione.fk_idtipolavorazione
+                                            WHERE Lavorazioni.idlavorazione = {0}", ID);
 
         DataTable dt = db.eseguiQuery(cmd);
         List<Lavorazione> lavorazioni = new List<Lavorazione>();
 
         if (dt.Rows.Count > 0) {
             foreach(DataRow dr in dt.Rows) {
-                //int ID, string Tipo, string Dettagli, DateTime Inizio, DateTime Fine, int Stato
+                //int ID, TipoLavorazione Tipo, string Opzione, int OpzioneID, string Note, DateTime Inizio, DateTime Fine, int Stato
                 Lavorazione newLav = new Lavorazione();
                 newLav.ID = (int)dr["idlavorazione"]; 
                 newLav.Tipo = new TipoLavorazione((int)dr["idtipolav"], (string)dr["descrizione"]);
-                newLav.Dettagli = (string)dr["dettagli"];
+                newLav.Opzione = (string)dr["opzione"];
+                newLav.OpzioneID = (int)dr["fk_opzione"];
+                newLav.Note = (string)dr["note"];
                 newLav.Inizio = (DateTime)dr["inizio"]; //probablimente da fare controlli per campi vuoti
-                newLav.Fine = (DateTime)dr["fine"];
+                newLav.Fine = (DateTime)dr["fine"]; //probablimente da fare controlli per campi vuoti
                 newLav.Stato = (int)dr["stato"];
                 lavorazioni.Add(newLav);
             }
@@ -50,8 +53,8 @@ public class daoLavorazioni {
         cmd.CommandText = String.Format(@"INSERT dbo.Lavorazioni
                                             (
                                                 fkordine,
-                                                fk_tipolav,
-                                                dettagli,
+                                                fk_opzione,
+                                                note,
                                                 stato
                                             )
                                             VALUES
@@ -59,9 +62,9 @@ public class daoLavorazioni {
                                                 {0},
                                                 {1},
                                                 '{2}',
-                                                {3}
+                                                0
                                             );
-                                            SELECT SCOPE_IDENTITY();", L.OrdineID, L.Tipo.ID, L.Dettagli, L.Stato);
+                                            SELECT SCOPE_IDENTITY();", L.OrdineID, L.OpzioneID, L.Note, L.Stato);
         return db.eseguiInsertIDreturn(cmd);
         //SELECT SCOPE_IDENTITY();
     }

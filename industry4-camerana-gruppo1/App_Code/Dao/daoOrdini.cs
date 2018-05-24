@@ -53,7 +53,8 @@ public class daoOrdine {
         string query = @"SELECT Ordini.*
                          FROM Ordini 
                          INNER JOIN Lavorazioni ON Ordini.idordine = Lavorazioni.fkordine
-                         INNER JOIN TipoLavorazione ON TipoLavorazione.idtipolav = Lavorazioni.fk_tipolav ";
+                         INNER JOIN OpzioniLavorazione ON OpzioniLavorazione.idopz = Lavorazioni.fk_opzione
+                         INNER JOIN TipoLavorazione ON TipoLavorazione.idtipolav = OpzioniLavorazione.fk_idtipolavorazione ";
 
         if (Param == 0) query += String.Format("WHERE TipoLavorazione.descrizione = '{0}'", TipoLavorazione);
         if (Param == 1) query += String.Format("WHERE TipoLavorazione.descrizione = '{0}' AND fine = ''", TipoLavorazione);
@@ -63,7 +64,6 @@ public class daoOrdine {
 
         DataTable dt = db.eseguiQuery(cmd);
         List<Ordine> Ordini = null;
-
 
         if (dt.Rows.Count > 0) {
             Ordini = new List<Ordine>();
@@ -80,7 +80,7 @@ public class daoOrdine {
         return Ordini;
     }
 
-    public void AddNew(Ordine O) {
+    public int AddNew(Ordine O) {
         DbEntity db = new DbEntity();
 
         SqlCommand cmd = new SqlCommand();
@@ -102,6 +102,8 @@ public class daoOrdine {
             L.OrdineID = insertedID;
             new daoLavorazioni().AddNew(L);
         }
+
+        return insertedID;
 
     }
 
