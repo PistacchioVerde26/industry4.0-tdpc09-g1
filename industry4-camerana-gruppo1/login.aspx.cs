@@ -9,10 +9,11 @@ public partial class login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        pnl_Error.Visible = false;
     }
     protected void btnLogin_Click(object sender, EventArgs e)
     {
+        pnl_Error.Visible = false;
         if (txbUsername.Text != "" & txbPassword.Text != "")
         {
             Utente oUtente = new Utente();
@@ -22,23 +23,20 @@ public partial class login : System.Web.UI.Page
             oUtente = daoU.getLogin(oUtente);
             if (oUtente.ID > 0)
             {
-                //loggato redirect alla pagina
-                switch (oUtente.Ruolo)
-                {
-                    case 0:
+                //Creo la sessione per l'utente loggato
+                Session["utente"] = oUtente;
 
-                        break;
-                    default:
-                        break;
-                }
-
+                //Loggato redirect alla'home page
+                Response.Redirect("default.aspx");
             }
             else
             {
                 txbUsername.Text = "";
                 txbPassword.Text = "";
+                pnl_Error.Visible = true;
             }
 
         }
+        pnl_Error.Visible = true;
     }
 }
