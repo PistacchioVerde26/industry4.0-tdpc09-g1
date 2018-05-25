@@ -19,12 +19,12 @@ public partial class _default : System.Web.UI.Page {
     }
 
     public void DrawPage() {
-        txt_welcomeMessage.InnerText = String.Format("Bentornato {0}, sei un {1}", oUtente.Username, oUtente.Ruolo);
+        txt_welcomeMessage.InnerText = String.Format("Bentornato {0}, sei un {1}", oUtente.Username, oUtente.Ruolo);//ruolo è intero, estrarre stringa
 
         List<Postazione> postazioni = null;
-        if (oUtente.Ruolo == 0) {
+        if (oUtente.Ruolo == 1) {
             postazioni = new daoPostazioni().GetBasedOnUtente(oUtente);
-        }else if(oUtente.Ruolo == 2) {
+        }else if(oUtente.Ruolo == 3) {
             postazioni = new daoPostazioni().GetAll();
             postazioni.Insert(0, new Postazione("Gestione", "commerciale"));
         } else {
