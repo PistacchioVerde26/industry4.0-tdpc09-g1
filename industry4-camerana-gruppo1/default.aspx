@@ -8,7 +8,7 @@
 
         <div class="row">
             <div class="col text-center">
-                <h3 runat="server" id="txt_welcomeMessage">Bentornato Luigi - sei un Amministratore</h3>
+                <h3 runat="server" id="txt_welcomeMessage">Bentornato  - sei un Amministratore</h3>
             </div>
         </div>
 
@@ -16,7 +16,7 @@
             <div class="col" runat="server" id="div_Commerciale">
 
                 <div class="card text-center">
-                    <asp:ImageButton ID="btn_Commerciale" CssClass="mx-auto d-block width-70" ImageUrl="~/imgs/icComm.png" runat="server" />
+                    <asp:ImageButton ID="btn_Commerciale" CssClass="mx-auto d-block width-70" ImageUrl="~/imgs/icComm.png" runat="server" OnClick="btn_Commerciale_Click" />
                     <div class="card-title">
                         <span>Commerciale</span>
                     </div>

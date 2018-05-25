@@ -16,6 +16,8 @@ public class Ordine {
     public int Stato { get; set; }
     
 
-    public Ordine() {}
+    public Ordine() {
+          
+    }
 
 }

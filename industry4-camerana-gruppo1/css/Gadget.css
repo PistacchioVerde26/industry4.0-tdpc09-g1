@@ -1,0 +1,63 @@
+﻿body {
+}
+
+.mainContainer {
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+
+.lato {
+    float: left;
+    width: 49%;
+    height: 100%;
+    border-style: solid;
+}
+
+.testoCentro {
+    text-align: center;
+}
+
+.g_container {
+    /*margin-left: 20px;*/
+    background-color: antiquewhite;
+    display: table-cell;
+    text-align: center;
+}
+
+.g_image {
+    margin-left: 2px;
+}
+
+.g_2optional {
+    margin-top: 40px;
+}
+
+.floatL {
+    float: left;
+    margin-left: 20px;
+}
+
+.center {
+    display: inline-block;
+    margin-left: 0 auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    clear: left;
+}
+
+.center2 {
+    clear: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.marginBottom20 {
+    margin-bottom: 20px;
+}
+
+.image1 {
+    height: 100px;
+    width: 200px;
+}

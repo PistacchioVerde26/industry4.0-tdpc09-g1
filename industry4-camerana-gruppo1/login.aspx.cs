@@ -25,8 +25,9 @@ public partial class login : System.Web.UI.Page
                 //loggato redirect alla pagina
                 switch (oUtente.Ruolo)
                 {
-                    case 0:
-
+                    case 1:
+                        Session.Add("utente", oUtente);
+                        Response.Redirect("default.aspx");
                         break;
                     default:
                         break;

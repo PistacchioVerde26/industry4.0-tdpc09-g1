@@ -108,4 +108,20 @@ public class daoOrdine {
 
     }
 
+    public DataTable getAllOrdini()
+    {
+        
+        DataTable dt = new DataTable();
+        DataTable tempDT = new DataTable();
+        DbEntity db = new DbEntity();
+        
+
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandType = CommandType.Text;
+        cmd.CommandText = "SELECT Ordini.* FROM Ordini";
+
+        dt = db.eseguiQuery(cmd);
+                
+        return tempDT;
+    }
 }
