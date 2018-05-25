@@ -15,4 +15,11 @@ public class Utente {
 
     public Utente() {}
 
+    public string RuoloToString() {
+        if (Ruolo == 1) return "Macchinista";
+        if (Ruolo == 2) return "Commerciale";
+        if (Ruolo == 3) return "Amministratore";
+        return "";
+    }
+
 }

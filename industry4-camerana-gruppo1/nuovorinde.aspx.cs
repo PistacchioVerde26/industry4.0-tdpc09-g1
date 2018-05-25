@@ -7,58 +7,75 @@ using System.Web.UI.WebControls;
 
 public partial class nuovorinde : System.Web.UI.Page {
     protected void Page_Load(object sender, EventArgs e) {
-        
 
     }
+
+    public void CaricaOpzioni() {
+
+        List<TipoLavorazione> TipiLavorazione = new List<TipoLavorazione>();
+        TipiLavorazione.Add(new daoTipoLavorazione().GetByTipo("foratura"));
+        TipiLavorazione.Add(new daoTipoLavorazione().GetByTipo("etichettatura"));
+        TipiLavorazione.Add(new daoTipoLavorazione().GetByTipo("colore"));
+        TipiLavorazione.Add(new daoTipoLavorazione().GetByTipo("materiale"));
+
+        foreach (TipoLavorazione TP in TipiLavorazione) {
+            switch (TP.Descrizione) {
+             
+            
+            }
+        }
+
+    }
+
     protected void btnAggiungi_Click(object sender, EventArgs e)
     {
 
-        //salva l'ordine nella tabella
+        ////salva l'ordine nella tabella
 
-        if (rblColore.SelectedItem.Value == "rosso")
-        {
+        //if (rblColore.SelectedItem.Value == "rosso")
+        //{
 
-        }
+        //}
 
-        Ordine oOrdine = new Ordine();
+        //Ordine oOrdine = new Ordine();
        
-        Utente oUtente = (Utente)Session["utente"];
-        oOrdine.UtenteID = (oUtente!=null)?oUtente.ID:0;
-        oOrdine.DataInserimento = DateTime.Now;
-        oOrdine.Stato = 0;
+        //Utente oUtente = (Utente)Session["utente"];
+        //oOrdine.UtenteID = (oUtente!=null)?oUtente.ID:0;
+        //oOrdine.DataInserimento = DateTime.Now;
+        //oOrdine.Stato = 0;
         
-        Lavorazione lav = new Lavorazione();
+        //Lavorazione lav = new Lavorazione();
 
-        //materiale
-        lav.OpzioneID = 1;
-        lav.Opzione = rblColore.SelectedItem.Value;
-        oOrdine.Lavorazioni.Add(lav);
-        //foratura
-        lav = new Lavorazione();
-        lav.OpzioneID = 2;
-        lav.Opzione = rblColore.SelectedItem.Value;
-        oOrdine.Lavorazioni.Add(lav);
-        //colorazione
-        lav = new Lavorazione();
-        lav.OpzioneID = 3;
-        lav.Opzione = rblColore.SelectedItem.Value;
-        oOrdine.Lavorazioni.Add(lav);
-        //incisione
-        lav = new Lavorazione();
-        lav.OpzioneID = 4;
-        lav.Opzione = tbTesto.Text;
-        oOrdine.Lavorazioni.Add(lav);
+        ////materiale
+        //lav.OpzioneID = 1;
+        //lav.Opzione = rblColore.SelectedItem.Value;
+        //oOrdine.Lavorazioni.Add(lav);
+        ////foratura
+        //lav = new Lavorazione();
+        //lav.OpzioneID = 2;
+        //lav.Opzione = rblColore.SelectedItem.Value;
+        //oOrdine.Lavorazioni.Add(lav);
+        ////colorazione
+        //lav = new Lavorazione();
+        //lav.OpzioneID = 3;
+        //lav.Opzione = rblColore.SelectedItem.Value;
+        //oOrdine.Lavorazioni.Add(lav);
+        ////incisione
+        //lav = new Lavorazione();
+        //lav.OpzioneID = 4;
+        //lav.Opzione = tbTesto.Text;
+        //oOrdine.Lavorazioni.Add(lav);
 
-        daoOrdine daoO = new daoOrdine();
-        int risInserimentoO = daoO.AddNew(oOrdine);
+        //daoOrdine daoO = new daoOrdine();
+        //int risInserimentoO = daoO.AddNew(oOrdine);
 
-        tbTesto.Text = "";
-        popolaTabella();
+        //tbTesto.Text = "";
+        //popolaTabella();
     }
 
     private void  popolaTabella()
     {
-        tblOrdini.Rows.Clear();
+        //tblOrdini.Rows.Clear();
         
     }
 }

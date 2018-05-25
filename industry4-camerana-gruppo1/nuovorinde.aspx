@@ -1,10 +1,74 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/commerciale_gen.master" AutoEventWireup="true" CodeFile="nuovorinde.aspx.cs" Inherits="nuovorinde" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <link href="css/Gadget.css" rel="stylesheet" />
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <div class="mainContainer">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+
+    <div class="container" style="margin-top: 100px;">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">MATERIALE</h5>
+                                <asp:DropDownList ID="drp_Materiale" runat="server"></asp:DropDownList>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">FORO</h5>
+                                <asp:DropDownList ID="drp_Foro" runat="server"></asp:DropDownList>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">OGGETTO</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">COLORE INSERTO</h5>
+                                <asp:DropDownList ID="drp_Colore" runat="server"></asp:DropDownList>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">ETICHETTA</h5>
+                                <asp:TextBox ID="txt_Etichetta" placeholder="Testo etichetta" CssClass="form-control" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <asp:Button ID="btn_Inserisci" runat="server" CssClass="btn btn-primary" Text="Inserisci" />
+            </div>
+        </div>
+    </div>
+
+    <%--<div class="mainContainer">
             <div class="lato">
                 <div class="testoCentro">
                     <h2>Personalizza ilgadget e premi il tasto "Aggiungi" per salvare l'ordine.</h2>
@@ -58,6 +122,6 @@
             <div class="lato">
                 <asp:Table ID="tblOrdini" runat="server"></asp:Table>
             </div>
-        </div>
+        </div>--%>
 </asp:Content>
 

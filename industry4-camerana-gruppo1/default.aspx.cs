@@ -12,21 +12,21 @@ public partial class _default : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e) {
 
         if (Session["utente"] == null) {
-            //Response.Redirect("login.aspx");
+            Response.Redirect("login.aspx");
         }
-        //oUtente = (Utente) Session["utente"];
-        //DrawPage();
+        oUtente = (Utente) Session["utente"];
+        DrawPage();
     }
 
     public void DrawPage() {
-        txt_welcomeMessage.InnerText = String.Format("Bentornato {0}, sei un {1}", oUtente.Username, oUtente.Ruolo);//ruolo è intero, estrarre stringa
+        txt_welcomeMessage.InnerText = String.Format("Bentornato {0}, sei un {1}", oUtente.Username, oUtente.RuoloToString());//ruolo è intero, estrarre stringa
 
         List<Postazione> postazioni = null;
         if (oUtente.Ruolo == 1) {
             postazioni = new daoPostazioni().GetBasedOnUtente(oUtente);
         } else if (oUtente.Ruolo == 3) {
             postazioni = new daoPostazioni().GetAll();
-            postazioni.Insert(0, new Postazione("Gestione", "commerciale"));
+            postazioni.Add(new Postazione("Gestione", "commerciale"));
         } else {
             postazioni = new List<Postazione>();
             postazioni.Add(new Postazione("Gestione", "commerciale"));
@@ -38,12 +38,13 @@ public partial class _default : System.Web.UI.Page
 
             int i = 0;
             foreach (Postazione p in postazioni) {
-                if (i - 1 % 4 == 0) {
+                if (i % 4 == 0) {
                     container.Controls.Add(row);
                     row = new Panel();
                     row.CssClass = "row";
                 }
                 row.Controls.Add(CustomDiv(p));
+                i++;
             }
             container.Controls.Add(row);
         }
@@ -62,9 +63,10 @@ public partial class _default : System.Web.UI.Page
 
         Panel wrapper = new Panel();
         wrapper.CssClass = "col";
+        
 
         Panel card = new Panel();
-        card.CssClass = "card text-center";
+        card.CssClass = "card text-center postazione";
 
         ImageButton imgBtn = new ImageButton();
         imgBtn.CssClass = "mx-auto d-block width-70";
@@ -79,10 +81,10 @@ public partial class _default : System.Web.UI.Page
         Label title = new Label();
         title.Text = P.Tipo + " - " + P.Tag;
 
-        wrapper.Controls.Add(card);
         card.Controls.Add(imgBtn);
-        imgBtn.Controls.Add(cardTitle);
-        title.Controls.Add(title);
+        cardTitle.Controls.Add(title);
+        card.Controls.Add(cardTitle);
+        wrapper.Controls.Add(card);
 
         return wrapper;
     }

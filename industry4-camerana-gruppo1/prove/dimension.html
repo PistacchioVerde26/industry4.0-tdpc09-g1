@@ -1,0 +1,114 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Dimension</title>
+<link rel="stylesheet" type="text/css" href="dimension.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script>
+ $(document).ready(function(e) {
+	 
+    $("#button_intro").click(function(){
+		$("#popup_intro").fadeIn();
+		$(".main").fadeOut();
+		$("sfondo").css("filter")
+		$(".sfondo").addClass("sfocatura");
+		$(".sfondo").css("filter","blur(3px)");
+		});
+		
+	$("#button_work").click(function(){
+		$("#popup_work").fadeIn();
+		$(".main").fadeOut();
+		$(".sfondo").addClass("sfocatura");
+		$(".sfondo").css("filter","blur(3px)")
+		});
+		
+	$("#button_about").click(function(){
+		$("#popup_about").fadeIn();
+		$(".main").fadeOut();
+		$(".sfondo").addClass("sfocatura");
+		$(".sfondo").css("filter","blur(3px)")
+		});
+		
+	$("#button_contact").click(function(){
+		$("#popup_contact").fadeIn();
+		$(".main").fadeOut();
+		$(".sfondo").addClass("sfocatura");
+		$(".sfondo").css("filter","blur(3px)")
+		});	
+		
+	$(".chiudi,.sfondo").click(function(){
+		$(".popup").fadeOut();
+		$(".main").fadeIn();
+		$(".sfondo").removeClass("sfocatura");
+		$(".sfondo").css("filter","blur(0px)")
+		 });
+	
+});
+
+</script>
+</head>
+
+<body>
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400i" rel="stylesheet">
+
+<div class="sfondo"></div>
+
+   <div class="main">
+   
+   
+   
+   <div class="logo"> <i class="far fa-gem fa-3x fa-fw "></i></div>
+   <div class="riga"></div>
+   
+   <header class="header">
+   
+        <h1>DIMENSION</h1>
+        <h2>
+           <a href="#">ADMINISTRATORE</a>
+            <br /> 
+          <a href="#">CLIENTE</a>.
+        </h2>
+   </header>
+   
+   <nav class="navbar">
+      <ul>
+         <li><button id="button_intro">lavoro1</button></li>
+         <li><button id="button_work">lavoro2</button></li>
+         <li><button id="button_about">lavoro3</button></li>
+         <li><button id="button_contact">lavoro4</button></li>
+      </ul>
+   </nav>
+   <footer class="footer">
+     <a href="#">CONTATTI</a>
+   </footer>
+   
+   </div>
+   
+   <div class="popup" id="popup_intro">
+   <div class="chiudi">X</div>
+      <h3>LAVORAZIONE1</h3>
+   </div>
+
+   <div class="popup" id="popup_work">
+   <div class="chiudi">X</div>
+      <h3>LAVORAZIONE2</h3>
+   </div>
+
+   <div class="popup" id="popup_about">
+   <div class="chiudi">X</div>
+      <h3>LAVORAZIONE3</h3>
+   </div>
+
+   <div class="popup" id="popup_contact">
+      <div class="chiudi">X</div>
+      <h3>LAVORAZIONE4</h3>
+   </div>
+   
+   
+
+</body>
+</html>

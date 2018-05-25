@@ -1,0 +1,186 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{box-sizing:border-box;}
+
+li{
+    background-color: white;
+}
+
+body {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight:300;
+	
+	color:rgba(255,255,255,1);
+	text-align:center;
+	font-size:14px;
+	}
+	
+a {
+	text-decoration:none;
+	color:rgba(255,255,255,1);
+	border-bottom:1px dotted #fff;
+	transition:0.3s;
+}
+
+
+.sfondo {
+	 background-image:url(6.jpg);
+	background-attachment:fixed;/*per fissare l'imagine*/
+	background-size:cover; /*per coprire*/
+	background-position:bottom center;/*per la posizione*/
+	position:fixed;
+	top:0; /*con position e top right left e bottom tutti a o porta a 100% tutto il div*/
+	right:0;
+	left:0;
+	bottom:0;
+	z-index:-1;
+	filter:blur(1px); /*per sfocare lo sfondo*/
+	transform:scale(1.2,1.2);
+	transition:0.4s;
+	transform:scale(1,2);
+	}
+
+.sfocatura {
+	/*filter:blur(3px);*/
+	transform:scale(1,1);
+	}
+
+a:hover {border-color:transparent;}
+
+h1 {letter-spacing:6px; margin-top:0; padding: }
+
+h1,
+h3 {font-weight:600;}
+
+h2 {
+	font-weight:300; font-size:108%; 
+    line-height:160%;
+	margin-bottom:0;
+	}
+
+
+.main {text-transform:uppercase; letter-spacing:3px;
+       max-width:700px;
+	   margin:auto;
+	   width:98%;
+}
+
+.header {
+	padding:30px  5px;
+	border-bottom:solid 1px #FFFFFF;
+	border-top:solid 1px rgba(255,255,255,1);
+	position:relative;
+	}
+	
+	
+.header::after { /*per aggiungere elementi solo nella classe scelta va sempre con content*/
+	content:"";
+	width:2px;
+	height:51px;
+	border-left: 1px solid rgba(255,255,255,1);
+	position:absolute;
+	left:50%;
+	bottom:0;
+	transform:translate(-50%,100%);
+	}
+	
+.logo {
+	margin:auto;
+	width:80px;
+	height:80px;
+	border:rgba(255,255,255,1) solid 2px;
+    border-radius:50px 50px;
+	line-height:100px; /*interlinea*/
+	text-align:center;
+}
+
+.riga {width:0px;
+ border-right:solid 1px #FFFFFF;
+ height:50px;
+ margin:auto; 
+}
+
+
+.navbar {width:40%; margin:50px auto; }
+.navbar ul {
+	 border:1px solid #0F9;
+	 list-style:none; 
+	 padding:0;
+	 margin:0;
+	 overflow:hidden;
+	 }
+.navbar li {border:1px solid #0F9;}
+
+.navbar li:first-child {border-top-left-radius: 10px;
+border-top-right-radius: 10px;}
+
+.navbar li:last-child {border-bottom-right-radius: 10px;
+border-bottom-left-radius: 10px;}
+
+.navbar button 
+     {
+	   background-color:transparent;
+	   color:rgba(255,255,255,1);
+	   border:0;
+	   width:100%;
+	   transition:0.3s;
+	   padding:10px;
+	   cursor:pointer;
+	   text-transform:uppercase;
+	   font-family:'Source Sans Pro', sans-serif;
+	}
+	
+.navbar button:hover {background-color:rgba(255,255,255,0.2)}
+.navbar {}
+
+
+.footer {font-size:70%:}
+.main {}
+
+
+.popup {padding:5%; border-radius:5px;
+   margin:auto;
+   background-color:rgba(0,0,0,0.9);
+   display:none;
+    max-width:700px;
+    margin:auto;
+	 width:98%;
+	 position:absolute;
+	 top:50%;
+	 left:50%;
+	 transform:translate(-50%,-150%);
+}
+
+
+.overlay {
+	 position:fixed;
+	 z-index:;
+	 }
+
+.chiudi {
+	position:absolute;
+	top:3%;
+	right:3%;
+	font-weight:bold;
+	cursor:pointer/*rende cliccabile il pulsante o il coso*/
+	}
+
+@media ( min-width : 992px)
+{
+	.navbar li {float:left; width:25%;}
+	.navbar {width:60%;}
+	
+	.navbar li+li { border-left:0}/*li che viene dopo li*/
+	
+	.navbar li:first-child {
+ border-top-right-radius: 0px;
+border-bottom-left-radius: 10px;
+ }
+
+.navbar li:last-child {
+	border-top-right-radius: 10px;
+    border-bottom-left-radius: 0px;
+	}
+  
+	}

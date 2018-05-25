@@ -17,7 +17,9 @@ public class Postazione {
     public Postazione() {}
 
     public Postazione(string Tag, string Tipo) {
-
+        this.Tag = Tag;
+        this.Tipo = Tipo;
+        this.ID = -1;
     }
 
 }

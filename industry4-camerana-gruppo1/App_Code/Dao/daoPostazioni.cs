@@ -48,7 +48,7 @@ public class daoPostazioni {
             postazioni = new List<Postazione>();
             foreach (DataRow dr in dt.Rows) {
                 Postazione newPost = new Postazione();
-                newPost.ID = (int)dr["fk_postazione"];
+                newPost.ID = (int)dr["idpostazione"];
                 newPost.Tag = (string)dr["tag"];
                 newPost.Tipo = (string)dr["descrizione"];
 
@@ -69,7 +69,7 @@ public class daoPostazioni {
                             INNER JOIN TipoPostazione ON TipoPostazione.idtipopost = Postazioni.fk_tipo
                             INNER JOIN Utenti_postazioni ON Utenti_postazioni.fk_postazione = Postazioni.idpostazione
                             INNER JOIN Utenti ON Utenti.idutente = Utenti_postazioni.fk_utente
-                            WHERE Utente.idutente = {0}", U.ID);
+                            WHERE Utenti.idutente = {0}", U.ID);
 
         DataTable dt = db.eseguiQuery(cmd);
         List<Postazione> postazioni = null;
@@ -78,7 +78,7 @@ public class daoPostazioni {
             postazioni = new List<Postazione>();
             foreach (DataRow dr in dt.Rows) {
                 Postazione newPost = new Postazione();
-                newPost.ID = (int)dr["fk_postazione"];
+                newPost.ID = (int)dr["idpostazione"];
                 newPost.Tag = (string)dr["tag"];
                 newPost.Tipo = (string)dr["descrizione"];
 
