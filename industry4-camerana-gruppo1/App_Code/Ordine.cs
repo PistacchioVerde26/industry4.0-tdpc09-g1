@@ -12,12 +12,11 @@ public class Ordine {
     public int UtenteID { get; set; }
 
     public DateTime DataInserimento { get; set; }
-    public IList<Lavorazione> Lavorazioni { get; set; }
+    public List<Lavorazione> Lavorazioni { get; set; }
     public int Stato { get; set; }
     
-
     public Ordine() {
-          
+        this.Lavorazioni = new List<Lavorazione>();
     }
 
 }

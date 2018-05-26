@@ -105,7 +105,6 @@ public class daoOrdine {
         }
 
         return insertedID;
-
     }
 
     public DataTable getAllOrdini()

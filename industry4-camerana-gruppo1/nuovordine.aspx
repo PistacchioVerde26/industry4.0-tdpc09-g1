@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/commerciale_gen.master" AutoEventWireup="true" CodeFile="nuovorinde.aspx.cs" Inherits="nuovorinde" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/commerciale_gen.master" AutoEventWireup="true" CodeFile="nuovordine.aspx.cs" Inherits="nuovorinde" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <link href="css/Gadget.css" rel="stylesheet" />
@@ -65,7 +65,10 @@
             <div class="col center-block text-center">
                 <%--<label for="txt_Qta">QTA</label>
                 <asp:TextBox ID="txt_Qta" CssClass="" runat="server"></asp:TextBox>--%>
-                <asp:Button ID="btn_Inserisci" runat="server" CssClass="btn btn-primary d-inline" Text="Inserisci" />
+                <asp:Button ID="btn_Inserisci" runat="server" CssClass="btn btn-primary d-inline" Text="Inserisci" OnClick="btn_Inserisci_Click" />
+                <asp:Panel runat="server" ID="pnl_Result" CssClass="alert alert-success alert-dismissible">
+                    <asp:Label ID="lbl_Result" runat="server"><strong>OK!</strong> Ordine inserito corretamente.</asp:Label>
+                </asp:Panel>
             </div>
         </div>
     </div>

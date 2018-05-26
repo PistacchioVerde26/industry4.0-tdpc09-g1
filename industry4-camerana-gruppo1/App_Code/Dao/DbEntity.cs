@@ -56,8 +56,9 @@ public class DbEntity
         //SELECT SCOPE_IDENTITY() --> da inserire dopo la query di insert (dopo il ;)
         cmd.Connection = conn;
         ApriConnessione();
-        int insertedID = (int)cmd.ExecuteScalar();
+        //int insertedID = (int)cmd.ExecuteScalar();
+        decimal insertedID = (decimal) cmd.ExecuteScalar();
         ChiudiConnessione();
-        return insertedID;
+        return Decimal.ToInt32(insertedID);
     }
 }

@@ -74,6 +74,7 @@ public partial class _default : System.Web.UI.Page
         imgBtn.ImageUrl = "~/imgs/ic" + P.Tipo + ".png";
         imgBtn.Click += new ImageClickEventHandler(btn_Postazione_Click);
         imgBtn.Attributes.Add("idpostazione", P.ID.ToString());
+        imgBtn.Attributes.Add("tipo", P.Tipo);
 
         Panel cardTitle = new Panel();
         cardTitle.CssClass = "card-title";
@@ -94,7 +95,10 @@ public partial class _default : System.Web.UI.Page
 
         ImageButton btn = (ImageButton)sender;
 
-        Response.Redirect(btn.ID + ".aspx?idpost=" + btn.Attributes["idpostazione"]);
+        if(btn.Attributes["tipo"] != "commerciale")
+            Response.Redirect(btn.ID + ".aspx?idpost=" + btn.Attributes["idpostazione"]);
+        else
+            Response.Redirect("nuovordine.aspx");
     }
 
     protected void btn_Materiale_Click(object sender, ImageClickEventArgs e) {
