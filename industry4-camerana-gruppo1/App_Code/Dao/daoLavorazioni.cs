@@ -44,6 +44,44 @@ public class daoLavorazioni {
         return lavorazioni;
     }
 
+    public List<Lavorazione> GetForPostazione(Postazione P) {
+        DbEntity db = new DbEntity();
+
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandType = CommandType.Text;
+        cmd.CommandText = String.Format(@"SELECT *
+                                            FROM (SELECT Lavorazioni.*, OpzioniLavorazione.opzione, TipoLavorazione.*, Ordini.data AS DataOrdine
+		                                            FROM Lavorazioni
+		                                            INNER JOIN OpzioniLavorazione ON OpzioniLavorazione.idopz = Lavorazioni.fk_opzione
+		                                            INNER JOIN TipoLavorazione ON TipoLavorazione.idtipolav = OpzioniLavorazione.fk_idtipolavorazione
+		                                            INNER JOIN Ordini ON Ordini.idordine = Lavorazioni.fkordine 
+		                                            WHERE stato = 0 OR (stato = 1 AND fk_postazione = {1})) AS SUBQUERY
+                                            WHERE descrizione = '{0}' AND ((stato = 0 AND inizio IS NULL) OR (stato = 1 AND fk_postazione = {1}))
+                                            ORDER BY stato DESC, DataOrdine", P.Tipo, P.ID);
+
+        DataTable dt = db.eseguiQuery(cmd);
+        List<Lavorazione> lavorazioni = new List<Lavorazione>();
+
+        if (dt.Rows.Count > 0) {
+            foreach (DataRow dr in dt.Rows) {
+                //int ID, TipoLavorazione Tipo, string Opzione, int OpzioneID, string Note, DateTime Inizio, DateTime Fine, int Stato
+                Lavorazione newLav = new Lavorazione();
+                newLav.ID = (int)dr["idlavorazione"];
+                newLav.Tipo = new TipoLavorazione((int)dr["idtipolav"], (string)dr["descrizione"]);
+                newLav.Opzione = (string)dr["opzione"];
+                newLav.OpzioneID = (int)dr["fk_opzione"];
+                newLav.Note = (string)dr["note"];
+                //newLav.Inizio = (DateTime)dr["inizio"]; //probablimente da fare controlli per campi vuoti
+                //newLav.Fine = (DateTime)dr["fine"]; //probablimente da fare controlli per campi vuoti
+                newLav.Stato = (int)dr["stato"];
+                newLav.DataOrdine = (DateTime)dr["DataOrdine"];
+                lavorazioni.Add(newLav);
+            }
+        }
+
+        return lavorazioni;
+    }
+
     public int AddNew(Lavorazione L) {
         DbEntity db = new DbEntity();
 

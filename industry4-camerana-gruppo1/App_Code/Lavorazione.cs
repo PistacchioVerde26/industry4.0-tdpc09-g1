@@ -19,6 +19,7 @@ public class Lavorazione {
     public DateTime Fine { get; set; }
     public int Stato { get; set; }
     public int PostazioneID { get; set; }
+    public DateTime DataOrdine { get; set; }
 
     public Lavorazione() {}
 

@@ -37,10 +37,10 @@
                         <h5 class="card-title">LAVORAZIONI IN CODA</h5>
                         <asp:Table CssClass="table table-hover" ID="tbl_Lavori" runat="server">
                             <asp:TableHeaderRow>
-                                <asp:TableCell>ID</asp:TableCell>
-                                <asp:TableCell>FORO</asp:TableCell>
-                                <asp:TableCell>ETICHETTA</asp:TableCell>
-                                <asp:TableCell>COLORE</asp:TableCell>
+                                <asp:TableHeaderCell>ID ORDINE</asp:TableHeaderCell>
+                                <asp:TableCell>OPZIONE</asp:TableCell>
+                                <asp:TableCell>DATA</asp:TableCell>
+                                <asp:TableCell>STATO</asp:TableCell>
                                 <asp:TableCell>BTN PRESA LAVORO</asp:TableCell>
                             </asp:TableHeaderRow>
                         </asp:Table>
@@ -48,7 +48,7 @@
                 </div>
             </div>
         </div>
-
+        <asp:Label ID="lbl_Message" runat="server"></asp:Label>
         <asp:ContentPlaceHolder ID="head" runat="server">
 
         </asp:ContentPlaceHolder>

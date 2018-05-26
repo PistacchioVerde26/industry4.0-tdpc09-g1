@@ -96,7 +96,7 @@ public partial class _default : System.Web.UI.Page
         ImageButton btn = (ImageButton)sender;
 
         if(btn.Attributes["tipo"] != "commerciale")
-            Response.Redirect(btn.ID + ".aspx?idpost=" + btn.Attributes["idpostazione"]);
+            Response.Redirect(btn.ID + ".aspx?pid=" + btn.Attributes["idpostazione"]);
         else
             Response.Redirect("nuovordine.aspx");
     }
@@ -104,4 +104,5 @@ public partial class _default : System.Web.UI.Page
     protected void btn_Materiale_Click(object sender, ImageClickEventArgs e) {
 
     }
+
 }

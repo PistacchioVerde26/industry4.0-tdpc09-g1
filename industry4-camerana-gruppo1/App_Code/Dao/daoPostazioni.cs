@@ -25,7 +25,7 @@ public class daoPostazioni {
         Postazione newPost = null;
         if (dt.Rows.Count > 0) {
                 newPost = new Postazione();
-                newPost.ID = (int)dt.Rows[0]["fk_postazione"];
+                newPost.ID = (int)dt.Rows[0]["idpostazione"];
                 newPost.Tag = (string)dt.Rows[0]["tag"];
                 newPost.Tipo = (string)dt.Rows[0]["descrizione"];
             }
