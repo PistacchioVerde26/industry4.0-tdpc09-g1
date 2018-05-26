@@ -27,8 +27,11 @@ public class daoTipoLavorazione {
         if(dt.Rows.Count > 0) {
             TipoLav = new TipoLavorazione();
 
-            TipoLav.ID = (int)dt.Rows[0]["idopz"];
+            TipoLav.ID = (int)dt.Rows[0]["idtipolav"];
             TipoLav.Descrizione = (string)dt.Rows[0]["descrizione"];
+
+            //Non c'è bisogno di caricare le opzioni per la lavorazione di etichettatura
+            if (TipoLav.Descrizione == "etichettatura") return TipoLav;
 
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = String.Format(@"SELECT *
@@ -39,7 +42,7 @@ public class daoTipoLavorazione {
 
             if(dt2.Rows.Count > 0) {
                 foreach(DataRow dr in dt2.Rows) {
-                    TipoLav.Opzioni.Add((string)dr["opzione"]);
+                    TipoLav.Opzioni.Add((int)dr["idopz"], (string)dr["opzione"]);
                 }
             }
         }

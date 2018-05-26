@@ -45,11 +45,11 @@ public class daoLavorazioni {
     }
 
     public int AddNew(Lavorazione L) {
-
         DbEntity db = new DbEntity();
 
         SqlCommand cmd = new SqlCommand();
         cmd.CommandType = CommandType.Text;
+        int OpzioneID = L.OpzioneID == -1 ? AddNewOpzione(L.Tipo, L.Opzione) : L.OpzioneID;
         cmd.CommandText = String.Format(@"INSERT dbo.Lavorazioni
                                             (
                                                 fkordine,
@@ -64,9 +64,28 @@ public class daoLavorazioni {
                                                 '{2}',
                                                 0
                                             );
-                                            SELECT SCOPE_IDENTITY();", L.OrdineID, L.OpzioneID, L.Note, L.Stato);
+                                            SELECT SCOPE_IDENTITY();", L.OrdineID, OpzioneID, L.Note, L.Stato);
         return db.eseguiInsertIDreturn(cmd);
         //SELECT SCOPE_IDENTITY();
+    }
+
+    public int AddNewOpzione(TipoLavorazione TipoLav, string Opzione) {
+        DbEntity db = new DbEntity();
+
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandType = CommandType.Text;
+        cmd.CommandText = String.Format(@"INSERT OpzioniLavorazione
+                                            (
+                                                opzione,
+                                                fk_idtipolavorazione
+                                            )
+                                            VALUES
+                                            (   '{0}', -- opzione - varchar(255)
+                                                {1}   -- fk_idtipolavorazione - int
+                                            );
+                                            SELECT SCOPE_IDENTITY();", Opzione, TipoLav.ID);
+
+        return db.eseguiInsertIDreturn(cmd);
     }
 
     public void AggiornaStato(Lavorazione L, int PostazioneID) {

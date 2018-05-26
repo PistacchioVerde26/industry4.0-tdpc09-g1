@@ -7,22 +7,29 @@ using System.Web.UI.WebControls;
 
 public partial class nuovorinde : System.Web.UI.Page {
     protected void Page_Load(object sender, EventArgs e) {
-
+        CaricaOpzioni();
     }
 
     public void CaricaOpzioni() {
 
-        List<TipoLavorazione> TipiLavorazione = new List<TipoLavorazione>();
-        TipiLavorazione.Add(new daoTipoLavorazione().GetByTipo("foratura"));
-        TipiLavorazione.Add(new daoTipoLavorazione().GetByTipo("etichettatura"));
-        TipiLavorazione.Add(new daoTipoLavorazione().GetByTipo("colore"));
-        TipiLavorazione.Add(new daoTipoLavorazione().GetByTipo("materiale"));
+        //List<TipoLavorazione> TipiLavorazione = new List<TipoLavorazione>();
+        //TipiLavorazione.Add(new daoTipoLavorazione().GetByTipo("foratura"));
+        //TipiLavorazione.Add(new daoTipoLavorazione().GetByTipo("etichettatura"));
+        //TipiLavorazione.Add(new daoTipoLavorazione().GetByTipo("colore"));
+        //TipiLavorazione.Add(new daoTipoLavorazione().GetByTipo("materiale"));
 
-        foreach (TipoLavorazione TP in TipiLavorazione) {
-            switch (TP.Descrizione) {
-             
-            
-            }
+        TipoLavorazione Foratura = new daoTipoLavorazione().GetByTipo("foratura");
+        TipoLavorazione Colore = new daoTipoLavorazione().GetByTipo("colore");
+        TipoLavorazione Materiale = new daoTipoLavorazione().GetByTipo("materiale");
+
+        foreach(KeyValuePair<int, string> opzione in Foratura.Opzioni) {
+            drp_Foro.Items.Add(new ListItem(opzione.Value, opzione.Key.ToString()));
+        }
+        foreach (KeyValuePair<int, string> opzione in Colore.Opzioni) {
+            drp_Colore.Items.Add(new ListItem(opzione.Value, opzione.Key.ToString()));
+        }
+        foreach (KeyValuePair<int, string> opzione in Materiale.Opzioni) {
+            drp_Materiale.Items.Add(new ListItem(opzione.Value, opzione.Key.ToString()));
         }
 
     }
