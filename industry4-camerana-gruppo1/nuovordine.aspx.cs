@@ -96,10 +96,10 @@ public partial class nuovorinde : System.Web.UI.Page
             if (insertedID != -1)
             {
                 //compilo tabella Lavorazioni
-                insertedID = new daoLavorazioni().AddNew(Foro);
-                insertedID = new daoLavorazioni().AddNew(Colore);
-                insertedID = new daoLavorazioni().AddNew(Materiale);
-                insertedID = new daoLavorazioni().AddNew(Etichetta);
+                //insertedID = new daoLavorazioni().AddNew(Foro);
+                //insertedID = new daoLavorazioni().AddNew(Colore);
+                //insertedID = new daoLavorazioni().AddNew(Materiale);
+                //insertedID = new daoLavorazioni().AddNew(Etichetta);
                 pnl_Result.Visible = true;
                 lbl_Result.Text += " ID: " + insertedID;
             }

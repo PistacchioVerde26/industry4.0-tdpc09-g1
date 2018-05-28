@@ -18,10 +18,11 @@ public class daoLavorazioni
 
         SqlCommand cmd = new SqlCommand();
         cmd.CommandType = CommandType.Text;
-        cmd.CommandText = String.Format(@"SELECT Lavorazioni.*, OpzioniLavorazione.opzione, TipoLavorazione.*
+        cmd.CommandText = String.Format(@"SELECT Lavorazioni.*, OpzioniLavorazione.opzione, TipoLavorazione.*, Ordini.data
                                             FROM Lavorazioni
                                             INNER JOIN OpzioniLavorazione ON OpzioniLavorazione.idopz = Lavorazioni.fk_opzione
                                             INNER JOIN TipoLavorazione ON TipoLavorazione.idtipolav = OpzioniLavorazione.fk_idtipolavorazione
+                                            INNER JOIN Ordini ON Ordini.idordine = Lavorazioni.fkordine
                                             WHERE Lavorazioni.fkordine = {0}", ID);
 
         DataTable dt = db.eseguiQuery(cmd);
@@ -43,6 +44,7 @@ public class daoLavorazioni
                 newLav.Stato = (int)dr["stato"];
                 newLav.OrdineID = (int)dr["fkordine"];
                 newLav.PostazioneID = dr.IsNull("fk_postazione") ? -1 : (int)dr["fk_postazione"];
+                newLav.DataOrdine = (DateTime)dr["data"];
                 lavorazioni.Add(newLav);
             }
         }

@@ -127,6 +127,7 @@ public class daoOrdine {
 
                 newOrd.ID = (int)dr["idordine"];
                 newOrd.DataInserimento = (DateTime)dr["data"]; //probabile conversione di tipo necessaria
+                //DateTime.TryParse(dr[""]);
                 newOrd.UtenteID = (int)dr["fk_utente"];
 
                 newOrd.Lavorazioni = new daoLavorazioni().GetByOrdineID(newOrd.ID);

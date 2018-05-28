@@ -20,21 +20,25 @@
     <nav class="navbar navbar-dark bg-primary">
         <a class="navbar-brand" href="#">LAVORAZIONE</a>
     </nav>
+    <img class="mx-auto d-block" runat="server" ID="img_LogoPostazione" alt="logo" />
     <form id="form1" runat="server">
         <div class="container">
             <div class="row">
                 <div class="col">
                     <div class="card">
-                        <h5 class="card-title">
+                        <h5 class="card-title" runat="server" ID="lbl_NomePostazione">
                             RIQUADRO DI LAVORAZIONE IN CORSO
                         </h5>
+                        <div class="card-body">
+                            <h3 runat="server" id="lbl_InCoda"></h3>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <div class="card">
-                        <h5 class="card-title">LAVORAZIONI IN CODA</h5>
+                        <h5 class="card-title" runat="server" id="lbl_LavorazioniCoda">LAVORAZIONI IN CODA</h5>
                         <asp:Table CssClass="table table-hover" ID="tbl_Lavori" runat="server">
                         </asp:Table>
                     </div>
