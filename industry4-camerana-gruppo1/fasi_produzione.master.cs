@@ -9,6 +9,7 @@ public partial class fasi_produzione : System.Web.UI.MasterPage {
 
     string CurrentPage;
     List<Lavorazione> Lavorazioni;
+
     static int PostazioneID;
     protected void Page_Load(object sender, EventArgs e) {
 
@@ -27,10 +28,26 @@ public partial class fasi_produzione : System.Web.UI.MasterPage {
     public void CaricaPostazione() {
 
         Postazione P = new daoPostazioni().GetByID(PostazioneID);
-        Lavorazioni = new daoLavorazioni().GetForPostazione(P);
+
+        List<Ordine> ordini = new daoOrdine().GetAllOrdiniList();
+        Lavorazioni = new List<Lavorazione>();
+
+        lbl_Message.Text += ordini.Count + " ordini trovati <br/>";
+        foreach (Ordine O in ordini) {
+            if (O.IsFree(P.ID)) {
+                lbl_Message.Text += "Ordine libero ID " + O.ID + "<br />";
+                Lavorazione newL = O.Lavorazioni.Find((L) => L.Tipo.Descrizione.Equals(P.Tipo));
+                if(newL != null) Lavorazioni.Add(newL);
+
+                //foreach(Lavorazione L in O.Lavorazioni) {
+                //    if(L.Tipo.Descrizione.Equals(P.Tipo)) Lavorazioni.Add(L);
+                //    lbl_Message.Text += "L.Tipo.Descrizione -> " + L.Tipo.Descrizione + " P.Tipo -> " + P.Tipo + "<br />";
+                //}
+
+            }
+        }
 
         DrawTable();
-
     }
 
     public void DrawTable() {
@@ -40,11 +57,11 @@ public partial class fasi_produzione : System.Web.UI.MasterPage {
         TableHeaderCell thcIDordine = new TableHeaderCell();
         thcIDordine.Text = "ID ORDINE";
         TableHeaderCell thcOpzione = new TableHeaderCell();
-        thcIDordine.Text = "OPZIONE";
+        thcOpzione.Text = "OPZIONE";
         TableHeaderCell thcIDdata = new TableHeaderCell();
-        thcIDordine.Text = "STATO";
+        thcIDdata.Text = "STATO";
         TableHeaderCell thcIDstato = new TableHeaderCell();
-        thcIDordine.Text = "LAVORA";
+        thcIDstato.Text = "PRENDI IN CARICO";
         TableHeaderCell thcIDbtn = new TableHeaderCell();
 
         thrR.Cells.Add(thcIDordine);
@@ -55,22 +72,26 @@ public partial class fasi_produzione : System.Web.UI.MasterPage {
 
         tbl_Lavori.Rows.Add(thrR);
 
+        lbl_Message.Text += Lavorazioni.Count + " lavorazioni trovate<br/>";
+
         foreach (Lavorazione L in Lavorazioni) {
 
             TableRow tr = new TableRow();
+            tr.CssClass = L.Stato == 1 ? "table-warning" : "table-success";
             TableCell tcIDordine = new TableCell();
-            thcIDordine.Text = L.OrdineID.ToString();
+            tcIDordine.Text = L.OrdineID.ToString();
             TableCell tcOpzione = new TableCell();
-            thcIDordine.Text = L.Opzione;
+            tcOpzione.Text = L.Opzione;
             TableCell tcIDdata = new TableCell();
-            thcIDordine.Text = L.DataOrdine.ToString();
+            tcIDdata.Text = L.DataOrdine.ToString();
             TableCell tcIDstato = new TableCell();
-            thcIDordine.Text = L.Stato.ToString();
+            tcIDstato.Text = L.Stato.ToString();
             TableCell tcIDbtn = new TableCell();
-
             Button btn = new Button();
             btn.Text = "Lavora";
             btn.Click += new EventHandler(Btn_Lavoro_Click);
+            btn.CssClass = "btn btn-primary";
+            tcIDbtn.Controls.Add(btn);
 
             if (L.Stato == 1) btn.Enabled = false;
 
@@ -88,4 +109,5 @@ public partial class fasi_produzione : System.Web.UI.MasterPage {
     protected void Btn_Lavoro_Click(object sender, EventArgs e) {
 
     }
+
 }

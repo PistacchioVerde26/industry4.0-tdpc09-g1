@@ -19,4 +19,15 @@ public class Ordine {
         this.Lavorazioni = new List<Lavorazione>();
     }
 
+    public bool IsFree(int PostazioneID) {
+        //bool result = true;
+        //foreach(Lavorazione L in Lavorazioni) {
+        //    if(L.Stato != 0 && (L.Stato == 1 && L.PostazioneID != PostazioneID)) {
+        //        result = false;
+        //    }
+        //}
+        //return result;
+        return Lavorazioni.Find((L) => L.Stato != 0 && (L.Stato == 1 && L.PostazioneID != PostazioneID)) == null ? true : false;
+    }
+
 }

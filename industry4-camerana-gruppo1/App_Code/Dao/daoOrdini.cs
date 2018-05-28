@@ -107,6 +107,35 @@ public class daoOrdine {
         return insertedID;
     }
 
+    public List<Ordine> GetAllOrdiniList() {
+        DbEntity db = new DbEntity();
+
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandType = CommandType.Text;
+        cmd.CommandText = String.Format(@"SELECT Ordini.*
+                                            FROM Ordini 
+                                            ");
+
+        DataTable dt = db.eseguiQuery(cmd);
+
+        List<Ordine> ordini = null;
+
+        if (dt.Rows.Count > 0) {
+            ordini = new List<Ordine>();
+            foreach(DataRow dr in dt.Rows) {
+                Ordine newOrd = new Ordine();
+
+                newOrd.ID = (int)dr["idordine"];
+                newOrd.DataInserimento = (DateTime)dr["data"]; //probabile conversione di tipo necessaria
+                newOrd.UtenteID = (int)dr["fk_utente"];
+
+                newOrd.Lavorazioni = new daoLavorazioni().GetByOrdineID(newOrd.ID);
+                ordini.Add(newOrd);
+            }
+        }
+        return ordini;
+    }
+
     public DataTable getAllOrdini()
     {
         

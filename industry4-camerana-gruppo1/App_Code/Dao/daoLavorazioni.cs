@@ -22,7 +22,7 @@ public class daoLavorazioni
                                             FROM Lavorazioni
                                             INNER JOIN OpzioniLavorazione ON OpzioniLavorazione.idopz = Lavorazioni.fk_opzione
                                             INNER JOIN TipoLavorazione ON TipoLavorazione.idtipolav = OpzioniLavorazione.fk_idtipolavorazione
-                                            WHERE Lavorazioni.idlavorazione = {0}", ID);
+                                            WHERE Lavorazioni.fkordine = {0}", ID);
 
         DataTable dt = db.eseguiQuery(cmd);
         List<Lavorazione> lavorazioni = new List<Lavorazione>();
@@ -38,9 +38,11 @@ public class daoLavorazioni
                 newLav.Opzione = (string)dr["opzione"];
                 newLav.OpzioneID = (int)dr["fk_opzione"];
                 newLav.Note = (string)dr["note"];
-                newLav.Inizio = (DateTime)dr["inizio"]; //probablimente da fare controlli per campi vuoti
-                newLav.Fine = (DateTime)dr["fine"]; //probablimente da fare controlli per campi vuoti
+                //newLav.Inizio = (DateTime)dr["inizio"]; //probablimente da fare controlli per campi vuoti
+                //newLav.Fine = (DateTime)dr["fine"]; //probablimente da fare controlli per campi vuoti
                 newLav.Stato = (int)dr["stato"];
+                newLav.OrdineID = (int)dr["fkordine"];
+                newLav.PostazioneID = dr.IsNull("fk_postazione") ? -1 : (int)dr["fk_postazione"];
                 lavorazioni.Add(newLav);
             }
         }

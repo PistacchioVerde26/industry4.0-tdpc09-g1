@@ -14,7 +14,6 @@ public partial class ordiniInseriti : System.Web.UI.Page
     }
     protected void CaricaOrdini()
     {
-       
 
         tblOdini.Rows.Clear();
 
