@@ -5,15 +5,18 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class nuovorinde : System.Web.UI.Page {
-    protected void Page_Load(object sender, EventArgs e) {
+public partial class nuovorinde : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
         //Controllo utente loggato
 
         pnl_Result.Visible = false;
         CaricaOpzioni();
     }
 
-    public void CaricaOpzioni() {
+    public void CaricaOpzioni()
+    {
 
         //List<TipoLavorazione> TipiLavorazione = new List<TipoLavorazione>();
         //TipiLavorazione.Add(new daoTipoLavorazione().GetByTipo("foratura"));
@@ -26,19 +29,22 @@ public partial class nuovorinde : System.Web.UI.Page {
         TipoLavorazione Materiale = new daoTipoLavorazione().GetByTipo("materiale");
         TipoLavorazione Etichetta = new daoTipoLavorazione().GetByTipo("etichettatura");
 
-        foreach (KeyValuePair<int, string> opzione in Foratura.Opzioni) {
+        foreach (KeyValuePair<int, string> opzione in Foratura.Opzioni)
+        {
             drp_Foro.Items.Add(new ListItem(opzione.Value, opzione.Key.ToString()));
         }
         drp_Foro.Attributes.Add("tipo", Foratura.Descrizione);
         drp_Foro.Attributes.Add("tipoID", Foratura.ID.ToString());
 
-        foreach (KeyValuePair<int, string> opzione in Colore.Opzioni) {
+        foreach (KeyValuePair<int, string> opzione in Colore.Opzioni)
+        {
             drp_Colore.Items.Add(new ListItem(opzione.Value, opzione.Key.ToString()));
         }
         drp_Colore.Attributes.Add("tipo", Colore.Descrizione);
         drp_Colore.Attributes.Add("tipoID", Colore.ID.ToString());
 
-        foreach (KeyValuePair<int, string> opzione in Materiale.Opzioni) {
+        foreach (KeyValuePair<int, string> opzione in Materiale.Opzioni)
+        {
             drp_Materiale.Items.Add(new ListItem(opzione.Value, opzione.Key.ToString()));
         }
         drp_Materiale.Attributes.Add("tipo", Materiale.Descrizione);
@@ -48,9 +54,11 @@ public partial class nuovorinde : System.Web.UI.Page {
         txt_Etichetta.Attributes.Add("tipoID", Etichetta.ID.ToString());
     }
 
-    protected void btn_Inserisci_Click(object sender, EventArgs e) {
+    protected void btn_Inserisci_Click(object sender, EventArgs e)
+    {
 
-        if(txt_Etichetta.Text != "") {
+        if (txt_Etichetta.Text != "")
+        {
 
             Lavorazione Foro = new Lavorazione();
             Foro.Tipo = new TipoLavorazione(Int32.Parse(drp_Foro.Attributes["tipoID"]), drp_Foro.Attributes["tipo"]);
@@ -84,20 +92,28 @@ public partial class nuovorinde : System.Web.UI.Page {
             newOrdine.UtenteID = ((Utente)Session["utente"]).ID;
 
             int insertedID = new daoOrdine().AddNew(newOrdine);
-            
-            if(insertedID != -1) {
+
+            if (insertedID != -1)
+            {
+                //compilo tabella Lavorazioni
+                insertedID = new daoLavorazioni().AddNew(Foro);
+                insertedID = new daoLavorazioni().AddNew(Colore);
+                insertedID = new daoLavorazioni().AddNew(Materiale);
+                insertedID = new daoLavorazioni().AddNew(Etichetta);
                 pnl_Result.Visible = true;
                 lbl_Result.Text += " ID: " + insertedID;
-            } else {
+            }
+            else
+            {
                 pnl_Result.Visible = true;
                 lbl_Result.Text = "<strong>Error!</strong> Errore inserimento ordine - " + insertedID;
             }
 
-        } else {
+        }
+        else
+        {
             pnl_Result.Visible = true;
             lbl_Result.Text = "<strong>Error!</strong> Errore inserimento ordine";
         }
-
-
     }
 }

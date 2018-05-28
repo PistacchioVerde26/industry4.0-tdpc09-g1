@@ -120,7 +120,8 @@ public class daoOrdine {
         cmd.CommandText = "SELECT Ordini.* FROM Ordini";
 
         dt = db.eseguiQuery(cmd);
-                
-        return tempDT;
+             
+        return dt;
     }
+    
 }
