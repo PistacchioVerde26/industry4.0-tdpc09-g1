@@ -153,5 +153,11 @@ namespace Industry4_camerana_gruppo1
         {
 
         }
+        protected void Timer1_Tick(object sender, EventArgs e)
+        {
+            lblData.Text = DateTime.Now.ToString();
+            CaricaPostazione();
+            
+        }
     }
 }
