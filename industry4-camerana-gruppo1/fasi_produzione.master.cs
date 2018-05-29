@@ -132,6 +132,7 @@ namespace Industry4_camerana_gruppo1
                     btn.Text = L.Stato == 1 ? "In corso..." : "Lavora";
                     btn.Click += new EventHandler(Btn_Lavoro_Click);
                     btn.CssClass = "btn btn-primary";
+                    btn.Attributes.Add("id_lavorazione", L.ID.ToString());
                     tcIDbtn.Controls.Add(btn);
 
                     if (LavorazioneInCorso) btn.Enabled = false;
@@ -151,7 +152,17 @@ namespace Industry4_camerana_gruppo1
 
         protected void Btn_Lavoro_Click(object sender, EventArgs e)
         {
-
+            Button btn = sender as Button;
+            int l_id = Convert.ToInt32( btn.Attributes["id_lavorazione"]);
+            if (l_id != 0)
+            {
+                Lavorazione Lav;
+                
+                if ((Lav=Lavorazioni.Find(l=> l.ID == l_id)) != null)
+                {
+                    new daoLavorazioni().AggiornaStato(Lav, PostazioneID);
+                }
+            }
         }
         protected void Timer1_Tick(object sender, EventArgs e)
         {
