@@ -18,24 +18,14 @@
 }
 
 .wrapper {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    min-height: 100%;
-    padding: 20px;
-    /*background: rgba(4, 40, 68, 0.85);*/
-    background-color: #f4f4f4;
-}
-
-.wrapper .left-robot{
-    position: absolute;
-    left: 0px;
-}
-
-.wrapper .right.robot{
-    
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
+  padding: 20px;
+  background: rgba(4, 40, 68, 0.85);
 }
 
 .login {

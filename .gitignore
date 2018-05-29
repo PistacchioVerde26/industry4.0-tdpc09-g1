@@ -210,7 +210,6 @@ Backup*/
 UpgradeLog*.XML
 UpgradeLog*.htm
 Web.config
-App_Data/
 
 # SQL Server files
 *.mdf
