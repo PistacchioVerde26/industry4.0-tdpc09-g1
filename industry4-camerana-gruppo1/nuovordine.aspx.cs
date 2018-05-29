@@ -32,6 +32,9 @@ namespace Industry4_camerana_gruppo1
             TipoLavorazione Colore = new daoTipoLavorazione().GetByTipo("colore");
             TipoLavorazione Materiale = new daoTipoLavorazione().GetByTipo("materiale");
             TipoLavorazione Etichetta = new daoTipoLavorazione().GetByTipo("etichettatura");
+            drp_Foro.Items.Clear();
+            drp_Colore.Items.Clear();
+            drp_Materiale.Items.Clear();
 
             foreach (KeyValuePair<int, string> opzione in Foratura.Opzioni)
             {
@@ -63,7 +66,7 @@ namespace Industry4_camerana_gruppo1
 
             if (txt_Etichetta.Text != "")
             {
-
+                lbl_Result.Text = "";
                 Lavorazione Foro = new Lavorazione();
                 Foro.Tipo = new TipoLavorazione(Int32.Parse(drp_Foro.Attributes["tipoID"]), drp_Foro.Attributes["tipo"]);
                 Foro.OpzioneID = Int32.Parse(drp_Foro.SelectedItem.Value);
@@ -105,7 +108,7 @@ namespace Industry4_camerana_gruppo1
                     //insertedID = new daoLavorazioni().AddNew(Materiale);
                     //insertedID = new daoLavorazioni().AddNew(Etichetta);
                     pnl_Result.Visible = true;
-                    lbl_Result.Text += " ID: " + insertedID;
+                    lbl_Result.Text = "OK!</ strong > Ordine inserito corretamente."+ " ID: " + insertedID;
                 }
                 else
                 {
