@@ -123,13 +123,17 @@ namespace Industry4_camerana_gruppo1
                 icon.Width = new Unit(40);
                 tcIDstato.Controls.Add(icon);
                 TableCell tcIDbtn = new TableCell();
-                Button btn = new Button();
-                btn.Text = L.Stato == 1 ? "In corso..." : "Lavora";
-                btn.Click += new EventHandler(Btn_Lavoro_Click);
-                btn.CssClass = "btn btn-primary";
-                tcIDbtn.Controls.Add(btn);
 
-                if (L.Stato == 1 || LavorazioneInCorso || Lavorazioni.IndexOf(L) != 0) btn.Enabled = false;
+                if(L.Stato == 1 || Lavorazioni.IndexOf(L) == 0) {
+                    Button btn = new Button();
+                    btn.Text = L.Stato == 1 ? "In corso..." : "Lavora";
+                    btn.Click += new EventHandler(Btn_Lavoro_Click);
+                    btn.CssClass = "btn btn-primary";
+                    tcIDbtn.Controls.Add(btn);
+
+                    if (LavorazioneInCorso) btn.Enabled = false;
+                }
+                
 
                 tr.Cells.Add(tcIDordine);
                 tr.Cells.Add(tcOpzione);

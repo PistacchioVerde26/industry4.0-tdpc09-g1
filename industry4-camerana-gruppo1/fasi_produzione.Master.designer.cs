@@ -22,15 +22,6 @@ namespace Industry4_camerana_gruppo1 {
         protected global::System.Web.UI.HtmlControls.HtmlImage img_LogoPostazione;
         
         /// <summary>
-        /// Controllo form1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generato automaticamente.
-        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
-        /// <summary>
         /// Controllo lbl_NomePostazione.
         /// </summary>
         /// <remarks>
@@ -38,6 +29,15 @@ namespace Industry4_camerana_gruppo1 {
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_NomePostazione;
+        
+        /// <summary>
+        /// Controllo form1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
         /// Controllo lbl_InCoda.

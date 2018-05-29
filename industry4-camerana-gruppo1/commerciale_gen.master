@@ -21,8 +21,8 @@
     <form id="form1" runat="server">
 
         <nav class="navbar navbar-expand-md navbar-dark bg-primary">
-            <a class="navbar-brand" href="#">
-                <img src="imgs/small40.jpg" class="d-inline-block align-top" height="30"/>
+            <a class="navbar-brand" href="default.aspx">
+                <img src="imgs/small40.jpg" class="width-50" />
                 COMMERCIALE
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,6 +40,13 @@
                         <a class="nav-link" href="#">Avanzamento Lavorazioni</a>
                     </li>
                 </ul>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Log-out</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
         <img class="mx-auto d-block" src="imgs/logoApp.png" alt="logo" />

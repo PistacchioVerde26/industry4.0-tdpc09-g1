@@ -95,7 +95,7 @@ namespace Industry4_camerana_gruppo1
             cardTitle.CssClass = "card-title";
 
             Label title = new Label();
-            title.Text = P.Tipo + " - " + P.Tag;
+            title.Text = P.Tipo.ToUpper() + " - " + P.Tag;
 
             card.Controls.Add(imgBtn);
             cardTitle.Controls.Add(title);

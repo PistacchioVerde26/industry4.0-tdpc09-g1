@@ -91,17 +91,17 @@ namespace Industry4_camerana_gruppo1
                     Button btnM = new Button();
                     btnM.Text = "Modifica";
                     //btnM.CommandArgument = u.ID;
-                    btnM.BackColor = System.Drawing.Color.CadetBlue;
+                    //btnM.BackColor = System.Drawing.Color.CadetBlue;
                     btnM.Click += new EventHandler(operazioneUtente);
+                    btnM.CssClass = "btn btn-warning";
                     tcBtnModifica1.Controls.Add(btnM);
                     Button btn = new Button();
                     btn.Text = "X";
                     //btn.CommandArgument = u.ID;
                     btn.BackColor = System.Drawing.Color.Red;
                     btn.Click += new EventHandler(operazioneUtente);
+                    btn.CssClass = "btn btn-danger";
                     tcBtnX1.Controls.Add(btn);
-
-
 
                     tr1.Cells.Add(tcNumero1);
                     tr1.Cells.Add(tcDataInizio1);

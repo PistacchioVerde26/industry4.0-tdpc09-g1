@@ -13,44 +13,55 @@
     <link href="css/style.css" rel="stylesheet" />
 
     <title>Produzione</title>
-    
+
 </head>
 <body>
 
-    <nav class="navbar navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">LAVORAZIONE</a>
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+        <a class="navbar-brand" href="default.aspx">
+            <img src="imgs/small40.jpg" class="width-50" />
+            POSTAZIONE DI LAVORO    
+        </a>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Log-out</a>
+            </li>
+        </ul>
     </nav>
-    <img class="mx-auto d-block" runat="server" ID="img_LogoPostazione" alt="logo" />
+    <div class="card">
+        <div class="card-body mx-auto">
+            <img class="mx-auto d-block width-70" src="#" runat="server" id="img_LogoPostazione" alt="logo" />
+            <h3 class="card-title" runat="server" id="lbl_NomePostazione"></h3>
+        </div>
+    </div>
+
     <form id="form1" runat="server">
         <div class="container">
-            <div class="row">
+            <div class="row" style="margin-top: 40px">
                 <div class="col">
                     <div class="card">
-                        <h5 class="card-title" runat="server" ID="lbl_NomePostazione">
-                            RIQUADRO DI LAVORAZIONE IN CORSO
-                        </h5>
                         <div class="card-body">
-                            <h3 runat="server" id="lbl_InCoda"></h3>
+                            <h4 runat="server" id="lbl_InCoda"></h4>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style="margin-top: 20px">
                 <div class="col">
                     <div class="card">
-                        <h5 class="card-title" runat="server" id="lbl_LavorazioniCoda">LAVORAZIONI IN CODA</h5>
-                        <asp:Table CssClass="table table-hover" ID="tbl_Lavori" runat="server">
-                        </asp:Table>
+                        <div class="card-body">
+                            <h6 class="card-title" runat="server" id="lbl_LavorazioniCoda"></h6>
+                            <asp:Table CssClass="table table-hover" ID="tbl_Lavori" runat="server">
+                            </asp:Table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <asp:Label ID="lbl_Message" runat="server"></asp:Label>
         <asp:ContentPlaceHolder ID="head" runat="server">
-
         </asp:ContentPlaceHolder>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-
         </asp:ContentPlaceHolder>
     </form>
 </body>

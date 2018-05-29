@@ -90,6 +90,8 @@
     <Content Include="imgs\icforatura.png" />
     <Content Include="imgs\icmateriale.png" />
     <Content Include="imgs\ico-lav-0.png" />
+    <Content Include="imgs\ico-lav-5.png" />
+    <Content Include="imgs\ico-lav-9.png" />
     <Content Include="imgs\ico-lav-1.png" />
     <Content Include="imgs\Immagine.png" />
     <Content Include="imgs\login-icon.png" />
