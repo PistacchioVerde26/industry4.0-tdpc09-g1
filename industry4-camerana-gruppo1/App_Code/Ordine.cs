@@ -29,7 +29,7 @@ namespace Industry4_camerana_gruppo1.App_Code
             //    }
             //}
             //return result;
-            return Lavorazioni.Find((L) => L.Stato != 0 && (L.Stato == 1 && L.PostazioneID != PostazioneID)) == null ? true : false;
+            return Lavorazioni.Find((L) => L.Stato == 1 && L.PostazioneID != PostazioneID) == null ? true : false;
         }
 
     }
