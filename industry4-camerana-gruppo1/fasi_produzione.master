@@ -41,7 +41,11 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
-                            <h4 runat="server" id="lbl_InCoda"></h4>
+                            <h5 runat="server" class="card-title" id="lbl_InCoda"></h5>
+                            <div class="card" runat="server" id="tool_card">
+                                <img src="imgs/tool.png" class="mx-auto d-block" />
+                            </div>
+                            <asp:Button ID="btn_Termina" runat="server" Text="Termina" CssClass="btn btn-primary mx-auto d-block"/>
                         </div>
                     </div>
                 </div>

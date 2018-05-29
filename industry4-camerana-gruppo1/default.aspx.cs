@@ -79,7 +79,6 @@ namespace Industry4_camerana_gruppo1
             Panel wrapper = new Panel();
             wrapper.CssClass = "col";
 
-
             Panel card = new Panel();
             card.CssClass = "card text-center postazione";
 

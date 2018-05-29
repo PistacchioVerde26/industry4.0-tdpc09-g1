@@ -61,19 +61,22 @@ namespace Industry4_camerana_gruppo1
                 }
             }
 
+            DrawProdotto();
+            DrawTable();
+        }
+
+        public void DrawProdotto(){
             LInCoda = Lavorazioni.Find(L => L.Stato == 1);
 
-            if (LInCoda == null)
-            {
-                lbl_InCoda.Visible = true;
+            if (LInCoda == null) {
                 lbl_InCoda.InnerText = "Nessuna lavorazione in corso";
+                tool_card.Visible = false;
+                btn_Termina.Visible = false;
+            } else {
+                lbl_InCoda.InnerText = String.Format("Lavorazione in corso ID {0} - {1} - {2}", LInCoda.ID, LInCoda.Tipo.Descrizione, LInCoda.Opzione);
+                tool_card.Visible = true;
+                btn_Termina.Visible = true;
             }
-            else
-            {
-                lbl_InCoda.Visible = false;
-            }
-
-            DrawTable();
         }
 
         public void DrawTable()

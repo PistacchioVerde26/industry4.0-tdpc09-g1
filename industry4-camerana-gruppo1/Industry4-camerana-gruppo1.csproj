@@ -97,6 +97,7 @@
     <Content Include="imgs\login-icon.png" />
     <Content Include="imgs\logoApp.png" />
     <Content Include="imgs\small40.jpg" />
+    <Content Include="imgs\tool.png" />
     <Content Include="js\default.js" />
     <Content Include="js\login.js" />
     <Content Include="login.aspx" />
@@ -204,6 +205,7 @@
     <Content Include="commerciale_gen.Master" />
     <Content Include="fasi_produzione.Master" />
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
