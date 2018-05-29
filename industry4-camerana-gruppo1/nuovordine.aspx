@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/commerciale_gen.Master" AutoEventWireup="true" CodeBehind="nuovordine.aspx.cs" Inherits="Industry4_camerana_gruppo1.nuovordine" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <link href="css/Gadget.css" rel="stylesheet" />
 </asp:Content>
@@ -31,9 +32,9 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">OGGETTO</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-
+                        <div class="card" runat="server" id="tool_card">
+                            <img src="imgs/tool.png" class="mx-auto d-block" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -70,7 +71,7 @@
                 </asp:Panel>
             </div>
         </div>
-        
+
 
     </div>
 

@@ -31,6 +31,15 @@ namespace Industry4_camerana_gruppo1 {
         protected global::System.Web.UI.WebControls.DropDownList drp_Foro;
         
         /// <summary>
+        /// Controllo tool_card.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tool_card;
+        
+        /// <summary>
         /// Controllo drp_Colore.
         /// </summary>
         /// <remarks>
