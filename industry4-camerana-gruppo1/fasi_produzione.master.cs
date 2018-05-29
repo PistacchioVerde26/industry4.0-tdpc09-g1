@@ -50,7 +50,7 @@ namespace Industry4_camerana_gruppo1
                 if (O.IsFree(P.ID))
                 {
                     lbl_Message.Text += "Ordine libero ID " + O.ID + "<br />";
-                    Lavorazione newL = O.Lavorazioni.Find((L) => L.Tipo.Descrizione.Equals(P.Tipo));
+                    Lavorazione newL = O.Lavorazioni.Find((L) => L.Tipo.Descrizione.Equals(P.Tipo) && L.Stato != 2);
                     if (newL != null) Lavorazioni.Add(newL);
 
                     //foreach(Lavorazione L in O.Lavorazioni) {
@@ -76,6 +76,7 @@ namespace Industry4_camerana_gruppo1
                 lbl_InCoda.InnerText = String.Format("Lavorazione in corso ID {0} - {1} - {2}", LInCoda.ID, LInCoda.Tipo.Descrizione, LInCoda.Opzione);
                 tool_card.Visible = true;
                 btn_Termina.Visible = true;
+                btn_Termina.Attributes.Add("idlav", LInCoda.ID.ToString());
             }
         }
 
@@ -130,8 +131,11 @@ namespace Industry4_camerana_gruppo1
                 if(L.Stato == 1 || Lavorazioni.IndexOf(L) == 0) {
                     Button btn = new Button();
                     btn.Text = L.Stato == 1 ? "In corso..." : "Lavora";
+                    btn.UseSubmitBehavior = true;
+                    btn.ID = "Lavora";
                     btn.Click += new EventHandler(Btn_Lavoro_Click);
                     btn.CssClass = "btn btn-primary";
+                    btn.Attributes.Add("id_lavorazione", L.ID.ToString());
                     tcIDbtn.Controls.Add(btn);
 
                     if (LavorazioneInCorso) btn.Enabled = false;
@@ -151,13 +155,46 @@ namespace Industry4_camerana_gruppo1
 
         protected void Btn_Lavoro_Click(object sender, EventArgs e)
         {
-
+            Button btn = sender as Button;
+            int l_id = Convert.ToInt32( btn.Attributes["id_lavorazione"]);
+            if (l_id != 0)
+            {
+                Lavorazione Lav;
+                
+                if ((Lav=Lavorazioni.Find(l=> l.ID == l_id)) != null)
+                {
+                    Lav.Stato = 1;
+                    new daoLavorazioni().AggiornaStato(Lav, PostazioneID);
+                    LInCoda = Lav;
+                }
+                else
+                {
+                    LInCoda = null;
+                }
+            }
         }
         protected void Timer1_Tick(object sender, EventArgs e)
         {
             lblData.Text = DateTime.Now.ToString();
             CaricaPostazione();
             
+        }
+
+        protected void btn_Termina_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            int idlav =Convert.ToInt32(btn.Attributes["idlav"]);
+
+            if(idlav != -1)
+            {
+                Lavorazione Lav;
+                if((Lav = Lavorazioni.Find(L => L.ID == idlav)) != null)
+                {
+                    Lav.Stato = 2;
+                    new daoLavorazioni().AggiornaStato(Lav, PostazioneID);
+                    CaricaPostazione();
+                }
+            }
         }
     }
 }

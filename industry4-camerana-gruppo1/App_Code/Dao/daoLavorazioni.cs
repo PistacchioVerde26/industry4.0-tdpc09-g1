@@ -155,7 +155,7 @@ namespace Industry4_camerana_gruppo1.App_Code.Dao
             {
                 cmd.CommandText = String.Format(@"UPDATE Lavorazioni
                                                 SET stato = {0}, fk_postazione = {1}
-                                                WHERE idlavorazione = {2}", L.ID, L.PostazioneID, L.Stato);
+                                                WHERE idlavorazione = {2}", L.Stato, PostazioneID, L.ID);
             }
 
             db.eseguiQueryNOreturn(cmd);
