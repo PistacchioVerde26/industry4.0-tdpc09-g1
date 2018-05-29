@@ -106,9 +106,7 @@
     <Content Include="materiale.aspx" />
     <Content Include="nuovordine.aspx" />
     <Content Include="ordiniInseriti.aspx" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\Dao\daoLavorazioni.cs" />
