@@ -38,43 +38,46 @@
 
     <form id="form1" runat="server">
         <div class="container">
-            <div class="row" style="margin-top: 40px">
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 runat="server" class="card-title" id="lbl_InCoda"></h5>
-                            <div class="card" runat="server" id="tool_card">
-                                <img src="imgs/tool.png" class="mx-auto d-block" />
-                            </div>
-                            <asp:Button ID="btn_Termina" runat="server" Text="Termina" CssClass="btn btn-primary mx-auto d-block" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row" style="margin-top: 20px">
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-                            <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick" Interval="1000"></asp:Timer>
-                            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                                <ContentTemplate>
-                                    <asp:Label ID="lblData" runat="server" Text="Data"></asp:Label>
-                                    <br />
-                                    <asp:Label ID="lblText" runat="server" Text=""></asp:Label>
-                                </ContentTemplate>
 
-                                <Triggers>
-                                    <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick" />
-                                </Triggers>
-                            </asp:UpdatePanel>
-                            <h6 class="card-title" runat="server" id="lbl_LavorazioniCoda"></h6>
-                            <asp:Table CssClass="table table-hover" ID="tbl_Lavori" runat="server">
-                            </asp:Table>
+            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+            <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick" Interval="1000"></asp:Timer>
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                <ContentTemplate>
+                    <asp:Label ID="lblData" runat="server" Text="Data"></asp:Label>
+                    <br />
+
+
+                    <div class="row" style="margin-top: 40px">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 runat="server" class="card-title" id="lbl_InCoda"></h5>
+                                    <div class="card" runat="server" id="tool_card">
+                                        <img src="imgs/tool.png" class="mx-auto d-block" />
+                                    </div>
+                                    <asp:Button ID="btn_Termina" runat="server" Text="Termina" CssClass="btn btn-primary mx-auto d-block" />
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                    <div class="row" style="margin-top: 20px">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+
+                                    <h6 class="card-title" runat="server" id="lbl_LavorazioniCoda"></h6>
+                                    <asp:Table CssClass="table table-hover" ID="tbl_Lavori" runat="server">
+                                    </asp:Table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ContentTemplate>
+
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick" />
+                </Triggers>
+            </asp:UpdatePanel>
         </div>
 
         <asp:Label ID="lbl_Message" runat="server"></asp:Label>

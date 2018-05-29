@@ -40,33 +40,6 @@ namespace Industry4_camerana_gruppo1 {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Controllo lbl_InCoda.
-        /// </summary>
-        /// <remarks>
-        /// Campo generato automaticamente.
-        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_InCoda;
-        
-        /// <summary>
-        /// Controllo tool_card.
-        /// </summary>
-        /// <remarks>
-        /// Campo generato automaticamente.
-        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tool_card;
-        
-        /// <summary>
-        /// Controllo btn_Termina.
-        /// </summary>
-        /// <remarks>
-        /// Campo generato automaticamente.
-        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Termina;
-        
-        /// <summary>
         /// Controllo ScriptManager1.
         /// </summary>
         /// <remarks>
@@ -103,13 +76,31 @@ namespace Industry4_camerana_gruppo1 {
         protected global::System.Web.UI.WebControls.Label lblData;
         
         /// <summary>
-        /// Controllo lblText.
+        /// Controllo lbl_InCoda.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblText;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_InCoda;
+        
+        /// <summary>
+        /// Controllo tool_card.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tool_card;
+        
+        /// <summary>
+        /// Controllo btn_Termina.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_Termina;
         
         /// <summary>
         /// Controllo lbl_LavorazioniCoda.
