@@ -94,8 +94,10 @@
     <Content Include="imgs\ico-lav-9.png" />
     <Content Include="imgs\ico-lav-1.png" />
     <Content Include="imgs\Immagine.png" />
+    <Content Include="imgs\left-robot.png" />
     <Content Include="imgs\login-icon.png" />
     <Content Include="imgs\logoApp.png" />
+    <Content Include="imgs\right-robot.png" />
     <Content Include="imgs\small40.jpg" />
     <Content Include="imgs\tool.png" />
     <Content Include="js\default.js" />
