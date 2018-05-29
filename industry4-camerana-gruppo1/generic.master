@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="generic.master.cs" Inherits="generic" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="generic.master.cs" Inherits="Industry4_camerana_gruppo1.generic" %>
 
 <!DOCTYPE html>
 

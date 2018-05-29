@@ -2,63 +2,62 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-//using System.Linq;
+using System.Linq;
 using System.Web;
 
-/// <summary>
-/// Descrizione di riepilogo per daoLavorazioni
-/// </summary>
-public class daoLavorazioni
+namespace Industry4_camerana_gruppo1.App_Code.Dao
 {
-    public daoLavorazioni() { }
-
-    public List<Lavorazione> GetByOrdineID(int ID)
+    public class daoLavorazioni
     {
-        DbEntity db = new DbEntity();
+        public daoLavorazioni() { }
 
-        SqlCommand cmd = new SqlCommand();
-        cmd.CommandType = CommandType.Text;
-        cmd.CommandText = String.Format(@"SELECT Lavorazioni.*, OpzioniLavorazione.opzione, TipoLavorazione.*, Ordini.data
+        public List<Lavorazione> GetByOrdineID(int ID)
+        {
+            DbEntity db = new DbEntity();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = String.Format(@"SELECT Lavorazioni.*, OpzioniLavorazione.opzione, TipoLavorazione.*, Ordini.data
                                             FROM Lavorazioni
                                             INNER JOIN OpzioniLavorazione ON OpzioniLavorazione.idopz = Lavorazioni.fk_opzione
                                             INNER JOIN TipoLavorazione ON TipoLavorazione.idtipolav = OpzioniLavorazione.fk_idtipolavorazione
                                             INNER JOIN Ordini ON Ordini.idordine = Lavorazioni.fkordine
                                             WHERE Lavorazioni.fkordine = {0}", ID);
 
-        DataTable dt = db.eseguiQuery(cmd);
-        List<Lavorazione> lavorazioni = new List<Lavorazione>();
+            DataTable dt = db.eseguiQuery(cmd);
+            List<Lavorazione> lavorazioni = new List<Lavorazione>();
 
-        if (dt.Rows.Count > 0)
-        {
-            foreach (DataRow dr in dt.Rows)
+            if (dt.Rows.Count > 0)
             {
-                //int ID, TipoLavorazione Tipo, string Opzione, int OpzioneID, string Note, DateTime Inizio, DateTime Fine, int Stato
-                Lavorazione newLav = new Lavorazione();
-                newLav.ID = (int)dr["idlavorazione"];
-                newLav.Tipo = new TipoLavorazione((int)dr["idtipolav"], (string)dr["descrizione"]);
-                newLav.Opzione = (string)dr["opzione"];
-                newLav.OpzioneID = (int)dr["fk_opzione"];
-                newLav.Note = (string)dr["note"];
-                //newLav.Inizio = (DateTime)dr["inizio"]; //probablimente da fare controlli per campi vuoti
-                //newLav.Fine = (DateTime)dr["fine"]; //probablimente da fare controlli per campi vuoti
-                newLav.Stato = (int)dr["stato"];
-                newLav.OrdineID = (int)dr["fkordine"];
-                newLav.PostazioneID = dr.IsNull("fk_postazione") ? -1 : (int)dr["fk_postazione"];
-                newLav.DataOrdine = (DateTime)dr["data"];
-                lavorazioni.Add(newLav);
+                foreach (DataRow dr in dt.Rows)
+                {
+                    //int ID, TipoLavorazione Tipo, string Opzione, int OpzioneID, string Note, DateTime Inizio, DateTime Fine, int Stato
+                    Lavorazione newLav = new Lavorazione();
+                    newLav.ID = (int)dr["idlavorazione"];
+                    newLav.Tipo = new TipoLavorazione((int)dr["idtipolav"], (string)dr["descrizione"]);
+                    newLav.Opzione = (string)dr["opzione"];
+                    newLav.OpzioneID = (int)dr["fk_opzione"];
+                    newLav.Note = (string)dr["note"];
+                    //newLav.Inizio = (DateTime)dr["inizio"]; //probablimente da fare controlli per campi vuoti
+                    //newLav.Fine = (DateTime)dr["fine"]; //probablimente da fare controlli per campi vuoti
+                    newLav.Stato = (int)dr["stato"];
+                    newLav.OrdineID = (int)dr["fkordine"];
+                    newLav.PostazioneID = dr.IsNull("fk_postazione") ? -1 : (int)dr["fk_postazione"];
+                    newLav.DataOrdine = (DateTime)dr["data"];
+                    lavorazioni.Add(newLav);
+                }
             }
+
+            return lavorazioni;
         }
 
-        return lavorazioni;
-    }
+        public List<Lavorazione> GetForPostazione(Postazione P)
+        {
+            DbEntity db = new DbEntity();
 
-    public List<Lavorazione> GetForPostazione(Postazione P)
-    {
-        DbEntity db = new DbEntity();
-
-        SqlCommand cmd = new SqlCommand();
-        cmd.CommandType = CommandType.Text;
-        cmd.CommandText = String.Format(@"SELECT *
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = String.Format(@"SELECT *
                                             FROM (SELECT Lavorazioni.*, OpzioniLavorazione.opzione, TipoLavorazione.*, Ordini.data AS DataOrdine
 		                                            FROM Lavorazioni
 		                                            INNER JOIN OpzioniLavorazione ON OpzioniLavorazione.idopz = Lavorazioni.fk_opzione
@@ -68,39 +67,39 @@ public class daoLavorazioni
                                             WHERE descrizione = '{0}' AND ((stato = 0 AND inizio IS NULL) OR (stato = 1 AND fk_postazione = {1}))
                                             ORDER BY stato DESC, DataOrdine", P.Tipo, P.ID);
 
-        DataTable dt = db.eseguiQuery(cmd);
-        List<Lavorazione> lavorazioni = new List<Lavorazione>();
+            DataTable dt = db.eseguiQuery(cmd);
+            List<Lavorazione> lavorazioni = new List<Lavorazione>();
 
-        if (dt.Rows.Count > 0)
-        {
-            foreach (DataRow dr in dt.Rows)
+            if (dt.Rows.Count > 0)
             {
-                //int ID, TipoLavorazione Tipo, string Opzione, int OpzioneID, string Note, DateTime Inizio, DateTime Fine, int Stato
-                Lavorazione newLav = new Lavorazione();
-                newLav.ID = (int)dr["idlavorazione"];
-                newLav.Tipo = new TipoLavorazione((int)dr["idtipolav"], (string)dr["descrizione"]);
-                newLav.Opzione = (string)dr["opzione"];
-                newLav.OpzioneID = (int)dr["fk_opzione"];
-                newLav.Note = (string)dr["note"];
-                //newLav.Inizio = (DateTime)dr["inizio"]; //probablimente da fare controlli per campi vuoti
-                //newLav.Fine = (DateTime)dr["fine"]; //probablimente da fare controlli per campi vuoti
-                newLav.Stato = (int)dr["stato"];
-                newLav.DataOrdine = (DateTime)dr["DataOrdine"];
-                lavorazioni.Add(newLav);
+                foreach (DataRow dr in dt.Rows)
+                {
+                    //int ID, TipoLavorazione Tipo, string Opzione, int OpzioneID, string Note, DateTime Inizio, DateTime Fine, int Stato
+                    Lavorazione newLav = new Lavorazione();
+                    newLav.ID = (int)dr["idlavorazione"];
+                    newLav.Tipo = new TipoLavorazione((int)dr["idtipolav"], (string)dr["descrizione"]);
+                    newLav.Opzione = (string)dr["opzione"];
+                    newLav.OpzioneID = (int)dr["fk_opzione"];
+                    newLav.Note = (string)dr["note"];
+                    //newLav.Inizio = (DateTime)dr["inizio"]; //probablimente da fare controlli per campi vuoti
+                    //newLav.Fine = (DateTime)dr["fine"]; //probablimente da fare controlli per campi vuoti
+                    newLav.Stato = (int)dr["stato"];
+                    newLav.DataOrdine = (DateTime)dr["DataOrdine"];
+                    lavorazioni.Add(newLav);
+                }
             }
+
+            return lavorazioni;
         }
 
-        return lavorazioni;
-    }
+        public int AddNew(Lavorazione L)
+        {
+            DbEntity db = new DbEntity();
 
-    public int AddNew(Lavorazione L)
-    {
-        DbEntity db = new DbEntity();
-
-        SqlCommand cmd = new SqlCommand();
-        cmd.CommandType = CommandType.Text;
-        int OpzioneID = L.OpzioneID == -1 ? AddNewOpzione(L.Tipo, L.Opzione) : L.OpzioneID;
-        cmd.CommandText = String.Format(@"INSERT dbo.Lavorazioni
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            int OpzioneID = L.OpzioneID == -1 ? AddNewOpzione(L.Tipo, L.Opzione) : L.OpzioneID;
+            cmd.CommandText = String.Format(@"INSERT dbo.Lavorazioni
                                             (
                                                 fkordine,
                                                 fk_opzione,
@@ -115,17 +114,17 @@ public class daoLavorazioni
                                                 0
                                             );
                                             SELECT SCOPE_IDENTITY();", L.OrdineID, OpzioneID, L.Note, L.Stato);
-        return db.eseguiInsertIDreturn(cmd);
-        //SELECT SCOPE_IDENTITY();
-    }
+            return db.eseguiInsertIDreturn(cmd);
+            //SELECT SCOPE_IDENTITY();
+        }
 
-    public int AddNewOpzione(TipoLavorazione TipoLav, string Opzione)
-    {
-        DbEntity db = new DbEntity();
+        public int AddNewOpzione(TipoLavorazione TipoLav, string Opzione)
+        {
+            DbEntity db = new DbEntity();
 
-        SqlCommand cmd = new SqlCommand();
-        cmd.CommandType = CommandType.Text;
-        cmd.CommandText = String.Format(@"INSERT OpzioniLavorazione
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = String.Format(@"INSERT OpzioniLavorazione
                                             (
                                                 opzione,
                                                 fk_idtipolavorazione
@@ -136,79 +135,81 @@ public class daoLavorazioni
                                             );
                                             SELECT SCOPE_IDENTITY();", Opzione, TipoLav.ID);
 
-        return db.eseguiInsertIDreturn(cmd);
-    }
+            return db.eseguiInsertIDreturn(cmd);
+        }
 
-    public void AggiornaStato(Lavorazione L, int PostazioneID)
-    {
-        DbEntity db = new DbEntity();
-
-        SqlCommand cmd = new SqlCommand();
-        cmd.CommandType = CommandType.Text;
-
-        if (PostazioneID == -1)
+        public void AggiornaStato(Lavorazione L, int PostazioneID)
         {
-            cmd.CommandText = String.Format(@"UPDATE Lavorazioni
+            DbEntity db = new DbEntity();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+
+            if (PostazioneID == -1)
+            {
+                cmd.CommandText = String.Format(@"UPDATE Lavorazioni
                                                 SET stato = {0}, fk_postazione = NULL
                                                 WHERE idlavorazione = {1}", L.ID, L.Stato);
-        }
-        else
-        {
-            cmd.CommandText = String.Format(@"UPDATE Lavorazioni
+            }
+            else
+            {
+                cmd.CommandText = String.Format(@"UPDATE Lavorazioni
                                                 SET stato = {0}, fk_postazione = {1}
                                                 WHERE idlavorazione = {2}", L.ID, L.PostazioneID, L.Stato);
+            }
+
+            db.eseguiQueryNOreturn(cmd);
         }
 
-        db.eseguiQueryNOreturn(cmd);
-    }
-
-    public List<Ordine> GetAllOrdiniCompleto()
-    {
-        Ordine Or = new Ordine();
-        Lavorazione Lav = new Lavorazione();
-        List<Ordine> listaOr = new List<Ordine>();
-        
-        DataTable dt = new DataTable();
-        DataTable tempDT = new DataTable();
-
-        DbEntity db = new DbEntity();
-        SqlCommand cmd = new SqlCommand();
-
-        List<int> oID = new List<int>();
-
-        cmd.CommandType = CommandType.Text;
-
-        cmd.CommandText = "select * from ordini";
-        
-        
-
-        dt = db.eseguiQuery(cmd);
-
-        foreach (DataRow row in dt.Rows)
+        public List<Ordine> GetAllOrdiniCompleto()
         {
-            Or = new Ordine();
-            Or.ID = (int)row["idordine"];
-            Or.DataInserimento = (DateTime)row["data"];
-            Or.UtenteID = (int)row["fk_utente"];
+            Ordine Or = new Ordine();
+            Lavorazione Lav = new Lavorazione();
+            List<Ordine> listaOr = new List<Ordine>();
 
-            cmd.CommandText = string.Format(@"select ordini.idordine, ordini.data, lavorazioni.idlavorazione, opzionilavorazione.opzione 
+            DataTable dt = new DataTable();
+            DataTable tempDT = new DataTable();
+
+            DbEntity db = new DbEntity();
+            SqlCommand cmd = new SqlCommand();
+
+            List<int> oID = new List<int>();
+
+            cmd.CommandType = CommandType.Text;
+
+            cmd.CommandText = "select * from ordini";
+
+
+
+            dt = db.eseguiQuery(cmd);
+
+            foreach (DataRow row in dt.Rows)
+            {
+                Or = new Ordine();
+                Or.ID = (int)row["idordine"];
+                Or.DataInserimento = (DateTime)row["data"];
+                Or.UtenteID = (int)row["fk_utente"];
+
+                cmd.CommandText = string.Format(@"select ordini.idordine, ordini.data, lavorazioni.idlavorazione, opzionilavorazione.opzione 
                                                 from ordini inner join lavorazioni on lavorazioni.fkordine = ordini.idordine 
                                                 inner join opzionilavorazione on opzionilavorazione.idopz = lavorazioni.fk_opzione 
                                                 where ordini.idordine = {0} order by lavorazioni.idlavorazione", Or.ID.ToString());
 
-            tempDT = db.eseguiQuery(cmd);
+                tempDT = db.eseguiQuery(cmd);
 
-            foreach (DataRow dr in tempDT.Rows)
-            {
-                Lav = new Lavorazione();
-                Lav.Note = (string)dr["opzione"];
-                Or.Lavorazioni.Add(Lav);
+                foreach (DataRow dr in tempDT.Rows)
+                {
+                    Lav = new Lavorazione();
+                    Lav.Note = (string)dr["opzione"];
+                    Or.Lavorazioni.Add(Lav);
+                }
+                //oID.Add((int)row["idordine"]);
+                listaOr.Add(Or);
             }
-            //oID.Add((int)row["idordine"]);
-            listaOr.Add(Or);
+
+
+            return listaOr;
         }
-        
-        
-        return listaOr;
     }
+
 }

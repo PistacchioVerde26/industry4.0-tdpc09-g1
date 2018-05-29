@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/generic.master" AutoEventWireup="true" CodeFile="login.aspx.cs" Inherits="login" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/generic.Master" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="Industry4_camerana_gruppo1.login" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -48,4 +47,3 @@
         </div>
     </div>--%>
 </asp:Content>
-

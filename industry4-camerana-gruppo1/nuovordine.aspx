@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/commerciale_gen.master" AutoEventWireup="true" CodeFile="nuovordine.aspx.cs" Inherits="nuovorinde" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/commerciale_gen.Master" AutoEventWireup="true" CodeBehind="nuovordine.aspx.cs" Inherits="Industry4_camerana_gruppo1.nuovordine" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <link href="css/Gadget.css" rel="stylesheet" />
 </asp:Content>
@@ -131,4 +130,3 @@
             </div>
         </div>--%>
 </asp:Content>
-

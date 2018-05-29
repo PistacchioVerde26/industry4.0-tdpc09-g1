@@ -5,8 +5,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class commerciale_gen : System.Web.UI.MasterPage {
-    protected void Page_Load(object sender, EventArgs e) {
+namespace Industry4_camerana_gruppo1
+{
+    public partial class commerciale_gen : System.Web.UI.MasterPage
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
 
+        }
     }
 }

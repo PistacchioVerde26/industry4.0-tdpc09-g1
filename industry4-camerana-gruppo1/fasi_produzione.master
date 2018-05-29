@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="fasi_produzione.master.cs" Inherits="fasi_produzione" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="fasi_produzione.master.cs" Inherits="Industry4_camerana_gruppo1.fasi_produzione" %>
 
 <!DOCTYPE html>
 
@@ -55,3 +55,4 @@
     </form>
 </body>
 </html>
+

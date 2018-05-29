@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="commerciale_gen.master.cs" Inherits="commerciale_gen" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="commerciale_gen.master.cs" Inherits="Industry4_camerana_gruppo1.commerciale_gen" %>
 
 <!DOCTYPE html>
 

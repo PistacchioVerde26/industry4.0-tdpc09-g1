@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/commerciale_gen.master" AutoEventWireup="true" CodeFile="ordiniInseriti.aspx.cs" Inherits="ordiniInseriti" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/commerciale_gen.Master" AutoEventWireup="true" CodeBehind="ordiniInseriti.aspx.cs" Inherits="Industry4_camerana_gruppo1.ordiniInseriti" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -11,4 +10,3 @@
         </div>
     </div>
 </asp:Content>
-
