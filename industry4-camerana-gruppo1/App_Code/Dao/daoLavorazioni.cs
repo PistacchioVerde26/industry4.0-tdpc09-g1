@@ -38,8 +38,8 @@ namespace Industry4_camerana_gruppo1.App_Code.Dao
                     newLav.Opzione = (string)dr["opzione"];
                     newLav.OpzioneID = (int)dr["fk_opzione"];
                     newLav.Note = (string)dr["note"];
-                    //newLav.Inizio = (DateTime)dr["inizio"]; //probablimente da fare controlli per campi vuoti
-                    //newLav.Fine = (DateTime)dr["fine"]; //probablimente da fare controlli per campi vuoti
+                    newLav.Inizio = dr.IsNull("inizio") ? default(DateTime) : (DateTime)dr["inizio"];
+                    newLav.Fine = dr.IsNull("fine") ? default(DateTime) : (DateTime)dr["fine"];
                     newLav.Stato = (int)dr["stato"];
                     newLav.OrdineID = (int)dr["fkordine"];
                     newLav.PostazioneID = dr.IsNull("fk_postazione") ? -1 : (int)dr["fk_postazione"];
@@ -81,8 +81,8 @@ namespace Industry4_camerana_gruppo1.App_Code.Dao
                     newLav.Opzione = (string)dr["opzione"];
                     newLav.OpzioneID = (int)dr["fk_opzione"];
                     newLav.Note = (string)dr["note"];
-                    //newLav.Inizio = (DateTime)dr["inizio"]; //probablimente da fare controlli per campi vuoti
-                    //newLav.Fine = (DateTime)dr["fine"]; //probablimente da fare controlli per campi vuoti
+                    newLav.Inizio = dr.IsNull("inizio") ? default(DateTime) : (DateTime)dr["inizio"];
+                    newLav.Fine = dr.IsNull("fine") ? default(DateTime) : (DateTime)dr["fine"];
                     newLav.Stato = (int)dr["stato"];
                     newLav.DataOrdine = (DateTime)dr["DataOrdine"];
                     lavorazioni.Add(newLav);
@@ -153,9 +153,14 @@ namespace Industry4_camerana_gruppo1.App_Code.Dao
             }
             else
             {
-                cmd.CommandText = String.Format(@"UPDATE Lavorazioni
-                                                SET stato = {0}, fk_postazione = {1}
-                                                WHERE idlavorazione = {2}", L.Stato, PostazioneID, L.ID);
+                string query = "UPDATE Lavorazioni ";
+                if(L.Inizio.Equals(default(DateTime)) && !L.Fine.Equals(default(DateTime))) query += String.Format("SET stato = {0}, fk_postazione = {1}, fine = CAST('{2}' AS DATETIME) ", L.Stato, PostazioneID, L.Fine);
+                else if(!L.Inizio.Equals(default(DateTime)) && L.Fine.Equals(default(DateTime))) query += String.Format("SET stato = {0}, fk_postazione = {1}, inizio = CAST('{2}' AS DATETIME) ", L.Stato, PostazioneID, L.Inizio);
+                else if(!L.Inizio.Equals(default(DateTime)) && !L.Fine.Equals(default(DateTime))) query += String.Format("SET stato = {0}, fk_postazione = {1}, inizio = CAST('{2}' AS DATETIME), fine = CAST('{3}' AS DATETIME) ", L.Stato, PostazioneID, L.Inizio, L.Fine);
+                else query += String.Format("SET stato = {0}, fk_postazione = {1}", L.Stato, PostazioneID);
+                query += String.Format("WHERE idlavorazione = {0}", L.ID);
+
+                cmd.CommandText = query;
             }
 
             db.eseguiQueryNOreturn(cmd);

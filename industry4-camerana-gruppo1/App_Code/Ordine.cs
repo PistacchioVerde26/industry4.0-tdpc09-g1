@@ -22,14 +22,22 @@ namespace Industry4_camerana_gruppo1.App_Code
 
         public bool IsFree(int PostazioneID)
         {
-            //bool result = true;
-            //foreach(Lavorazione L in Lavorazioni) {
-            //    if(L.Stato != 0 && (L.Stato == 1 && L.PostazioneID != PostazioneID)) {
-            //        result = false;
-            //    }
-            //}
-            //return result;
             return Lavorazioni.Find((L) => L.Stato == 1 && L.PostazioneID != PostazioneID) == null ? true : false;
+        }
+
+        public bool IsFree() {
+            return Lavorazioni.Find((L) => L.Stato == 1) == null ? true : false;
+        }
+
+        public int Avanzamento() {
+            if (Lavorazioni != null && Lavorazioni.Count > 0) {
+                int tot = 0;
+                foreach(Lavorazione L in Lavorazioni) {
+                    if (L.Stato == 2) tot++;
+                }
+                return tot * 100 / Lavorazioni.Count;
+            }
+            return 0;
         }
 
     }

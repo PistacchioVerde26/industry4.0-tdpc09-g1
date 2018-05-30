@@ -37,7 +37,7 @@
                         <a class="nav-link" href="ordiniInseriti.aspx">Ordini inseriti</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Avanzamento Lavorazioni</a>
+                        <a class="nav-link" href="avanzamento.aspx">Avanzamento Lavorazioni</a>
                     </li>
                 </ul>
                 <div class="collapse navbar-collapse" runat="server" id="menu_Admin">
