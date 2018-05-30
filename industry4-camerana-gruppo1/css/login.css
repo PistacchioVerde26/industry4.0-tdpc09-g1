@@ -1,8 +1,17 @@
 ﻿body {
   font-family: "Open Sans", sans-serif;
   height: 100vh;
-  background: url("https://i.imgur.com/HgflTDf.jpg") 50% fixed;
+  /*background: url("https://i.imgur.com/HgflTDf.jpg") 50% fixed;*/
   background-size: cover;
+}
+
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
 }
 
 @keyframes spinner {
@@ -22,11 +31,13 @@
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    width: 100%;
+    width: 30%;
     min-height: 100%;
     padding: 20px;
     background: rgba(4, 40, 68, 0.50);
+    margin: 0px auto;
     /*background-color: #f4f4f4;*/
+    border-radius: 2px 2px 5px 5px;
 }
 
 .wrapper .left-robot{

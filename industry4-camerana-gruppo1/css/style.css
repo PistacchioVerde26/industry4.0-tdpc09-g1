@@ -2,6 +2,10 @@
     background-color: #F7F7F7;
 }
 
+.container{
+    z-index: 2;
+}
+
 .width-70{
     width: 70px;
 }

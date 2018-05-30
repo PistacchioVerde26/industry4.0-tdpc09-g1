@@ -1,9 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/generic.Master" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="Industry4_camerana_gruppo1.login" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <link href="css/login.css" rel="stylesheet" />
     <script src="js/login.js"></script>
+    <video autoplay muted loop id="myVideo">
+        <source src="imgs/login-video.webm" type="video/mp4">
+    </video>
     <div class="wrapper">
         <div class="login">
             <p class="title">Sign-in</p>

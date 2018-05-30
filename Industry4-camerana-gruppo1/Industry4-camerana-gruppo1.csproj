@@ -96,6 +96,7 @@
     <Content Include="imgs\Immagine.png" />
     <Content Include="imgs\left-robot.png" />
     <Content Include="imgs\login-icon.png" />
+    <Content Include="imgs\login-video.webm" />
     <Content Include="imgs\logoApp.png" />
     <Content Include="imgs\right-robot.png" />
     <Content Include="imgs\small40.jpg" />
