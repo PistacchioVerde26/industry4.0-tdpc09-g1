@@ -10,42 +10,60 @@
 namespace Industry4_camerana_gruppo1 {
     
     
-    public partial class commerciale_gen {
+    public partial class newuser {
         
         /// <summary>
-        /// Controllo head.
+        /// Controllo txt_Nome.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.WebControls.TextBox txt_Nome;
         
         /// <summary>
-        /// Controllo form1.
+        /// Controllo txt_Password.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.TextBox txt_Password;
         
         /// <summary>
-        /// Controllo menu_Admin.
+        /// Controllo drp_Ruolo.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl menu_Admin;
+        protected global::System.Web.UI.WebControls.DropDownList drp_Ruolo;
         
         /// <summary>
-        /// Controllo ContentPlaceHolder1.
+        /// Controllo btn_AddNewUser.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+        protected global::System.Web.UI.WebControls.Button btn_AddNewUser;
+        
+        /// <summary>
+        /// Controllo pnl_Alert.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnl_Alert;
+        
+        /// <summary>
+        /// Controllo lbl_Alert.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Alert;
     }
 }

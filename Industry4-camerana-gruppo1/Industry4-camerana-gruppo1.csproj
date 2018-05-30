@@ -104,11 +104,13 @@
     <Content Include="js\login.js" />
     <Content Include="login.aspx" />
     <Content Include="materiale.aspx" />
+    <Content Include="newuser.aspx" />
     <Content Include="nuovordine.aspx" />
     <Content Include="ordiniInseriti.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Code\Dao\daoGeneric.cs" />
     <Compile Include="App_Code\Dao\daoLavorazioni.cs" />
     <Compile Include="App_Code\Dao\daoOrdini.cs" />
     <Compile Include="App_Code\Dao\daoPostazioni.cs" />
@@ -185,6 +187,13 @@
     </Compile>
     <Compile Include="materiale.aspx.designer.cs">
       <DependentUpon>materiale.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="newuser.aspx.cs">
+      <DependentUpon>newuser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="newuser.aspx.designer.cs">
+      <DependentUpon>newuser.aspx</DependentUpon>
     </Compile>
     <Compile Include="nuovordine.aspx.cs">
       <DependentUpon>nuovordine.aspx</DependentUpon>

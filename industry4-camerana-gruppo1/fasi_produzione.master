@@ -43,11 +43,8 @@
             <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick" Interval="1000"></asp:Timer>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <asp:Label ID="lblData" runat="server" Text="Data"></asp:Label>
-                    <br />
-
-
-                    <div class="row" style="margin-top: 40px">
+                    <div class="alert alert-info text-center" style="margin-top: 15px"><h6><asp:Label ID="lblData" runat="server"></asp:Label></h6></div>
+                    <div class="row" style="margin-top: 10px">
                         <div class="col">
                             <div class="card">
                                 <div class="card-body">
@@ -66,7 +63,7 @@
                                 <div class="card-body">
 
                                     <h6 class="card-title" runat="server" id="lbl_LavorazioniCoda"></h6>
-                                    <asp:Table CssClass="table table-hover" ID="tbl_Lavori" runat="server">
+                                    <asp:Table CssClass="table table-hover table-sm" ID="tbl_Lavori" runat="server">
                                     </asp:Table>
                                 </div>
                             </div>

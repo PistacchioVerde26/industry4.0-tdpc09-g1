@@ -63,7 +63,6 @@ namespace Industry4_camerana_gruppo1.App_Code.Dao
         }
         //getByItem
 
-
         public Utente getLogin(Utente oUtente)
         {
             DataTable dt = new DataTable();
@@ -122,14 +121,26 @@ namespace Industry4_camerana_gruppo1.App_Code.Dao
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "INSERT INTO Utenti (usename, password, fk_ruolo) VALUES ('" +
-                oUtente.Username + "', '" + oUtente.Password + "', '" + "', '" + oUtente.Ruolo + "'); SET @idutente = SCOPE_IDENTITY();";
+                oUtente.Username + "', '" + oUtente.Password + "', " + oUtente.Ruolo + ");";
 
-            SqlParameter p = new SqlParameter();
-            p.ParameterName = "@idutente";
-            p.Size = 4;
-            p.Direction = ParameterDirection.Output;
-            cmd.Parameters.Add(p);
             db.eseguiQueryNOreturn(cmd);
+        }
+
+        public bool CheckUsername(string Name) {
+            DataTable dt = new DataTable();
+            DbEntity db = new DbEntity();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "SELECT * FROM Utenti WHERE usename = '" + Name + "';";
+
+            dt = db.eseguiQuery(cmd);
+            if (dt.Rows.Count > 0) {
+                return false;
+            }
+
+            return true;
+
         }
     }
 

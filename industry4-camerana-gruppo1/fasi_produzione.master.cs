@@ -124,11 +124,11 @@ namespace Industry4_camerana_gruppo1
                 Image icon = new Image();
                 icon.ImageUrl = @"imgs/ico-lav-" + L.Stato + ".png";
                 icon.CssClass += "mx-auto";
-                icon.Width = new Unit(40);
+                icon.Width = new Unit(30);
                 tcIDstato.Controls.Add(icon);
                 TableCell tcIDbtn = new TableCell();
 
-                if(L.Stato == 1 || Lavorazioni.IndexOf(L) == 0) {
+                if (L.Stato == 1 || (Lavorazioni.IndexOf(L) == 0 && !LavorazioneInCorso)) {
                     Button btn = new Button();
                     btn.Text = L.Stato == 1 ? "In corso..." : "Lavora";
                     btn.UseSubmitBehavior = true;
@@ -140,7 +140,7 @@ namespace Industry4_camerana_gruppo1
 
                     if (LavorazioneInCorso) btn.Enabled = false;
                 }
-                
+
 
                 tr.Cells.Add(tcIDordine);
                 tr.Cells.Add(tcOpzione);
