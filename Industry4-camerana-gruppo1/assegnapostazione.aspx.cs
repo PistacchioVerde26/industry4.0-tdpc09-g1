@@ -29,7 +29,7 @@ namespace Industry4_camerana_gruppo1 {
 
         public void CaricaPostazioni() {
 
-            //if (drp_Macchinisti.SelectedValue == "-1") return;
+            if (drp_Macchinisti.SelectedValue == "-1") return;
 
             int IDUtente = Convert.ToInt32(drp_Macchinisti.SelectedItem.Value);
 
@@ -90,7 +90,7 @@ namespace Industry4_camerana_gruppo1 {
             btn.ID = "btn_" + P.ID + IDUtente;
             btn.Attributes.Add("PID", P.ID.ToString());
             btn.Attributes.Add("UID", IDUtente.ToString());
-            btn.Click += Assegnato ? new EventHandler(btn_Rimuovi_Click) : new EventHandler(btn_Assegna_Click);
+            btn.UseSubmitBehavior = true;
             if (Assegnato) {
                 btn.Click += new EventHandler(btn_Rimuovi_Click);
                 btn.CssClass = "btn btn-warning mx-auto form-control";
@@ -117,7 +117,6 @@ namespace Industry4_camerana_gruppo1 {
 
         protected void btn_Rimuovi_Click(object sender, EventArgs e) {
             Button btn = (Button)sender;
-
             new daoPostazioni().AddRelazione(Convert.ToInt32(btn.Attributes["UID"]), Convert.ToInt32(btn.Attributes["PID"]));
             CaricaPostazioni();
         }

@@ -82,8 +82,8 @@
     <Content Include="css\Gadget.css" />
     <Content Include="css\login.css" />
     <Content Include="css\style.css" />
-    <Content Include="dbfiles\Industry4-gruppo1-schema_e_dati.sql" />
-    <Content Include="dbfiles\Industry4-gruppo1-vuoto.sql" />
+    <Content Include="dbfiles\dbschema-datibase.sql" />
+    <Content Include="dbfiles\dbschema.sql" />
     <Content Include="default.aspx" />
     <Content Include="etichettatura.aspx" />
     <Content Include="foratura.aspx" />
