@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 
 namespace Industry4_camerana_gruppo1.App_Code
+
 {
     public class Postazione
     {

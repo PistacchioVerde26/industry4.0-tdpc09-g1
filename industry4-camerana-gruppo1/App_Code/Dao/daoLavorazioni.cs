@@ -210,6 +210,66 @@ namespace Industry4_camerana_gruppo1.App_Code.Dao
 
             return listaOr;
         }
+
+        //public DataTable GetOrdiniLavoro()
+        //{
+        //    Ordine Or = new Ordine();
+        //    Lavorazione Lav = new Lavorazione();
+        //    List<Ordine> listaOr = new List<Ordine>();
+
+        //    DataTable dt = new DataTable();
+        //    DataTable tempDT = new DataTable();
+
+        //    DbEntity db = new DbEntity();
+        //    SqlCommand cmd = new SqlCommand();
+
+        //    List<int> oID = new List<int>();
+
+        //    cmd.CommandType = CommandType.Text;
+
+        //    cmd.CommandText = "select * from ordini";
+
+
+
+        //    dt = db.eseguiQuery(cmd);
+
+        //    foreach (DataRow row in dt.Rows)
+        //    {
+        //        Or = new Ordine();
+        //        Or.ID = (int)row["idordine"];
+        //        Or.DataInserimento = (DateTime)row["data"];
+        //        Or.UtenteID = (int)row["fk_utente"];
+
+        //        cmd.CommandText = string.Format(@"select * from ordini inner join lavorazioni on lavorazioni.fkordine=ordini.idordine 
+        //                                            inner join opzionilavorazione on opzionilavorazione.idopz = lavorazioni.fk_opzione
+        //                                            inner join tipolavorazione on tipolavorazione.idtipolav=opzionilavorazione.fk_idtipolavorazione where stato != 0");
+
+        //        tempDT = db.eseguiQuery(cmd);
+
+        //        foreach (DataRow dr in tempDT.Rows)
+        //        {
+        //            Lav = new Lavorazione();
+        //            Lav.Note = (string)dr["opzione"];
+        //            Or.Lavorazioni.Add(Lav);
+        //        }
+        //        //oID.Add((int)row["idordine"]);
+        //        listaOr.Add(Or);
+        //    }
+
+
+        //    return listaOr;
+
+        //}
+        public void DeleteByOrderID(int fkordine)
+        {
+            DbEntity db = new DbEntity();
+            SqlCommand cmd = new SqlCommand();
+            DataTable dt = new DataTable();
+
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = string.Format( "delete from lavorazioni where fkordine={0}", fkordine.ToString());
+            dt = db.eseguiQuery(cmd);
+        }
     }
 
 }

@@ -98,7 +98,9 @@ namespace Industry4_camerana_gruppo1
                     Button btn = new Button();
                     btn.Text = "X";
                     //btn.CommandArgument = u.ID;
+                    btn.ID = "X_" + Or.ID.ToString();
                     btn.BackColor = System.Drawing.Color.Red;
+                   btn.Attributes.Add("id_ordine", Or.ID.ToString());
                     btn.Click += new EventHandler(operazioneUtente);
                     btn.CssClass = "btn btn-danger";
                     tcBtnX1.Controls.Add(btn);
@@ -117,7 +119,14 @@ namespace Industry4_camerana_gruppo1
         }
         protected void operazioneUtente(object sender, EventArgs e)
         {
-
+            Button btn = sender as Button;
+            int id_ord = Convert.ToInt32(btn.Attributes["Id_ordine"]);
+            if (id_ord != 0)
+            {
+                daoOrdine daoO = new daoOrdine();
+                daoO.DeleteByIdordine(id_ord);
+                CaricaOrdini();
+            }
         }
 
     }

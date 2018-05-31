@@ -164,6 +164,21 @@ namespace Industry4_camerana_gruppo1.App_Code.Dao
             return dt;
         }
 
+        public void DeleteByIdordine(int idordine)
+        {
+            DbEntity db = new DbEntity();
+            SqlCommand cmd = new SqlCommand();
+            DataTable dt = new DataTable();
+
+            cmd.CommandType = CommandType.Text;
+
+            daoLavorazioni daoL = new daoLavorazioni();
+            daoL.DeleteByOrderID(idordine);
+
+            cmd.CommandText = string.Format("delete from ordini where idordine={0}", idordine);
+            dt = db.eseguiQuery(cmd);
+
+        }
     }
 
 }

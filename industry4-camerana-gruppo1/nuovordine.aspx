@@ -13,7 +13,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">MATERIALE</h5>
-                                <asp:DropDownList ID="drp_Materiale" CssClass="form-control" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="drp_Materiale" CssClass="form-control" runat="server" AutoPostBack="True"></asp:DropDownList>
                             </div>
                         </div>
                     </div>
@@ -23,7 +23,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">FORO</h5>
-                                <asp:DropDownList ID="drp_Foro" CssClass="form-control" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="drp_Foro" CssClass="form-control" runat="server" AutoPostBack="True"></asp:DropDownList>
                             </div>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">COLORE INSERTO</h5>
-                                <asp:DropDownList ID="drp_Colore" CssClass="form-control" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="drp_Colore" CssClass="form-control" runat="server" AutoPostBack="True"></asp:DropDownList>
                             </div>
                         </div>
                     </div>

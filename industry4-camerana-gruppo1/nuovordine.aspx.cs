@@ -16,7 +16,7 @@ namespace Industry4_camerana_gruppo1
             //Controllo utente loggato
 
             pnl_Result.Visible = false;
-            CaricaOpzioni();
+            if (! IsPostBack) CaricaOpzioni();
         }
 
         public void CaricaOpzioni()
@@ -69,6 +69,7 @@ namespace Industry4_camerana_gruppo1
                 lbl_Result.Text = "";
                 Lavorazione Foro = new Lavorazione();
                 Foro.Tipo = new TipoLavorazione(Int32.Parse(drp_Foro.Attributes["tipoID"]), drp_Foro.Attributes["tipo"]);
+
                 Foro.OpzioneID = Int32.Parse(drp_Foro.SelectedItem.Value);
                 Foro.Opzione = drp_Foro.SelectedItem.Text;
                 Foro.Stato = 0;

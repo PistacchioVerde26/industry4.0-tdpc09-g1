@@ -5,7 +5,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace Industry4_camerana_gruppo1.App_Code.Dao {
+namespace Industry4_camerana_gruppo1.App_Code.Dao
+{
 
     public class daoGeneric {
         
