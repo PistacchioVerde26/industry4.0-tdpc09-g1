@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Industry4_camerana_gruppo1.App_Code
 {
-    public class Ordine
+    public class Ordine : IComparable
     {
 
         public int ID { get; set; }
@@ -38,6 +38,10 @@ namespace Industry4_camerana_gruppo1.App_Code
                 return tot * 100 / Lavorazioni.Count;
             }
             return 0;
+        }
+
+        public int CompareTo(object obj) {
+            return DataInserimento.CompareTo(obj);
         }
 
     }

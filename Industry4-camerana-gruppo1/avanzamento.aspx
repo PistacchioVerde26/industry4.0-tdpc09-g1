@@ -7,26 +7,37 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <asp:Panel class="container" runat="server" ID="pnl_Ordini">
-        <div class="row">
-            <div class="col" runat="server" ID="pnl_Modals">
-            </div>
-        </div>
-        <div class="row" style="margin-bottom: 40px">
-            <div class="col">
-                <div class="card">
-                    <div class="card-body form-group text-center">
-                        <h5 class="card-title">
-                            <asp:Label for="tbl_Ordini" ID="lbl_Title" runat="server">Ordini inseriti</asp:Label>
-                        </h5>
-                        <asp:Table ID="tbl_Ordini" CssClass="table table-hover" runat="server"></asp:Table>
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <asp:UpdatePanel ID="upd_Lavorazioni" runat="server">
+            <ContentTemplate>
+                <div class="row" style="margin-bottom: 20px">
+                    <div class="col">
+                        <div class="card scrollable">
+                            <div class="card-body form-group text-center">
+                                <h5 class="card-title">
+                                    <asp:Label for="tbl_Ordini" ID="lbl_Title" runat="server">Ordini inseriti</asp:Label>
+                                </h5>
+                                <asp:Table ID="tbl_Ordini" CssClass="table table-hover table-sm" runat="server"></asp:Table>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+                <div class="row" style="margin-bottom: 30px">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <asp:Label ID="lbl_OrderDetails" runat="server"></asp:Label>
+                                </h5>
+                                <asp:Table CssClass="table table-light table-sm" ID="tbl_OrderDetails" runat="server"></asp:Table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
     </asp:Panel>
-    <asp:Panel runat="server" ID="pnl_Lavorazioni">
-        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-        <asp:UpdatePanel ID="upd_Lavorazioni" runat="server"></asp:UpdatePanel>
-    </asp:Panel>
+
 
 </asp:Content>

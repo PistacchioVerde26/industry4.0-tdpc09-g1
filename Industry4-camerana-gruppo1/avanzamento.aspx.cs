@@ -12,6 +12,7 @@ namespace Industry4_camerana_gruppo1 {
     public partial class avanzamento : System.Web.UI.Page {
 
         Utente Logged;
+        static List<Ordine> Ordini;
 
         protected void Page_Load(object sender, EventArgs e) {
             if(Session["utente"] == null) {
@@ -46,15 +47,16 @@ namespace Industry4_camerana_gruppo1 {
 
             tbl_Ordini.Rows.Add(thR);
 
-            List<Ordine> Ordini = null;
+            Ordini = null;
 
             if(Logged.Ruolo == 2) {
                 Ordini = new daoOrdine().GetAllOrdiniByUtente(Logged.ID);
             } else if(Logged.Ruolo == 3){
                 Ordini = new daoOrdine().GetAllOrdiniList();
             }
-
-            Ordini.Sort((x, y) => DateTime.Compare(x.DataInserimento, y.DataInserimento));
+            //li.Sort((a, b) => -1 * a.CompareTo(b));
+            Ordini.Sort((x, y) => -1 * x.CompareTo(y.DataInserimento));
+            //Ordini.Sort((x, y) => DateTime.Compare(x.DataInserimento, y.DataInserimento));
 
             foreach (Ordine O in Ordini) {
 
@@ -68,7 +70,7 @@ namespace Industry4_camerana_gruppo1 {
 
                 TableCell tcStato = new TableCell();
                 Image icon = new Image();
-                if(O.Avanzamento() == 100) icon.ImageUrl = @"imgs/ico-lav-3.png";
+                if(O.Avanzamento() == 100) icon.ImageUrl = @"imgs/ico-lav-2.png";
                 else if (O.IsFree()) icon.ImageUrl = @"imgs/ico-lav-0.png";
                 else icon.ImageUrl = @"imgs/ico-lav-1.png";
                 icon.CssClass += "mx-auto";
@@ -82,11 +84,8 @@ namespace Industry4_camerana_gruppo1 {
                 btn.Text = "Dettagli";
                 btn.Click += new EventHandler(btn_ViewOrdine_Click);
                 btn.CssClass = "btn btn-info";
-                btn.Attributes.Add("id_lavorazione", O.ID.ToString());
+                btn.Attributes.Add("id_ordine", O.ID.ToString());
                 tcBtn.Controls.Add(btn);
-
-                //tcBtn.Controls.Add(BuildModalButton(O));
-                //pnl_Modals.Controls.Add(BuildModal(O));
 
                 tr.Cells.Add(tcID);
                 tr.Cells.Add(tcData);
@@ -100,155 +99,79 @@ namespace Industry4_camerana_gruppo1 {
 
         }
 
-        //public HtmlGenericControl BuildModalButton(Ordine O) {
+        public void DrawDetails(Ordine O) {
 
-        //    //< button type = "button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-        //    //        Launch demo modal
-        //    //    </button>
+            tbl_OrderDetails.Rows.Clear();
 
-        //    HtmlGenericControl first = new HtmlGenericControl();
-        //    first.TagName = "button";
-        //    first.Attributes.Add("class", "btn btn-info");
-        //    first.Attributes.Add("data-toggle", "modal");
-        //    first.Attributes.Add("data-target", "#modal_oid"+O.ID);
-        //    first.InnerText = "Dettagli";
+            TableHeaderRow thrR = new TableHeaderRow();
+            TableHeaderCell thcTipo = new TableHeaderCell();
+            thcTipo.Text = "TIPO";
+            TableHeaderCell thcOpzione = new TableHeaderCell();
+            thcOpzione.Text = "OPZIONE";
+            TableHeaderCell thcInizio = new TableHeaderCell();
+            thcInizio.Text = "INIZIO";
+            TableHeaderCell thcFine = new TableHeaderCell();
+            thcFine.Text = "FINE";
+            TableHeaderCell thcIDstato = new TableHeaderCell();
+            thcIDstato.Text = "STATO";
+            TableHeaderCell thcPostazione = new TableHeaderCell();
+            thcPostazione.Text = "POSTAZIONE";
 
-        //    return first;
-        //}
+            thrR.Cells.Add(thcTipo);
+            thrR.Cells.Add(thcOpzione);
+            thrR.Cells.Add(thcInizio);
+            thrR.Cells.Add(thcFine);
+            thrR.Cells.Add(thcIDstato);
+            thrR.Cells.Add(thcPostazione);
 
-        //public HtmlGenericControl BuildModal(Ordine O) {
-        //    //< div class="modal fade" id="exampleModalCenter" role="dialog">
-        //    //    <div class="modal-dialog modal-dialog-centered" role="document">
-        //    //        <div class="modal-content">
-        //    //            <div class="modal-header">
-        //    //                <h5 class="modal-title">Modal title</h5>
-        //    //            </div>
-        //    //            <div class="modal-body">
-        //    //                ...
-        //    //            </div>
-        //    //            <div class="modal-footer">
-        //    //                <button type = "button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        //    //            </div>
-        //    //        </div>
-        //    //    </div>
-        //    //</div>
+            tbl_OrderDetails.Rows.Add(thrR);
 
-        //    HtmlGenericControl first = new HtmlGenericControl();
+            lbl_OrderDetails.Text = "Dettagli ordine ID " + O.ID + " | del " + O.DataInserimento;
 
-        //    first.TagName = "div";
-        //    first.Attributes.Add("class", "modal fade");
-        //    first.Attributes.Add("id", "modal_oid" + O.ID);
-        //    first.Attributes.Add("role", "dialog");
+            foreach (Lavorazione L in O.Lavorazioni) {
 
-        //    first.InnerHtml = String.Format(@"");
+                TableRow tr = new TableRow();
+                TableCell tcTipo = new TableCell();
+                tcTipo.Text = L.Tipo.Descrizione;
+                TableCell tcOpzione = new TableCell();
+                tcOpzione.Text = L.Opzione;
+                TableCell tcInizio = new TableCell();
+                tcInizio.Text = L.Inizio != default(DateTime) ? L.Inizio.ToString() : "--";
+                TableCell tcFine = new TableCell();
+                tcFine.Text = L.Fine != default(DateTime) ? L.Fine.ToString() : "--";
+                TableCell tcIDstato = new TableCell();
+                Image icon = new Image();
+                icon.ImageUrl = @"imgs/ico-lav-" + L.Stato + ".png";
+                icon.CssClass += "mx-auto";
+                icon.Width = new Unit(25);
+                tcIDstato.Controls.Add(icon);
 
-        //    HtmlGenericControl second = new HtmlGenericControl();
-        //    second.TagName = "div";
-        //    second.Attributes.Add("class", "modal-dialog modal-dialog-centered");
-        //    second.Attributes.Add("role", "document");
+                TableCell tcPostazione = new TableCell();
+                tcPostazione.Text = L.PostazioneID + "";
 
-        //    HtmlGenericControl third = new HtmlGenericControl();
-        //    third.TagName = "div";
-        //    third.Attributes.Add("class", "modal-content");
+                tr.Cells.Add(tcTipo);
+                tr.Cells.Add(tcOpzione);
+                tr.Cells.Add(tcInizio);
+                tr.Cells.Add(tcFine);
+                tr.Cells.Add(tcIDstato);
+                tr.Cells.Add(tcPostazione);
 
-        //    HtmlGenericControl fourth = new HtmlGenericControl();
-        //    fourth.TagName = "div";
-        //    fourth.Attributes.Add("class", "modal-header");
+                tbl_OrderDetails.Rows.Add(tr);
 
-        //    HtmlGenericControl fifth = new HtmlGenericControl();
-        //    fifth.TagName = "h5";
-        //    fifth.Attributes.Add("class", "modal-title");
-        //    fifth.InnerText = "Dettagli ordine ID " + O.ID + " | del " + O.DataInserimento; 
-
-        //    HtmlGenericControl sixth = new HtmlGenericControl();
-        //    sixth.TagName = "div";
-        //    sixth.Attributes.Add("class", "modal-body");
-
-        //    Table tbl = new Table();
-        //    tbl.CssClass = "table table-hover table-sm";
-
-        //    TableHeaderRow thrR = new TableHeaderRow();
-        //    TableHeaderCell thcTipo = new TableHeaderCell();
-        //    thcTipo.Text = "TIPO";
-        //    TableHeaderCell thcOpzione = new TableHeaderCell();
-        //    thcOpzione.Text = "OPZIONE";
-        //    TableHeaderCell thcInizio = new TableHeaderCell();
-        //    thcInizio.Text = "INIZIO";
-        //    TableHeaderCell thcFine = new TableHeaderCell();
-        //    thcFine.Text = "FINE";
-        //    TableHeaderCell thcIDstato = new TableHeaderCell();
-        //    thcIDstato.Text = "STATO";
-        //    TableHeaderCell thcPostazione = new TableHeaderCell();
-        //    thcPostazione.Text = "POSTAZIONE";
-
-        //    thrR.Cells.Add(thcTipo);
-        //    thrR.Cells.Add(thcOpzione);
-        //    thrR.Cells.Add(thcInizio);
-        //    thrR.Cells.Add(thcFine);
-        //    thrR.Cells.Add(thcIDstato);
-        //    thrR.Cells.Add(thcPostazione);
-
-        //    tbl.Rows.Add(thrR);
-
-        //    foreach (Lavorazione L in O.Lavorazioni) {
-
-        //        TableRow tr = new TableRow();
-        //        TableCell tcTipo = new TableCell();
-        //        tcTipo.Text = L.Tipo.Descrizione;
-        //        TableCell tcOpzione = new TableCell();
-        //        tcOpzione.Text = L.Opzione;
-        //        TableCell tcInizio = new TableCell();
-        //        tcInizio.Text = L.Inizio != default(DateTime) ? L.Inizio.ToString() : "--";
-        //        TableCell tcFine = new TableCell();
-        //        tcFine.Text = L.Fine != default(DateTime) ? L.Fine.ToString() : "--";
-        //        TableCell tcIDstato = new TableCell();
-        //        Image icon = new Image();
-        //        icon.ImageUrl = @"imgs/ico-lav-" + L.Stato + ".png";
-        //        icon.CssClass += "mx-auto";
-        //        icon.Width = new Unit(25);
-        //        tcIDstato.Controls.Add(icon);
-
-        //        TableCell tcPostazione = new TableCell();
-        //        tcPostazione.Text = L.PostazioneID+"";
-
-        //        tr.Cells.Add(tcTipo);
-        //        tr.Cells.Add(tcOpzione);
-        //        tr.Cells.Add(tcInizio);
-        //        tr.Cells.Add(tcFine);
-        //        tr.Cells.Add(tcIDstato);
-        //        tr.Cells.Add(tcPostazione);
-
-        //        tbl.Rows.Add(tr);
-
-        //    }
-        //    sixth.Controls.Add(tbl);
-
-
-        //    HtmlGenericControl seventh = new HtmlGenericControl();
-        //    seventh.TagName = "div";
-        //    seventh.Attributes.Add("class", "modal-footer");
-
-        //    HtmlGenericControl eight = new HtmlGenericControl();
-        //    eight.TagName = "button";
-        //    eight.Attributes.Add("type", "button");
-        //    eight.Attributes.Add("class", "btn btn-secondary");
-        //    eight.Attributes.Add("data-dismiss", "modal");
-        //    eight.InnerText = "Chiudi";
-
-
-        //    seventh.Controls.Add(eight);
-        //    sixth.Controls.Add(seventh);
-        //    fifth.Controls.Add(sixth);
-        //    fourth.Controls.Add(fifth);
-        //    third.Controls.Add(fourth);
-        //    second.Controls.Add(third);
-        //    first.Controls.Add(second);
-
-        //    return first;
-        //}
-
-        protected void btn_ViewOrdine_Click(object sender, EventArgs e) {
+            }
 
         }
+
+    protected void btn_ViewOrdine_Click(object sender, EventArgs e) {
+            Button btn = (Button)sender;
+            int IDordine = Convert.ToInt32(btn.Attributes["id_ordine"]);
+
+            Ordine Ord = Ordini.Find(O => O.ID == IDordine);
+
+            if(Ord != null) {
+                DrawDetails(Ord);
+            }
+        }
     }
+
 }

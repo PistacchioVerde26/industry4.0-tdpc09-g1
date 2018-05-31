@@ -22,13 +22,22 @@ namespace Industry4_camerana_gruppo1 {
         protected global::System.Web.UI.WebControls.Panel pnl_Ordini;
         
         /// <summary>
-        /// Controllo pnl_Modals.
+        /// Controllo ScriptManager1.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pnl_Modals;
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        
+        /// <summary>
+        /// Controllo upd_Lavorazioni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upd_Lavorazioni;
         
         /// <summary>
         /// Controllo lbl_Title.
@@ -49,30 +58,21 @@ namespace Industry4_camerana_gruppo1 {
         protected global::System.Web.UI.WebControls.Table tbl_Ordini;
         
         /// <summary>
-        /// Controllo pnl_Lavorazioni.
+        /// Controllo lbl_OrderDetails.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnl_Lavorazioni;
+        protected global::System.Web.UI.WebControls.Label lbl_OrderDetails;
         
         /// <summary>
-        /// Controllo ScriptManager1.
+        /// Controllo tbl_OrderDetails.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
-        
-        /// <summary>
-        /// Controllo upd_Lavorazioni.
-        /// </summary>
-        /// <remarks>
-        /// Campo generato automaticamente.
-        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upd_Lavorazioni;
+        protected global::System.Web.UI.WebControls.Table tbl_OrderDetails;
     }
 }
