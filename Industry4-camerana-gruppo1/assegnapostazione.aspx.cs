@@ -29,7 +29,7 @@ namespace Industry4_camerana_gruppo1 {
 
         public void CaricaPostazioni() {
 
-            if (drp_Macchinisti.SelectedValue == "-1") return;
+            //if (drp_Macchinisti.SelectedValue == "-1") return;
 
             int IDUtente = Convert.ToInt32(drp_Macchinisti.SelectedItem.Value);
 
@@ -87,16 +87,22 @@ namespace Industry4_camerana_gruppo1 {
             title.Text = P.Tipo.ToUpper() + " - " + P.Tag;
 
             Button btn = new Button();
-            btn.ID = "btn_" + P.ID + IDUtente;
+            //btn.ID = "btn_" + P.ID + IDUtente;
             btn.Attributes.Add("PID", P.ID.ToString());
             btn.Attributes.Add("UID", IDUtente.ToString());
-            btn.UseSubmitBehavior = true;
+            //btn.UseSubmitBehavior = true;
             if (Assegnato) {
                 btn.Click += new EventHandler(btn_Rimuovi_Click);
+                //btn.Click += delegate {
+                //    btn_Rimuovi_Click(btn, null);
+                //};
                 btn.CssClass = "btn btn-warning mx-auto form-control";
                 btn.Text = "Rimuovi";
             } else {
                 btn.Click += new EventHandler(btn_Assegna_Click);
+                //btn.Click += delegate {
+                //    btn_Assegna_Click(btn, null);
+                //};
                 btn.CssClass = "btn btn-success mx-auto form-control";
                 btn.Text = "Assegna";
             }
@@ -108,7 +114,7 @@ namespace Industry4_camerana_gruppo1 {
             wrapper.Controls.Add(card);
 
             return wrapper;
-
+            
         }
 
         protected void drp_Macchinisti_SelectedIndexChanged(object sender, EventArgs e) {
@@ -118,13 +124,11 @@ namespace Industry4_camerana_gruppo1 {
         protected void btn_Rimuovi_Click(object sender, EventArgs e) {
             Button btn = (Button)sender;
             new daoPostazioni().AddRelazione(Convert.ToInt32(btn.Attributes["UID"]), Convert.ToInt32(btn.Attributes["PID"]));
-            CaricaPostazioni();
         }
 
         protected void btn_Assegna_Click(object sender, EventArgs e) {
             Button btn = (Button)sender;
             new daoPostazioni().DeleteRelazione(Convert.ToInt32(btn.Attributes["UID"]), Convert.ToInt32(btn.Attributes["PID"]));
-            CaricaPostazioni();
         }
 
     }
