@@ -49,7 +49,9 @@
                                 <a class="dropdown-item" href="#">Statistiche</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="newuser.aspx">Nuovo utente</a>
-                                <a class="dropdown-item" href="#">Assegnazione macchine</a>
+                                <a class="dropdown-item" href="addpostazione.aspx">Aggiungi postazione</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Macchinisti-Postazioni</a>
                             </div>
                         </li>
                     </ul>

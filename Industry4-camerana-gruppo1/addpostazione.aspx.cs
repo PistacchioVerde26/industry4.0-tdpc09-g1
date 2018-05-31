@@ -9,12 +9,17 @@ using System.Web.UI.WebControls;
 
 namespace Industry4_camerana_gruppo1 {
     public partial class addpostazione : System.Web.UI.Page {
-        protected void Page_Load(object sender, EventArgs e) {
-            Dictionary<int, string> Tipi = new daoPostazioni().GetTipi();
 
-            drp_Tipo.Items.Clear();
-            foreach (KeyValuePair<int, string> R in Tipi) {
-                drp_Tipo.Items.Add(new ListItem(R.Value, R.Key.ToString()));
+        static Dictionary<int, string> Tipi = null;
+
+        protected void Page_Load(object sender, EventArgs e) {
+            if (Tipi == null) {
+                Tipi = new daoPostazioni().GetTipi();
+
+                drp_Tipo.Items.Clear();
+                foreach (KeyValuePair<int, string> R in Tipi) {
+                    drp_Tipo.Items.Add(new ListItem(R.Value, R.Key.ToString()));
+                }
             }
 
             pnl_Alert.Visible = false;
@@ -36,15 +41,20 @@ namespace Industry4_camerana_gruppo1 {
 
                     pnl_Alert.Visible = true;
                     pnl_Alert.CssClass = "alert alert-success";
-                    lbl_Alert.Text = "<strong>OK!</strong> Utente inserito con ID ";
+                    lbl_Alert.Text = "<strong>OK!</strong> Postazione inserita con ID ";
 
+                } else {
+                    pnl_Alert.Visible = true;
+                    pnl_Alert.CssClass = "alert alert-danger";
+                    lbl_Alert.Text = "<strong>Errore!</strong> TAG già presente";
                 }
             } else {
                 pnl_Alert.Visible = true;
                 pnl_Alert.CssClass = "alert alert-danger";
-                lbl_Alert.Text = "<strong>Errore!</strong> Inserisci un nome utente e una password validi";
+                lbl_Alert.Text = "<strong>Errore!</strong> Inserisci un Tag valido";
             }
 
         }
     }
+
 }

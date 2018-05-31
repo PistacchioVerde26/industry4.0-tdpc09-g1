@@ -7,65 +7,74 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Industry4_camerana_gruppo1
-{
-    public partial class _default : System.Web.UI.Page
-    {
+namespace Industry4_camerana_gruppo1 {
+    public partial class _default : System.Web.UI.Page {
         Utente oUtente;
-        protected void Page_Load(object sender, EventArgs e)
-        {
+        protected void Page_Load(object sender, EventArgs e) {
 
-            if (Session["utente"] == null)
-            {
+            if (Session["utente"] == null) {
                 Response.Redirect("login.aspx");
             }
             oUtente = (Utente)Session["utente"];
             DrawPage();
         }
 
-        public void DrawPage()
-        {
+        public void DrawPage() {
             txt_welcomeMessage.InnerText = String.Format("Bentornato {0}, sei un {1}", oUtente.Username, oUtente.RuoloToString());//ruolo è intero, estrarre stringa
 
             List<Postazione> postazioni = null;
-            if (oUtente.Ruolo == 1)
-            {
+            if (oUtente.Ruolo == 1) {
                 postazioni = new daoPostazioni().GetBasedOnUtente(oUtente);
-            }
-            else if (oUtente.Ruolo == 3)
-            {
+            } else if (oUtente.Ruolo == 3) {
                 postazioni = new daoPostazioni().GetAll();
+                //postazioni.Insert(0, new Postazione("Gestione", "commerciale"));
                 postazioni.Add(new Postazione("Gestione", "commerciale"));
-            }
-            else
-            {
+            } else {
                 postazioni = new List<Postazione>();
+                //postazioni.Insert(0, new Postazione("Gestione", "commerciale"));
                 postazioni.Add(new Postazione("Gestione", "commerciale"));
             }
 
-            if (postazioni != null)
-            {
+            if (postazioni != null) {
                 Panel row = new Panel();
                 row.CssClass = "row";
 
                 int i = 0;
-                foreach (Postazione p in postazioni)
-                {
-                    if (i % 4 == 0)
-                    {
-                        container.Controls.Add(row);
-                        row = new Panel();
-                        row.CssClass = "row";
+                foreach (Postazione p in postazioni) {
+
+                    if (p.Tipo == "commerciale") {
+
+                        if (row.Controls.Count > 0) {
+                            container.Controls.Add(row);
+                            row = new Panel();
+                            row.CssClass = "row";
+                            row.Controls.Add(CustomDiv(p));
+                            container.Controls.Add(row);
+                            row = new Panel();
+                            row.CssClass = "row";
+                        } else {
+                            row.Controls.Add(CustomDiv(p));
+                            container.Controls.Add(row);
+                            row = new Panel();
+                            row.CssClass = "row";
+                        }
+
+                    } else {
+                        if (i % 4 == 0) {
+                            container.Controls.Add(row);
+                            row = new Panel();
+                            row.CssClass = "row";
+                        }
+                        row.Controls.Add(CustomDiv(p));
+                        i++;
                     }
-                    row.Controls.Add(CustomDiv(p));
-                    i++;
                 }
                 container.Controls.Add(row);
             }
+
         }
 
-        public Panel CustomDiv(Postazione P)
-        {
+        public Panel CustomDiv(Postazione P) {
 
             //  <div class="col" runat="server" id="div_Foratura">
             //        <div class="card text-center">
@@ -84,7 +93,7 @@ namespace Industry4_camerana_gruppo1
 
             ImageButton imgBtn = new ImageButton();
             imgBtn.CssClass = "mx-auto d-block width-70";
-            imgBtn.ID = P.Tipo;
+            imgBtn.ID = "btn_" + P.ID;
             imgBtn.ImageUrl = "~/imgs/ic" + P.Tipo + ".png";
             imgBtn.Click += new ImageClickEventHandler(btn_Postazione_Click);
             imgBtn.Attributes.Add("idpostazione", P.ID.ToString());
@@ -102,23 +111,21 @@ namespace Industry4_camerana_gruppo1
             wrapper.Controls.Add(card);
 
             return wrapper;
+
         }
 
-        protected void btn_Postazione_Click(object sender, ImageClickEventArgs e)
-        {
+        protected void btn_Postazione_Click(object sender, ImageClickEventArgs e) {
             //Codice in base all'id del bottone
 
             ImageButton btn = (ImageButton)sender;
 
             if (btn.Attributes["tipo"] != "commerciale")
-                Response.Redirect(btn.ID + ".aspx?pid=" + btn.Attributes["idpostazione"]);
+                Response.Redirect(btn.Attributes["tipo"] + ".aspx?pid=" + btn.Attributes["idpostazione"]);
             else
                 Response.Redirect("nuovordine.aspx");
         }
 
-        protected void btn_Materiale_Click(object sender, ImageClickEventArgs e)
-        {
 
-        }
     }
+
 }
