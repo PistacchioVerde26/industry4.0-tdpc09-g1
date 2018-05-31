@@ -97,6 +97,119 @@ namespace Industry4_camerana_gruppo1.App_Code.Dao
             return postazioni;
         }
 
+        public Dictionary<int, string> GetTipi() {
+            DbEntity db = new DbEntity();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = String.Format(@"SELECT * FROM TipoPostazione");
+
+            DataTable dt = db.eseguiQuery(cmd);
+
+            Dictionary<int, string> tipi = null;
+
+            if (dt.Rows.Count > 0) {
+                tipi = new Dictionary<int, string>();
+                foreach (DataRow dr in dt.Rows) {
+                    tipi.Add((int)dr["idtipopost"], (string)dr["descrizione"]);
+                }
+            }
+            return tipi;
+        }
+
+        public bool CheckTag(string Tag) {
+
+            DataTable dt = new DataTable();
+            DbEntity db = new DbEntity();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "SELECT * FROM Postazioni WHERE tag = '" + Tag + "';";
+
+            dt = db.eseguiQuery(cmd);
+            if (dt.Rows.Count > 0) {
+                return false;
+            }
+
+            return true;
+
+        }
+
+        public void AddPostazione(Postazione P) {
+            DataTable dt = new DataTable();
+            DbEntity db = new DbEntity();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = String.Format(@"INSERT Postazioni
+                                        (
+                                            tag,
+                                            fk_tipo
+                                        )
+                                        VALUES
+                                        (   '{0}', -- tag - varchar(55)
+                                            {1}   -- fk_tipo - int
+                                        )", P.Tag, P.TipoID);
+
+            db.eseguiQueryNOreturn(cmd);
+
+        }
+
+        public Dictionary<int, int> GetUtentePostazioni(int IDUtente) {
+
+            DbEntity db = new DbEntity();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "SELECT * FROM Utenti_postazioni WHERE fk_utente =" + IDUtente + " ORDER BY fk_postazione";
+
+            DataTable dt = db.eseguiQuery(cmd);
+
+            Dictionary<int, int> Relazioni = null;
+
+            if (dt.Rows.Count > 0) {
+                Relazioni = new Dictionary<int, int>();
+                foreach (DataRow dr in dt.Rows) {
+                    Relazioni.Add((int)dr["fk_postazione"], (int)dr["fk_utente"]);
+                }
+            }
+
+            return Relazioni;
+
+        }
+
+        public void AddRelazione(int IDUtente, int IDPostazione) {
+            DataTable dt = new DataTable();
+            DbEntity db = new DbEntity();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = String.Format(@"INSERT dbo.Utenti_postazioni
+                                                (
+                                                    fk_utente,
+                                                    fk_postazione
+                                                )
+                                                VALUES
+                                                (   {0}, -- fk_utente - int
+                                                    {0} -- fk_postazione - int
+                                                )", IDUtente, IDPostazione);
+
+            db.eseguiQueryNOreturn(cmd);
+
+        }
+
+        public void DeleteRelazione(int IDUtente, int IDPostazione) {
+            DataTable dt = new DataTable();
+            DbEntity db = new DbEntity();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = String.Format(@"DELETE dbo.Utenti_postazioni
+                                                WHERE fk_utente ={0} AND fk_postazione = {1}", IDUtente, IDPostazione);
+
+            db.eseguiQueryNOreturn(cmd);
+        }
+
     }
 
 }

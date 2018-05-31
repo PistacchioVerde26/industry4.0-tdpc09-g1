@@ -32,7 +32,7 @@ namespace Industry4_camerana_gruppo1.App_Code.Dao
             {
                 Utente oUtente = new Utente();
                 oUtente.ID = (int)d["idutente"];
-                oUtente.Username = (string)d["usename"];
+                oUtente.Username = (string)d["username"];
                 oUtente.Password = (string)d["password"];
                 oUtente.Ruolo = (int)d["fk_ruolo"];
                 listaUtente.Add(oUtente);
@@ -55,7 +55,7 @@ namespace Industry4_camerana_gruppo1.App_Code.Dao
             foreach (DataRow d in dt.Rows)
             {
                 oUtente.ID = (int)d["idutente"];
-                oUtente.Username = (string)d["usename"];
+                oUtente.Username = (string)d["username"];
                 oUtente.Password = (string)d["password"];
                 oUtente.Ruolo = (int)d["fk_ruolo"];
             }
@@ -70,7 +70,7 @@ namespace Industry4_camerana_gruppo1.App_Code.Dao
 
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "SELECT * FROM Utenti WHERE usename = '" + oUtente.Username + "' AND password = '" + oUtente.Password + "';";
+            cmd.CommandText = "SELECT * FROM Utenti WHERE username = '" + oUtente.Username + "' AND password = '" + oUtente.Password + "';";
 
             dt = db.eseguiQuery(cmd);
             if (dt.Rows.Count > 0)
@@ -78,7 +78,7 @@ namespace Industry4_camerana_gruppo1.App_Code.Dao
                 foreach (DataRow d in dt.Rows)
                 {
                     oUtente.ID = (int)d["idutente"];
-                    oUtente.Username = (string)d["usename"];
+                    oUtente.Username = (string)d["username"];
                     oUtente.Password = (string)d["password"];
                     oUtente.Ruolo = (int)d["fk_ruolo"];
                 }
@@ -94,7 +94,7 @@ namespace Industry4_camerana_gruppo1.App_Code.Dao
 
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "UPDATE Utenti SET usename = '" + oUtente.Username +
+            cmd.CommandText = "UPDATE Utenti SET username = '" + oUtente.Username +
                 "', password = '" + oUtente.Password +
                 "', fk_ruolo = '" + oUtente.Ruolo +
                 "'WHERE idutente = " + oUtente.ID + ";";
@@ -120,7 +120,7 @@ namespace Industry4_camerana_gruppo1.App_Code.Dao
 
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "INSERT INTO Utenti (usename, password, fk_ruolo) VALUES ('" +
+            cmd.CommandText = "INSERT INTO Utenti (username, password, fk_ruolo) VALUES ('" +
                 oUtente.Username + "', '" + oUtente.Password + "', " + oUtente.Ruolo + ");";
 
             db.eseguiQueryNOreturn(cmd);
@@ -132,7 +132,7 @@ namespace Industry4_camerana_gruppo1.App_Code.Dao
 
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "SELECT * FROM Utenti WHERE usename = '" + Name + "';";
+            cmd.CommandText = "SELECT * FROM Utenti WHERE username = '" + Name + "';";
 
             dt = db.eseguiQuery(cmd);
             if (dt.Rows.Count > 0) {
@@ -142,6 +142,34 @@ namespace Industry4_camerana_gruppo1.App_Code.Dao
             return true;
 
         }
+
+        public List<Utente> GetByRuolo(string Ruolo) {
+            List<Utente> listaUtente = new List<Utente>();
+            DataTable dt = new DataTable();
+            DbEntity db = new DbEntity();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = String.Format(@"SELECT *
+                                                FROM Utenti
+                                                INNER JOIN dbo.TipoRuolo ON TipoRuolo.idruolo = Utenti.fk_ruolo
+                                                WHERE TipoRuolo.descrizione = '{0}'
+                                                ORDER BY Utenti.username", Ruolo);
+
+            dt = db.eseguiQuery(cmd);
+
+            foreach (DataRow d in dt.Rows) {
+                Utente oUtente = new Utente();
+                oUtente.ID = (int)d["idutente"];
+                oUtente.Username = (string)d["username"];
+                oUtente.Password = (string)d["password"];
+                oUtente.Ruolo = (int)d["fk_ruolo"];
+                listaUtente.Add(oUtente);
+            }
+
+            return listaUtente;
+        }
+
     }
 
 }

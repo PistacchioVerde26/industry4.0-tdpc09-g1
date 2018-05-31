@@ -44,12 +44,10 @@ namespace Industry4_camerana_gruppo1
             List<Ordine> ordini = new daoOrdine().GetAllOrdiniList();
             Lavorazioni = new List<Lavorazione>();
 
-            lbl_Message.Text += ordini.Count + " ordini trovati <br/>";
             foreach (Ordine O in ordini)
             {
                 if (O.IsFree(P.ID))
                 {
-                    lbl_Message.Text += "Ordine libero ID " + O.ID + "<br />";
                     Lavorazione newL = O.Lavorazioni.Find((L) => L.Tipo.Descrizione.Equals(P.Tipo) && L.Stato != 2);
                     if (newL != null) Lavorazioni.Add(newL);
 
@@ -107,8 +105,6 @@ namespace Industry4_camerana_gruppo1
 
             tbl_Lavori.Rows.Add(thrR);
 
-            lbl_Message.Text += Lavorazioni.Count + " lavorazioni trovate<br/>";
-
             foreach (Lavorazione L in Lavorazioni)
             {
 
@@ -164,6 +160,7 @@ namespace Industry4_camerana_gruppo1
                 if ((Lav=Lavorazioni.Find(l=> l.ID == l_id)) != null)
                 {
                     Lav.Stato = 1;
+                    Lav.Inizio = DateTime.Now;
                     new daoLavorazioni().AggiornaStato(Lav, PostazioneID);
                     LInCoda = Lav;
                 }
@@ -177,7 +174,6 @@ namespace Industry4_camerana_gruppo1
         {
             lblData.Text = DateTime.Now.ToString();
             CaricaPostazione();
-            
         }
 
         protected void btn_Termina_Click(object sender, EventArgs e)
@@ -191,6 +187,7 @@ namespace Industry4_camerana_gruppo1
                 if((Lav = Lavorazioni.Find(L => L.ID == idlav)) != null)
                 {
                     Lav.Stato = 2;
+                    Lav.Fine = DateTime.Now;
                     new daoLavorazioni().AggiornaStato(Lav, PostazioneID);
                     CaricaPostazione();
                 }

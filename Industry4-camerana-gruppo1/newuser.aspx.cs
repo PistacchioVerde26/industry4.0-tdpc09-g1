@@ -9,13 +9,18 @@ using System.Web.UI.WebControls;
 
 namespace Industry4_camerana_gruppo1 {
     public partial class newuser : System.Web.UI.Page {
+
+        static Dictionary<int, string> Ruoli = null;
+
         protected void Page_Load(object sender, EventArgs e) {
 
-            Dictionary<int, string> Ruoli = new daoGeneric().GetAllRuoli();
+            if(Ruoli == null) {
+                Ruoli = new daoGeneric().GetAllRuoli();
 
-            drp_Ruolo.Items.Clear();
-            foreach (KeyValuePair<int, string> R in Ruoli) {
-                drp_Ruolo.Items.Add(new ListItem(R.Value, R.Key.ToString()));
+                drp_Ruolo.Items.Clear();
+                foreach (KeyValuePair<int, string> R in Ruoli) {
+                    drp_Ruolo.Items.Add(new ListItem(R.Value, R.Key.ToString()));
+                }
             }
 
             pnl_Alert.Visible = false;

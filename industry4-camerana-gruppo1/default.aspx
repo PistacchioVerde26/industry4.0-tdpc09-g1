@@ -68,7 +68,7 @@
         <h3 runat="server" id="txt_welcomeMessage"></h3>--%>
 
         
-      <div class="row">
+        <div class="row">
             <div class="col text-center">
                 <h3 runat="server" id="txt_welcomeMessage">Bentornato Luigi - sei un Amministratore</h3>
             </div>

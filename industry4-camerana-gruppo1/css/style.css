@@ -28,3 +28,8 @@
     text-align: center
 }
 
+.scrollable {
+    height: 350px;
+    overflow-y: scroll;
+}
+

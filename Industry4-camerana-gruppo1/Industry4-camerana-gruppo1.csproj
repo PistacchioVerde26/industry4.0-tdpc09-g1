@@ -51,6 +51,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -69,6 +70,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="addpostazione.aspx" />
+    <Content Include="assegnapostazione.aspx" />
+    <Content Include="avanzamento.aspx" />
     <Content Include="colore.aspx" />
     <Content Include="css\boostrap4\bootstrap.min.css" />
     <Content Include="css\boostrap4\bootstrap.min.js" />
@@ -78,8 +82,8 @@
     <Content Include="css\Gadget.css" />
     <Content Include="css\login.css" />
     <Content Include="css\style.css" />
-    <Content Include="dbfiles\Industry4-gruppo1-schema_e_dati.sql" />
-    <Content Include="dbfiles\Industry4-gruppo1-vuoto.sql" />
+    <Content Include="dbfiles\dbschema-datibase.sql" />
+    <Content Include="dbfiles\dbschema.sql" />
     <Content Include="default.aspx" />
     <Content Include="etichettatura.aspx" />
     <Content Include="foratura.aspx" />
@@ -90,6 +94,7 @@
     <Content Include="imgs\icforatura.png" />
     <Content Include="imgs\icmateriale.png" />
     <Content Include="imgs\ico-lav-0.png" />
+    <Content Include="imgs\ico-lav-2.png" />
     <Content Include="imgs\ico-lav-5.png" />
     <Content Include="imgs\ico-lav-9.png" />
     <Content Include="imgs\ico-lav-1.png" />
@@ -98,6 +103,7 @@
     <Content Include="imgs\login-icon.png" />
     <Content Include="imgs\login-video.webm" />
     <Content Include="imgs\logoApp.png" />
+    <Content Include="imgs\logoAppOld.png" />
     <Content Include="imgs\right-robot.png" />
     <Content Include="imgs\small40.jpg" />
     <Content Include="imgs\tool.png" />
@@ -112,6 +118,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addpostazione.aspx.cs">
+      <DependentUpon>addpostazione.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="addpostazione.aspx.designer.cs">
+      <DependentUpon>addpostazione.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Code\Dao\daoGeneric.cs" />
     <Compile Include="App_Code\Dao\daoLavorazioni.cs" />
     <Compile Include="App_Code\Dao\daoOrdini.cs" />
@@ -124,6 +137,20 @@
     <Compile Include="App_Code\Postazione.cs" />
     <Compile Include="App_Code\TipoLavorazione.cs" />
     <Compile Include="App_Code\Utente.cs" />
+    <Compile Include="assegnapostazione.aspx.cs">
+      <DependentUpon>assegnapostazione.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="assegnapostazione.aspx.designer.cs">
+      <DependentUpon>assegnapostazione.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="avanzamento.aspx.cs">
+      <DependentUpon>avanzamento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="avanzamento.aspx.designer.cs">
+      <DependentUpon>avanzamento.aspx</DependentUpon>
+    </Compile>
     <Compile Include="colore.aspx.cs">
       <DependentUpon>colore.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
