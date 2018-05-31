@@ -70,6 +70,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="addpostazione.aspx" />
     <Content Include="avanzamento.aspx" />
     <Content Include="colore.aspx" />
     <Content Include="css\boostrap4\bootstrap.min.css" />
@@ -115,6 +116,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addpostazione.aspx.cs">
+      <DependentUpon>addpostazione.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="addpostazione.aspx.designer.cs">
+      <DependentUpon>addpostazione.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Code\Dao\daoGeneric.cs" />
     <Compile Include="App_Code\Dao\daoLavorazioni.cs" />
     <Compile Include="App_Code\Dao\daoOrdini.cs" />

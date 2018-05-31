@@ -14,6 +14,8 @@ namespace Industry4_camerana_gruppo1.App_Code
         public string Password { get; set; }
         public string Tipo { get; set; }
 
+        public int TipoID { get; set; }
+
         public Postazione() { }
 
         public Postazione(string Tag, string Tipo)
