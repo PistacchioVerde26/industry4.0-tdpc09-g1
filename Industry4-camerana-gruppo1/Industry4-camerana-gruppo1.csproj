@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="addpostazione.aspx" />
+    <Content Include="assegnapostazione.aspx" />
     <Content Include="avanzamento.aspx" />
     <Content Include="colore.aspx" />
     <Content Include="css\boostrap4\bootstrap.min.css" />
@@ -135,6 +136,13 @@
     <Compile Include="App_Code\Postazione.cs" />
     <Compile Include="App_Code\TipoLavorazione.cs" />
     <Compile Include="App_Code\Utente.cs" />
+    <Compile Include="assegnapostazione.aspx.cs">
+      <DependentUpon>assegnapostazione.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="assegnapostazione.aspx.designer.cs">
+      <DependentUpon>assegnapostazione.aspx</DependentUpon>
+    </Compile>
     <Compile Include="avanzamento.aspx.cs">
       <DependentUpon>avanzamento.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

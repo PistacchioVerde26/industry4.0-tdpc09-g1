@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 namespace Industry4_camerana_gruppo1 {
     public partial class newuser : System.Web.UI.Page {
 
-        Dictionary<int, string> Ruoli = null;
+        static Dictionary<int, string> Ruoli = null;
 
         protected void Page_Load(object sender, EventArgs e) {
 
