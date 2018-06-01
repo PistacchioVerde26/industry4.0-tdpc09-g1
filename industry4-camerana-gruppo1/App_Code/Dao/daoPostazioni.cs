@@ -155,7 +155,7 @@ namespace Industry4_camerana_gruppo1.App_Code.Dao
 
         }
 
-        public Dictionary<int, int> GetUtentePostazioni(int IDUtente) {
+        public List<int> GetUtentePostazioni(int IDUtente) {
 
             DbEntity db = new DbEntity();
 
@@ -165,12 +165,12 @@ namespace Industry4_camerana_gruppo1.App_Code.Dao
 
             DataTable dt = db.eseguiQuery(cmd);
 
-            Dictionary<int, int> Relazioni = null;
+            List<int> Relazioni = null;
 
             if (dt.Rows.Count > 0) {
-                Relazioni = new Dictionary<int, int>();
+                Relazioni = new List<int>();
                 foreach (DataRow dr in dt.Rows) {
-                    Relazioni.Add((int)dr["fk_postazione"], (int)dr["fk_utente"]);
+                    Relazioni.Add((int)dr["fk_postazione"]);
                 }
             }
 
@@ -193,7 +193,7 @@ namespace Industry4_camerana_gruppo1.App_Code.Dao
                                                 (   {0}, -- fk_utente - int
                                                     {0} -- fk_postazione - int
                                                 )", IDUtente, IDPostazione);
-
+            int a = 3;
             db.eseguiQueryNOreturn(cmd);
 
         }

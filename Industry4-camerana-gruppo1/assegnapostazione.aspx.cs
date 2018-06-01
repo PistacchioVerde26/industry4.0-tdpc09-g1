@@ -11,18 +11,26 @@ namespace Industry4_camerana_gruppo1 {
 
     public partial class assegnapostazione : System.Web.UI.Page {
 
-        static List<Utente> Macchinisti = null;
+        List<Utente> Macchinisti = null;
+        int IDMacchinista;
+        int SelectedIndex;
 
         protected void Page_Load(object sender, EventArgs e) {
 
-            if (Macchinisti == null) {
-                Macchinisti = new daoUtente().GetByRuolo("macchinista");
+            Macchinisti = new daoUtente().GetByRuolo("macchinista");
 
-                drp_Macchinisti.Items.Add(new ListItem("Seleziona...", "-1"));
-                foreach (Utente U in Macchinisti) {
-                    drp_Macchinisti.Items.Add(new ListItem(U.Username, U.ID.ToString()));
-                }
+            drp_Macchinisti.Items.Add(new ListItem("Seleziona...", "-1"));
+            foreach (Utente U in Macchinisti) {
+                drp_Macchinisti.Items.Add(new ListItem(U.Username, U.ID.ToString()));
+            }
 
+            if (!Int32.TryParse(Request.QueryString["idm"], out IDMacchinista)) IDMacchinista = -1;
+            if (!Int32.TryParse(Request.QueryString["sid"], out SelectedIndex)) SelectedIndex = -1;
+            if (IDMacchinista != -1) {
+                CaricaPostazioni();
+            }
+            if (SelectedIndex != -1) {
+                //drp_Macchinisti.SelectedIndex = SelectedIndex;
             }
 
         }
@@ -31,10 +39,10 @@ namespace Industry4_camerana_gruppo1 {
 
             //if (drp_Macchinisti.SelectedValue == "-1") return;
 
-            int IDUtente = Convert.ToInt32(drp_Macchinisti.SelectedItem.Value);
+            //int IDUtente = Convert.ToInt32(drp_Macchinisti.SelectedItem.Value);
 
             List<Postazione> Postazioni = new daoPostazioni().GetAll();
-            Dictionary<int, int> Relazioni = new daoPostazioni().GetUtentePostazioni(IDUtente);
+            List<int> Relazioni = new daoPostazioni().GetUtentePostazioni(IDMacchinista);
 
             if (Postazioni != null) {
                 Panel row = new Panel();
@@ -46,16 +54,15 @@ namespace Industry4_camerana_gruppo1 {
                         row = new Panel();
                         row.CssClass = "row";
                     }
-                    if (Relazioni.ContainsKey(p.ID)) {
-                        row.Controls.Add(CustomDiv(p, IDUtente, true));
+                    if (Relazioni.Contains(p.ID)) {
+                        row.Controls.Add(CustomDiv(p, IDMacchinista, true));
                     } else {
-                        row.Controls.Add(CustomDiv(p, IDUtente, false));
+                        row.Controls.Add(CustomDiv(p, IDMacchinista, false));
                     }
                     i++;
                 }
                 pnl_Postazioni.Controls.Add(row);
             }
-
         }
 
         public Panel CustomDiv(Postazione P, int IDUtente, bool Assegnato) {
@@ -114,21 +121,23 @@ namespace Industry4_camerana_gruppo1 {
             wrapper.Controls.Add(card);
 
             return wrapper;
-            
+
         }
 
         protected void drp_Macchinisti_SelectedIndexChanged(object sender, EventArgs e) {
-            CaricaPostazioni();
+            int macc = Convert.ToInt32(drp_Macchinisti.SelectedItem.Value);
+            int sindex = drp_Macchinisti.SelectedIndex;
+            Response.Redirect("assegnapostazione.aspx?idm=" + macc + "&sid=" + sindex);
         }
 
         protected void btn_Rimuovi_Click(object sender, EventArgs e) {
             Button btn = (Button)sender;
-            new daoPostazioni().AddRelazione(Convert.ToInt32(btn.Attributes["UID"]), Convert.ToInt32(btn.Attributes["PID"]));
+            new daoPostazioni().DeleteRelazione(Convert.ToInt32(btn.Attributes["UID"]), Convert.ToInt32(btn.Attributes["PID"]));
         }
 
         protected void btn_Assegna_Click(object sender, EventArgs e) {
             Button btn = (Button)sender;
-            new daoPostazioni().DeleteRelazione(Convert.ToInt32(btn.Attributes["UID"]), Convert.ToInt32(btn.Attributes["PID"]));
+            new daoPostazioni().AddRelazione(Convert.ToInt32(btn.Attributes["UID"]), Convert.ToInt32(btn.Attributes["PID"]));
         }
 
     }
