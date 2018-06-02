@@ -1,0 +1,46 @@
+﻿#svg_container {
+    width: 50%;
+}
+
+#manico {
+    fill: url(#circles-1) #fff;
+}
+
+#inserto {
+    fill: none;
+    background-image: url(../imgs/mat-metal.jpg);
+}
+
+.foro-8 {
+    position: absolute;
+    width: 8%;
+    margin-top: 21%;
+    margin-left: 3%;
+    z-index: 23
+}
+
+.foro-5 {
+    position: absolute;
+    width: 6%;
+    margin-top: 22%;
+    margin-left: 4%;
+    z-index: 4
+}
+
+.etichetta {
+    position: absolute;
+    z-index: 4;
+    margin-left: 16%;
+    margin-top: 18%;
+    font-size: 1.5vw;
+    border-radius: 2px;
+    background-color: white;
+    padding: 4px;
+}
+
+
+/* MATERIALI */
+.metal {
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxpdmVsbG9fMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA0ODAuOCAzNDEuNiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDgwLjggMzQxLjY7IiB4bWw6c3BhY2U9InByZXNlcnZlIj48c3R5bGUgdHlwZT0idGV4dC9jc3MiPi5zdDB7ZmlsbDp1cmwoI1NWR0lEXzFfKTt9PC9zdHlsZT48bGluZWFyR3JhZGllbnQgaWQ9IlNWR0lEXzFfIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjM3NC4wNTY2IiB5MT0iNDAzLjEwMTkiIHgyPSIxMDUuOTk0MiIgeTI9Ii02MS4xOTU4Ij48c3RvcCAgb2Zmc2V0PSIwIiBzdHlsZT0ic3RvcC1jb2xvcjojRkZGRkZGIi8+PHN0b3AgIG9mZnNldD0iNC41MjM0NzhlLTAyIiBzdHlsZT0ic3RvcC1jb2xvcjojRUJFQkVCIi8+PHN0b3AgIG9mZnNldD0iMC4xMjkyIiBzdHlsZT0ic3RvcC1jb2xvcjojQ0NDQ0NDIi8+PHN0b3AgIG9mZnNldD0iMC4yMDA0IiBzdHlsZT0ic3RvcC1jb2xvcjojQjlCOUI5Ii8+PHN0b3AgIG9mZnNldD0iMC4yNSIgc3R5bGU9InN0b3AtY29sb3I6I0IzQjNCMyIvPjxzdG9wICBvZmZzZXQ9IjAuMzAyMSIgc3R5bGU9InN0b3AtY29sb3I6I0I3QjdCNyIvPjxzdG9wICBvZmZzZXQ9IjAuMzYzNiIgc3R5bGU9InN0b3AtY29sb3I6I0M2QzZDNiIvPjxzdG9wICBvZmZzZXQ9IjAuNDMiIHN0eWxlPSJzdG9wLWNvbG9yOiNERURFREUiLz48c3RvcCAgb2Zmc2V0PSIwLjQ5OTQiIHN0eWxlPSJzdG9wLWNvbG9yOiNGRkZGRkYiLz48c3RvcCAgb2Zmc2V0PSIwLjUiIHN0eWxlPSJzdG9wLWNvbG9yOiNGRkZGRkYiLz48c3RvcCAgb2Zmc2V0PSIwLjU0ODYiIHN0eWxlPSJzdG9wLWNvbG9yOiNGM0YzRjMiLz48c3RvcCAgb2Zmc2V0PSIwLjY3NjEiIHN0eWxlPSJzdG9wLWNvbG9yOiNENkQ2RDYiLz48c3RvcCAgb2Zmc2V0PSIwLjc1IiBzdHlsZT0ic3RvcC1jb2xvcjojQ0NDQ0NDIi8+PHN0b3AgIG9mZnNldD0iMSIgc3R5bGU9InN0b3AtY29sb3I6I0ZGRkZGRiIvPjwvbGluZWFyR3JhZGllbnQ+PHJlY3QgY2xhc3M9InN0MCIgd2lkdGg9IjQ4MC4xIiBoZWlnaHQ9IjM0MS45Ii8+PC9zdmc+);
+    background-repeat: repeat;
+}
