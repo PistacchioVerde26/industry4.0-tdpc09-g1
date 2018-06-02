@@ -110,6 +110,7 @@
     <Content Include="js\default.js" />
     <Content Include="js\login.js" />
     <Content Include="login.aspx" />
+    <Content Include="logout.aspx" />
     <Content Include="materiale.aspx" />
     <Content Include="newuser.aspx" />
     <Content Include="nuovordine.aspx" />
@@ -209,6 +210,13 @@
     </Compile>
     <Compile Include="login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logout.aspx.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logout.aspx.designer.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="materiale.aspx.cs">
       <DependentUpon>materiale.aspx</DependentUpon>

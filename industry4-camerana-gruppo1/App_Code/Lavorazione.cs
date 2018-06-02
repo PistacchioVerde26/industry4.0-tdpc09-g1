@@ -19,6 +19,7 @@ namespace Industry4_camerana_gruppo1.App_Code
         public DateTime Fine { get; set; }
         public int Stato { get; set; }
         public int PostazioneID { get; set; }
+        public string PTag { get; set; }
         public DateTime DataOrdine { get; set; }
 
         public Lavorazione() { }

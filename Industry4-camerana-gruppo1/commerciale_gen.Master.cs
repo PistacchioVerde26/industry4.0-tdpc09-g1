@@ -11,7 +11,9 @@ namespace Industry4_camerana_gruppo1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["utente"] == null) {
+                Response.Redirect("login.aspx");
+            }
         }
 
     }

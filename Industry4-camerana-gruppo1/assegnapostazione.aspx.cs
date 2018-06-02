@@ -13,7 +13,6 @@ namespace Industry4_camerana_gruppo1 {
 
         List<Utente> Macchinisti = null;
         int IDMacchinista;
-        int SelectedIndex;
 
         protected void Page_Load(object sender, EventArgs e) {
 
@@ -25,39 +24,48 @@ namespace Industry4_camerana_gruppo1 {
             }
 
             if (!Int32.TryParse(Request.QueryString["idm"], out IDMacchinista)) IDMacchinista = -1;
-            if (!Int32.TryParse(Request.QueryString["sid"], out SelectedIndex)) SelectedIndex = -1;
             if (IDMacchinista != -1) {
-                CaricaPostazioni();
-            }
-            if (SelectedIndex != -1) {
-                //drp_Macchinisti.SelectedIndex = SelectedIndex;
+                Utente U = Macchinisti.Find(M => M.ID == IDMacchinista);
+                CaricaPostazioni(U);
             }
 
         }
 
-        public void CaricaPostazioni() {
+        public void CaricaPostazioni(Utente U) {
 
             //if (drp_Macchinisti.SelectedValue == "-1") return;
-
             //int IDUtente = Convert.ToInt32(drp_Macchinisti.SelectedItem.Value);
 
             List<Postazione> Postazioni = new daoPostazioni().GetAll();
-            List<int> Relazioni = new daoPostazioni().GetUtentePostazioni(IDMacchinista);
+            List<int> Relazioni = new daoPostazioni().GetUtentePostazioni(U.ID);
+
+            Panel pnlTitle = new Panel();
+            pnlTitle.CssClass = "row";
+            pnlTitle.Attributes.Add("style", "margin-bottom: 20px");
+            Panel pnlCol = new Panel();
+            pnlCol.CssClass = "col text-center";
+            Label lblTitle = new Label();
+            lblTitle.CssClass = "alert alert-secondary";
+            lblTitle.Text = "Macchinista: <strong>" + U.Username.ToUpper() + "</strong>";
+            pnlCol.Controls.Add(lblTitle);
+            pnlTitle.Controls.Add(pnlCol);
+
+            pnl_Postazioni.Controls.Add(pnlTitle);
 
             if (Postazioni != null) {
                 Panel row = new Panel();
                 row.CssClass = "row";
                 int i = 0;
                 foreach (Postazione p in Postazioni) {
-                    if (i % 4 == 0) {
+                    if (i % 4 == 0 && i != 0) {
                         pnl_Postazioni.Controls.Add(row);
                         row = new Panel();
                         row.CssClass = "row";
                     }
                     if (Relazioni.Contains(p.ID)) {
-                        row.Controls.Add(CustomDiv(p, IDMacchinista, true));
+                        row.Controls.Add(CustomDiv(p, U.ID, true));
                     } else {
-                        row.Controls.Add(CustomDiv(p, IDMacchinista, false));
+                        row.Controls.Add(CustomDiv(p, U.ID, false));
                     }
                     i++;
                 }
@@ -125,19 +133,28 @@ namespace Industry4_camerana_gruppo1 {
         }
 
         protected void drp_Macchinisti_SelectedIndexChanged(object sender, EventArgs e) {
-            int macc = Convert.ToInt32(drp_Macchinisti.SelectedItem.Value);
-            int sindex = drp_Macchinisti.SelectedIndex;
-            Response.Redirect("assegnapostazione.aspx?idm=" + macc + "&sid=" + sindex);
+            RedirectWithParms(-1);
         }
 
         protected void btn_Rimuovi_Click(object sender, EventArgs e) {
             Button btn = (Button)sender;
-            new daoPostazioni().DeleteRelazione(Convert.ToInt32(btn.Attributes["UID"]), Convert.ToInt32(btn.Attributes["PID"]));
+            int PID = Convert.ToInt32(btn.Attributes["PID"]);
+            int UID = Convert.ToInt32(btn.Attributes["UID"]);
+            new daoPostazioni().DeleteRelazione(UID, PID);
+            RedirectWithParms(UID);
         }
 
         protected void btn_Assegna_Click(object sender, EventArgs e) {
             Button btn = (Button)sender;
-            new daoPostazioni().AddRelazione(Convert.ToInt32(btn.Attributes["UID"]), Convert.ToInt32(btn.Attributes["PID"]));
+            int PID = Convert.ToInt32(btn.Attributes["PID"]);
+            int UID = Convert.ToInt32(btn.Attributes["UID"]);
+            new daoPostazioni().AddRelazione(UID, PID);
+            RedirectWithParms(UID);
+        }
+
+        public void RedirectWithParms(int IDMacch) {
+            int macc = IDMacch != -1 ? IDMacch : Convert.ToInt32(drp_Macchinisti.SelectedItem.Value);
+            Response.Redirect("assegnapostazione.aspx?idm=" + macc);
         }
 
     }

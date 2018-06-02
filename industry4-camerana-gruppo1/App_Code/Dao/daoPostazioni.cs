@@ -184,15 +184,7 @@ namespace Industry4_camerana_gruppo1.App_Code.Dao
 
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = String.Format(@"INSERT dbo.Utenti_postazioni
-                                                (
-                                                    fk_utente,
-                                                    fk_postazione
-                                                )
-                                                VALUES
-                                                (   {0}, -- fk_utente - int
-                                                    {0} -- fk_postazione - int
-                                                )", IDUtente, IDPostazione);
+            cmd.CommandText = String.Format(@"INSERT dbo.Utenti_postazioni (fk_utente, fk_postazione)VALUES(   {0},{1})", IDUtente, IDPostazione);
             int a = 3;
             db.eseguiQueryNOreturn(cmd);
 

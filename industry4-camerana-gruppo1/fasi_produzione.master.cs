@@ -20,7 +20,9 @@ namespace Industry4_camerana_gruppo1
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            //Controllo redirect page to login se utente non loggato
+            if (Session["utente"] == null) {
+                Response.Redirect("login.aspx");
+            }
 
             //Get current page
             CurrentPage = Page.ToString().Replace("ASP.", "").Replace("_", ".").Replace(".aspx", "");

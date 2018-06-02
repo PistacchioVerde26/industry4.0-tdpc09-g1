@@ -153,8 +153,7 @@ namespace Industry4_camerana_gruppo1.App_Code.Dao
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = String.Format(@"SELECT Ordini.*
-                                            FROM Ordini WHERE fk_utente {0}
-                                            ", IDUtente);
+                                            FROM Ordini WHERE fk_utente = {0}", IDUtente);
 
             DataTable dt = db.eseguiQuery(cmd);
 

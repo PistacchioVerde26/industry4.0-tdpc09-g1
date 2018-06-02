@@ -59,7 +59,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Log-out</a>
+                            <a class="nav-link" href="logout.aspx">Log-out</a>
                         </li>
                     </ul>
                 </div>

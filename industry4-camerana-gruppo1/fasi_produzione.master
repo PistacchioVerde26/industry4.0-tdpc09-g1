@@ -24,7 +24,7 @@
         </a>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">Log-out</a>
+                <a class="nav-link" href="logout.aspx">Log-out</a>
             </li>
         </ul>
     </nav>
@@ -32,7 +32,6 @@
         <div class="card-body mx-auto">
             <img class="mx-auto d-block width-70" src="#" runat="server" id="img_LogoPostazione" alt="logo" />
             <h3 class="card-title" runat="server" id="lbl_NomePostazione"></h3>
-
         </div>
     </div>
 
@@ -59,7 +58,7 @@
                                     <div class="card" runat="server" id="tool_card">
                                         <img src="imgs/tool.png" class="mx-auto d-block" />
                                     </div>
-                                    <asp:Button ID="btn_Termina" runat="server" Text="Termina" CssClass="btn btn-primary mx-auto d-block" OnClick="btn_Termina_Click" />
+                                    <asp:Button ID="btn_Termina" runat="server" Text="Termina" CssClass="btn btn-primary mx-auto d-block" style="margin-top: 5px" OnClick="btn_Termina_Click" />
                                 </div>
                             </div>
                         </div>

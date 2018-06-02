@@ -15,86 +15,88 @@ namespace Industry4_camerana_gruppo1 {
         static List<Ordine> Ordini;
 
         protected void Page_Load(object sender, EventArgs e) {
-            if(Session["utente"] == null) {
+            if (Session["utente"] == null) {
                 Response.Redirect("login.aspx");
             } else {
-                Logged =(Utente) Session["utente"];
+                Logged = (Utente)Session["utente"];
             }
 
             CaricaOrdini();
         }
 
         public void CaricaOrdini() {
-            tbl_Ordini.Rows.Clear();
-
-            TableHeaderRow thR = new TableHeaderRow();
-            TableHeaderCell thcID = new TableHeaderCell();
-            thcID.Text = "ID";
-            TableHeaderCell thcData = new TableHeaderCell();
-            thcData.Text = "DATA";
-            TableHeaderCell thcAvanzamento = new TableHeaderCell();
-            thcAvanzamento.Text = "AVANZAMENTO";
-            TableHeaderCell thcStato = new TableHeaderCell();
-            thcStato.Text = "STATO";
-            TableHeaderCell thcView = new TableHeaderCell();
-            thcView.Text = "VISUALIZZA";
-
-            thR.Cells.Add(thcID);
-            thR.Cells.Add(thcData);
-            thR.Cells.Add(thcAvanzamento);
-            thR.Cells.Add(thcStato);
-            thR.Cells.Add(thcView);
-
-            tbl_Ordini.Rows.Add(thR);
 
             Ordini = null;
 
-            if(Logged.Ruolo == 2) {
+            if (Logged.Ruolo == 2) {
                 Ordini = new daoOrdine().GetAllOrdiniByUtente(Logged.ID);
-            } else if(Logged.Ruolo == 3){
+            } else if (Logged.Ruolo == 3) {
                 Ordini = new daoOrdine().GetAllOrdiniList();
             }
-            //li.Sort((a, b) => -1 * a.CompareTo(b));
-            Ordini.Sort((x, y) => -1 * x.CompareTo(y.DataInserimento));
-            //Ordini.Sort((x, y) => DateTime.Compare(x.DataInserimento, y.DataInserimento));
 
-            foreach (Ordine O in Ordini) {
+            if (Ordini != null && Ordini.Count > 0) {
+                tbl_Ordini.Rows.Clear();
 
-                TableRow tr = new TableRow();
-                TableCell tcID = new TableCell();
-                tcID.Text = O.ID.ToString();
-                TableCell tcData = new TableCell();
-                tcData.Text = O.DataInserimento.ToString();
-                TableCell tcAvanzamento = new TableCell();
-                tcAvanzamento.Text = O.Avanzamento() + "%";
+                TableHeaderRow thR = new TableHeaderRow();
+                TableHeaderCell thcID = new TableHeaderCell();
+                thcID.Text = "ID";
+                TableHeaderCell thcData = new TableHeaderCell();
+                thcData.Text = "DATA";
+                TableHeaderCell thcAvanzamento = new TableHeaderCell();
+                thcAvanzamento.Text = "AVANZAMENTO";
+                TableHeaderCell thcStato = new TableHeaderCell();
+                thcStato.Text = "STATO";
+                TableHeaderCell thcView = new TableHeaderCell();
+                thcView.Text = "VISUALIZZA";
 
-                TableCell tcStato = new TableCell();
-                Image icon = new Image();
-                if(O.Avanzamento() == 100) icon.ImageUrl = @"imgs/ico-lav-2.png";
-                else if (O.IsFree()) icon.ImageUrl = @"imgs/ico-lav-0.png";
-                else icon.ImageUrl = @"imgs/ico-lav-1.png";
-                icon.CssClass += "mx-auto";
-                icon.Width = new Unit(35);
-                tcStato.Controls.Add(icon);
+                thR.Cells.Add(thcID);
+                thR.Cells.Add(thcData);
+                thR.Cells.Add(thcAvanzamento);
+                thR.Cells.Add(thcStato);
+                thR.Cells.Add(thcView);
 
-                TableCell tcBtn = new TableCell();
-                Button btn = new Button();
-                btn.UseSubmitBehavior = true;
-                btn.ID = "btn_" + O.ID.ToString();
-                btn.Text = "Dettagli";
-                btn.Click += new EventHandler(btn_ViewOrdine_Click);
-                btn.CssClass = "btn btn-info";
-                btn.Attributes.Add("id_ordine", O.ID.ToString());
-                tcBtn.Controls.Add(btn);
+                tbl_Ordini.Rows.Add(thR);
 
-                tr.Cells.Add(tcID);
-                tr.Cells.Add(tcData);
-                tr.Cells.Add(tcAvanzamento);
-                tr.Cells.Add(tcStato);
-                tr.Cells.Add(tcBtn);
+                Ordini.Sort((x, y) => -1 * x.CompareTo(y.DataInserimento));
 
-                tbl_Ordini.Rows.Add(tr);
+                foreach (Ordine O in Ordini) {
 
+                    TableRow tr = new TableRow();
+                    TableCell tcID = new TableCell();
+                    tcID.Text = O.ID.ToString();
+                    TableCell tcData = new TableCell();
+                    tcData.Text = O.DataInserimento.ToString();
+                    TableCell tcAvanzamento = new TableCell();
+                    tcAvanzamento.Text = O.Avanzamento() + "%";
+
+                    TableCell tcStato = new TableCell();
+                    Image icon = new Image();
+                    if (O.Avanzamento() == 100) icon.ImageUrl = @"imgs/ico-lav-2.png";
+                    else if (O.IsFree()) icon.ImageUrl = @"imgs/ico-lav-0.png";
+                    else icon.ImageUrl = @"imgs/ico-lav-1.png";
+                    icon.CssClass += "mx-auto";
+                    icon.Width = new Unit(35);
+                    tcStato.Controls.Add(icon);
+
+                    TableCell tcBtn = new TableCell();
+                    Button btn = new Button();
+                    btn.UseSubmitBehavior = true;
+                    btn.ID = "btn_" + O.ID.ToString();
+                    btn.Text = "Dettagli";
+                    btn.Click += new EventHandler(btn_ViewOrdine_Click);
+                    btn.CssClass = "btn btn-info";
+                    btn.Attributes.Add("id_ordine", O.ID.ToString());
+                    tcBtn.Controls.Add(btn);
+
+                    tr.Cells.Add(tcID);
+                    tr.Cells.Add(tcData);
+                    tr.Cells.Add(tcAvanzamento);
+                    tr.Cells.Add(tcStato);
+                    tr.Cells.Add(tcBtn);
+
+                    tbl_Ordini.Rows.Add(tr);
+
+                }
             }
 
         }
@@ -147,7 +149,7 @@ namespace Industry4_camerana_gruppo1 {
                 tcIDstato.Controls.Add(icon);
 
                 TableCell tcPostazione = new TableCell();
-                tcPostazione.Text = L.PostazioneID + "";
+                tcPostazione.Text = L.PTag;
 
                 tr.Cells.Add(tcTipo);
                 tr.Cells.Add(tcOpzione);
@@ -162,13 +164,13 @@ namespace Industry4_camerana_gruppo1 {
 
         }
 
-    protected void btn_ViewOrdine_Click(object sender, EventArgs e) {
+        protected void btn_ViewOrdine_Click(object sender, EventArgs e) {
             Button btn = (Button)sender;
             int IDordine = Convert.ToInt32(btn.Attributes["id_ordine"]);
 
             Ordine Ord = Ordini.Find(O => O.ID == IDordine);
 
-            if(Ord != null) {
+            if (Ord != null) {
                 DrawDetails(Ord);
             }
         }

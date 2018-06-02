@@ -13,5 +13,6 @@ namespace Industry4_camerana_gruppo1
         {
 
         }
+
     }
 }
