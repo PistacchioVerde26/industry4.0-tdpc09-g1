@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/commerciale_gen.Master" AutoEventWireup="true" CodeBehind="addpostazione.aspx.cs" Inherits="Industry4_camerana_gruppo1.addpostazione" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head"  runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -18,7 +18,7 @@
                         </div>
                         <asp:Button ID="btn_AddNewPostazione" class="btn btn-primary" runat="server" Text="Inserisci" OnClick="btn_AddNewPostazione_Click" />
                         <asp:Panel Style="margin-top: 10px" runat="server" ID="pnl_Alert" CssClass="alert alert-danger">
-                            <asp:Label ID="lbl_Alert" runat="server" Text="Label"></asp:Label>
+                            <asp:Label ID="lbl_Alert" runat="server"></asp:Label>
                         </asp:Panel>
                     </div>
                 </div>

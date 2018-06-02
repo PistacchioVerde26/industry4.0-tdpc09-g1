@@ -7,21 +7,33 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Industry4_camerana_gruppo1
-{
-    public partial class ordiniInseriti : System.Web.UI.Page
-    {
-        protected void Page_Load(object sender, EventArgs e)
-        {
+namespace Industry4_camerana_gruppo1 {
+    public partial class ordiniInseriti : System.Web.UI.Page {
+
+        Utente Logged;
+
+        protected void Page_Load(object sender, EventArgs e) {
+
+            if (Session["utente"] == null) {
+                Response.Redirect("login.aspx");
+            }
+
+            Logged = (Utente)Session["utente"];
+
             CaricaOrdini();
         }
-        protected void CaricaOrdini()
-        {
+        protected void CaricaOrdini() {
 
             tblOdini.Rows.Clear();
 
-            daoLavorazioni daoL = new daoLavorazioni();
-            List<Ordine> listaOr = daoL.GetAllOrdiniCompleto();
+            daoOrdine daoL = new daoOrdine();
+            List<Ordine> listaOr = null;
+
+            if (Logged.Ruolo == 2) {
+                listaOr = new daoOrdine().GetAllOrdiniByUtente(Logged.ID);
+            } else if (Logged.Ruolo == 3) {
+                listaOr = new daoOrdine().GetAllOrdiniList();
+            }
 
             TableRow tr = new TableRow();
             TableCell tcNumero = new TableCell();
@@ -65,11 +77,11 @@ namespace Industry4_camerana_gruppo1
             tr.Cells.Add(tcBtnModifica);
             tr.Cells.Add(tcBtnX);
             tblOdini.Rows.Add(tr);
-            if (listaOr.Count > 0) {
+
+            if (listaOr != null && listaOr.Count > 0) {
 
                 // tblUtenti.Rows.Add(tr);
 
-                int rowNum = 0;
                 foreach (Ordine Or in listaOr) {
                     TableRow tr1 = new TableRow();
                     TableCell tcNumero1 = new TableCell();
@@ -81,13 +93,12 @@ namespace Industry4_camerana_gruppo1
                     TableCell tcBtnX1 = new TableCell();
                     TableCell tcBtnModifica1 = new TableCell();
                     //tblUtenti.Rows.Add(tr);
-                    rowNum += 1;
-                    tcNumero1.Text = rowNum.ToString();
+                    tcNumero1.Text = Or.ID.ToString();
                     tcDataInizio1.Text = Or.DataInserimento.ToString();
-                    tcMateriale1.Text = Or.Lavorazioni[2].Note;
-                    tcColore1.Text = Or.Lavorazioni[1].Note; ;
-                    tcForo1.Text = Or.Lavorazioni[0].Note;
-                    tcTesto1.Text = Or.Lavorazioni[3].Note;
+                    tcMateriale1.Text = Or.Lavorazioni[2].Opzione;
+                    tcColore1.Text = Or.Lavorazioni[1].Opzione; ;
+                    tcForo1.Text = Or.Lavorazioni[0].Opzione;
+                    tcTesto1.Text = Or.Lavorazioni[3].Opzione;
                     Button btnM = new Button();
                     btnM.Text = "Modifica";
                     //btnM.CommandArgument = u.ID;
@@ -100,7 +111,7 @@ namespace Industry4_camerana_gruppo1
                     //btn.CommandArgument = u.ID;
                     btn.ID = "X_" + Or.ID.ToString();
                     btn.BackColor = System.Drawing.Color.Red;
-                   btn.Attributes.Add("id_ordine", Or.ID.ToString());
+                    btn.Attributes.Add("id_ordine", Or.ID.ToString());
                     btn.Click += new EventHandler(operazioneUtente);
                     btn.CssClass = "btn btn-danger";
                     tcBtnX1.Controls.Add(btn);
@@ -114,15 +125,14 @@ namespace Industry4_camerana_gruppo1
                     tr1.Cells.Add(tcBtnModifica1);
                     tr1.Cells.Add(tcBtnX1);
                     tblOdini.Rows.Add(tr1);
+
                 }
             }
         }
-        protected void operazioneUtente(object sender, EventArgs e)
-        {
+        protected void operazioneUtente(object sender, EventArgs e) {
             Button btn = sender as Button;
             int id_ord = Convert.ToInt32(btn.Attributes["Id_ordine"]);
-            if (id_ord != 0)
-            {
+            if (id_ord != 0) {
                 daoOrdine daoO = new daoOrdine();
                 daoO.DeleteByIdordine(id_ord);
                 CaricaOrdini();

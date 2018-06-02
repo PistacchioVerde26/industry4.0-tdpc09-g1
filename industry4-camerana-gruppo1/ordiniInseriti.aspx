@@ -7,8 +7,6 @@
         <div class="row">
             <div class="col center-block-block text-center">
                 <asp:Table ID="tblOdini" runat="server" CssClass="table table-hover" BorderWidth="1px" CellPadding="1" CellSpacing="1" GridLines="Both" HorizontalAlign="Center"></asp:Table>
-
-
             </div>
         </div>
     </div>

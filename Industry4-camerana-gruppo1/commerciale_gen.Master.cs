@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Industry4_camerana_gruppo1.App_Code;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +14,12 @@ namespace Industry4_camerana_gruppo1
         {
             if (Session["utente"] == null) {
                 Response.Redirect("login.aspx");
+            }
+            Utente U = (Utente)Session["utente"];
+            if(U.Ruolo == 3) {
+                menu_Admin.Visible = true;
+            } else {
+                menu_Admin.Visible = false;
             }
         }
 

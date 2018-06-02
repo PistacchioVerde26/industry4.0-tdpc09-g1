@@ -65,7 +65,7 @@
             <div class="col center-block text-center">
                 <%--<label for="txt_Qta">QTA</label>
                 <asp:TextBox ID="txt_Qta" CssClass="" runat="server"></asp:TextBox>--%>
-                <asp:Button ID="btn_Inserisci" runat="server" CssClass="btn btn-primary d-inline" style="margin-top: 5px" Text="Inserisci" OnClick="btn_Inserisci_Click" />
+                <asp:Button ID="btn_Inserisci" runat="server" CssClass="btn btn-primary d-inline" style="margin-top: 10px" Text="Inserisci" OnClick="btn_Inserisci_Click" />
                 <asp:Panel runat="server" ID="pnl_Result" CssClass="alert alert-success alert-dismissible">
                     <asp:Label ID="lbl_Result" runat="server"><strong>OK!</strong> Ordine inserito corretamente.</asp:Label>
                 </asp:Panel>

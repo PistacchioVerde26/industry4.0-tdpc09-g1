@@ -58,7 +58,7 @@
                                     <div class="card" runat="server" id="tool_card">
                                         <img src="imgs/tool.png" class="mx-auto d-block" />
                                     </div>
-                                    <asp:Button ID="btn_Termina" runat="server" Text="Termina" CssClass="btn btn-primary mx-auto d-block" style="margin-top: 5px" OnClick="btn_Termina_Click" />
+                                    <asp:Button ID="btn_Termina" runat="server" Text="Termina" CssClass="btn btn-primary mx-auto d-block" style="margin-top: 10px" OnClick="btn_Termina_Click" />
                                 </div>
                             </div>
                         </div>

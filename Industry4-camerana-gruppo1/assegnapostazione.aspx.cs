@@ -16,6 +16,10 @@ namespace Industry4_camerana_gruppo1 {
 
         protected void Page_Load(object sender, EventArgs e) {
 
+            if (Session["utente"] == null) {
+                Response.Redirect("login.aspx");
+            }
+
             Macchinisti = new daoUtente().GetByRuolo("macchinista");
 
             drp_Macchinisti.Items.Add(new ListItem("Seleziona...", "-1"));
