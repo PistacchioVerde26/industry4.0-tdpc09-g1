@@ -10,114 +10,78 @@
 namespace Industry4_camerana_gruppo1 {
     
     
-    public partial class avanzamento {
+    public partial class nuovordine {
         
         /// <summary>
-        /// Controllo pnl_Ordini.
+        /// Controllo drp_Materiale.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnl_Ordini;
+        protected global::System.Web.UI.WebControls.DropDownList drp_Materiale;
         
         /// <summary>
-        /// Controllo ScriptManager1.
+        /// Controllo drp_Foro.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::System.Web.UI.WebControls.DropDownList drp_Foro;
         
         /// <summary>
-        /// Controllo upd_Lavorazioni.
+        /// Controllo tool_card.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upd_Lavorazioni;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tool_card;
         
         /// <summary>
-        /// Controllo lbl_Title.
+        /// Controllo drp_Colore.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Title;
+        protected global::System.Web.UI.WebControls.DropDownList drp_Colore;
         
         /// <summary>
-        /// Controllo tbl_Ordini.
+        /// Controllo txt_Etichetta.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tbl_Ordini;
+        protected global::System.Web.UI.WebControls.TextBox txt_Etichetta;
         
         /// <summary>
-        /// Controllo lbl_OrderDetails.
+        /// Controllo btn_Inserisci.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_OrderDetails;
+        protected global::System.Web.UI.WebControls.Button btn_Inserisci;
         
         /// <summary>
-        /// Controllo tbl_OrderDetails.
+        /// Controllo pnl_Result.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tbl_OrderDetails;
+        protected global::System.Web.UI.WebControls.Panel pnl_Result;
         
         /// <summary>
-        /// Controllo pnl_tool.
+        /// Controllo lbl_Result.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pnl_tool;
-        
-        /// <summary>
-        /// Controllo img_foro.
-        /// </summary>
-        /// <remarks>
-        /// Campo generato automaticamente.
-        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image img_foro;
-        
-        /// <summary>
-        /// Controllo lbl_etichetta.
-        /// </summary>
-        /// <remarks>
-        /// Campo generato automaticamente.
-        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_etichetta;
-        
-        /// <summary>
-        /// Controllo manico.
-        /// </summary>
-        /// <remarks>
-        /// Campo generato automaticamente.
-        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl manico;
-        
-        /// <summary>
-        /// Controllo inserto.
-        /// </summary>
-        /// <remarks>
-        /// Campo generato automaticamente.
-        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl inserto;
+        protected global::System.Web.UI.WebControls.Label lbl_Result;
     }
 }
