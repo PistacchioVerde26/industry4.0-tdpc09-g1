@@ -77,6 +77,28 @@ namespace Industry4_camerana_gruppo1
                 tool_card.Visible = true;
                 btn_Termina.Visible = true;
                 btn_Termina.Attributes.Add("idlav", LInCoda.ID.ToString());
+
+                //GETTING ORDER
+                Ordine O = new daoOrdine().GetByLavorazione(LInCoda.ID);
+
+                if(O != null) {
+
+                    Lavorazione Materiale = O.Lavorazioni.Find(L => L.Tipo.Descrizione == "materiale");
+                    Lavorazione Foro = O.Lavorazioni.Find(L => L.Tipo.Descrizione == "foratura");
+                    Lavorazione Colore = O.Lavorazioni.Find(L => L.Tipo.Descrizione == "colore");
+                    Lavorazione Etichetta = O.Lavorazioni.Find(L => L.Tipo.Descrizione == "etichettatura");
+
+                    //DRAWING CURRENT TOOL
+                    img_foro.CssClass = Foro.Opzione == "piccolo" ? "foro-5" : "foro-8";
+                    lbl_etichetta.InnerText = Etichetta.Opzione;
+                    if(Colore.Opzione == "rosso") {
+                        inserto.Style.Add("fill", "#cc0000");
+                    } else {
+                        inserto.Style.Add("fill", "#D9B52B");
+                    }
+                    manico.Style.Add("fill", "url(#" + Materiale.Opzione + ")");
+                }
+
             }
         }
 
