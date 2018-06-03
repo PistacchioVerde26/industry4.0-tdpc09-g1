@@ -3,19 +3,18 @@
 }
 
 #manico {
-    fill: url(#circles-1) #fff;
+    fill: url(#plastica) #fff;
 }
 
 #inserto {
-    fill: none;
-    background-image: url(../imgs/mat-metal.jpg);
+    fill: #cc0000;
 }
 
 .foro-8 {
     position: absolute;
-    width: 8%;
-    margin-top: 21%;
-    margin-left: 3%;
+    width: 10%;
+    margin-top: 20%;
+    margin-left: 4%;
     z-index: 23
 }
 
@@ -31,13 +30,12 @@
     position: absolute;
     z-index: 4;
     margin-left: 16%;
-    margin-top: 18%;
-    font-size: 1.5vw;
-    border-radius: 2px;
-    background-color: white;
+    margin-top: 15%;
+    font-size: 1.5vh;
     padding: 4px;
+    color: white;
+    text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
 }
-
 
 /* MATERIALI */
 .metal {

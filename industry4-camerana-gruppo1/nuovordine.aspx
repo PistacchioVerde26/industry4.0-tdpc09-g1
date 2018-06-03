@@ -26,7 +26,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">FORO</h5>
-                                <asp:DropDownList ID="drp_Foro" CssClass="form-control" runat="server" AutoPostBack="false"></asp:DropDownList>
+                                <asp:DropDownList ID="drp_Foro" CssClass="form-control" runat="server" AutoPostBack="false" onchange="ChangeForo(this)"></asp:DropDownList>
                             </div>
                         </div>
                     </div>
@@ -36,9 +36,9 @@
                 <div class="card">
                     <div class="card-body" style="position: relative">
                         <div class="card" runat="server" id="tool_card">
-                            <img src="imgs/foro.png" class="foro-8" id="foro" />
+                            <img src="imgs/foro.png" class="foro-5" id="img_foro" />
                             <div class="etichetta">
-                                <label class="text-center h6" id="txt_etichetta">TESTO ETICHETTA</label>
+                                <span class="text-center h6" id="lbl_etichetta"></span>
                             </div>
                             <svg version="1.1" id="Livello_1" x="0px" y="0px" viewBox="0 0 802.7 309" style="enable-background: new 0 0 802.7 309;" xml:space="preserve">
                                 <g id="layer101">
@@ -70,7 +70,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">COLORE INSERTO</h5>
-                                <asp:DropDownList ID="drp_Colore" CssClass="form-control" runat="server" AutoPostBack="false"></asp:DropDownList>
+                                <asp:DropDownList ID="drp_Colore" CssClass="form-control" runat="server" AutoPostBack="false" onchange="ChangeInserto(this)"></asp:DropDownList>
                             </div>
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">ETICHETTA</h5>
-                                <asp:TextBox ID="txt_Etichetta" placeholder="Testo etichetta" CssClass="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txt_Etichetta" placeholder="Testo etichetta" CssClass="form-control" runat="server" onkeydown="WriteText(this)" onkeyup="WriteText(this)"></asp:TextBox>
                             </div>
                         </div>
                     </div>
@@ -156,4 +156,25 @@
                 <asp:Table ID="tblOrdini" runat="server"></asp:Table>
             </div>
         </div>--%>
+    <%-- ELEMENTS COLOR --%>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <defs>
+            <linearGradient spreadMethod="pad" id="acciaio" x1="38%" y1="129%" x2="0%" y2="0%">
+                <stop offset="0%" style="stop-color: rgb(92, 87, 87); stop-opacity: 1;" />
+                <stop offset="100%" style="stop-color: rgb(255, 255, 255); stop-opacity: 1;" />
+            </linearGradient>
+        </defs>
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <defs>
+            <linearGradient spreadMethod="pad" id="plastica" x1="0%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" style="stop-color: rgb(111, 115, 118); stop-opacity: 1;" />
+                <stop offset="84%" style="stop-color: rgb(32, 151, 194); stop-opacity: 1;" />
+                <stop offset="100" style="stop-color: rgb(32, 151, 194); stop-opacity: 1;" />
+            </linearGradient>
+        </defs>
+        <rect width="300" height="300" y="0" x="0" fill="url(#gradient)" />
+    </svg>
+
+
 </asp:Content>

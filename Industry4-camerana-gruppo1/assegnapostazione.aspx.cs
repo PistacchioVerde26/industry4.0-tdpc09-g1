@@ -66,7 +66,7 @@ namespace Industry4_camerana_gruppo1 {
                         row = new Panel();
                         row.CssClass = "row";
                     }
-                    if (Relazioni.Contains(p.ID)) {
+                    if (Relazioni != null && Relazioni.Contains(p.ID)) {
                         row.Controls.Add(CustomDiv(p, U.ID, true));
                     } else {
                         row.Controls.Add(CustomDiv(p, U.ID, false));
