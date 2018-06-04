@@ -44,7 +44,7 @@ namespace Industry4_camerana_gruppo1 {
             TableCell tcTesto = new TableCell();
 
             TableCell tcBtnX = new TableCell();
-            TableCell tcBtnModifica = new TableCell();
+            //TableCell tcBtnModifica = new TableCell();
 
             tcNumero.Text = "Numero";
             tcNumero.BackColor = System.Drawing.Color.LightBlue;
@@ -66,15 +66,15 @@ namespace Industry4_camerana_gruppo1 {
             tcTesto.Font.Bold = true;
             tcBtnX.Text = "  ";
             tcBtnX.BackColor = System.Drawing.Color.LightBlue;
-            tcBtnModifica.Text = "  ";
-            tcBtnModifica.BackColor = System.Drawing.Color.LightBlue;
+            //tcBtnModifica.Text = "  ";
+            //tcBtnModifica.BackColor = System.Drawing.Color.LightBlue;
             tr.Cells.Add(tcNumero);
             tr.Cells.Add(tcDataInizio);
             tr.Cells.Add(tcMateriale);
             tr.Cells.Add(tcColore);
             tr.Cells.Add(tcForo);
             tr.Cells.Add(tcTesto);
-            tr.Cells.Add(tcBtnModifica);
+            //tr.Cells.Add(tcBtnModifica);
             tr.Cells.Add(tcBtnX);
             tblOdini.Rows.Add(tr);
 
@@ -91,7 +91,7 @@ namespace Industry4_camerana_gruppo1 {
                     TableCell tcForo1 = new TableCell();
                     TableCell tcTesto1 = new TableCell();
                     TableCell tcBtnX1 = new TableCell();
-                    TableCell tcBtnModifica1 = new TableCell();
+                    //TableCell tcBtnModifica1 = new TableCell();
                     //tblUtenti.Rows.Add(tr);
                     tcNumero1.Text = Or.ID.ToString();
                     tcDataInizio1.Text = Or.DataInserimento.ToString();
@@ -99,13 +99,13 @@ namespace Industry4_camerana_gruppo1 {
                     tcColore1.Text = Or.Lavorazioni[1].Opzione; ;
                     tcForo1.Text = Or.Lavorazioni[0].Opzione;
                     tcTesto1.Text = Or.Lavorazioni[3].Opzione;
-                    Button btnM = new Button();
-                    btnM.Text = "Modifica";
-                    //btnM.CommandArgument = u.ID;
-                    //btnM.BackColor = System.Drawing.Color.CadetBlue;
-                    btnM.Click += new EventHandler(operazioneUtente);
-                    btnM.CssClass = "btn btn-warning";
-                    tcBtnModifica1.Controls.Add(btnM);
+                    //Button btnM = new Button();
+                    //btnM.Text = "Modifica";
+                    ////btnM.CommandArgument = u.ID;
+                    ////btnM.BackColor = System.Drawing.Color.CadetBlue;
+                    //btnM.Click += new EventHandler(operazioneUtente);
+                    //btnM.CssClass = "btn btn-warning";
+                    //tcBtnModifica1.Controls.Add(btnM);
                     Button btn = new Button();
                     btn.Text = "X";
                     //btn.CommandArgument = u.ID;
@@ -122,7 +122,7 @@ namespace Industry4_camerana_gruppo1 {
                     tr1.Cells.Add(tcColore1);
                     tr1.Cells.Add(tcForo1);
                     tr1.Cells.Add(tcTesto1);
-                    tr1.Cells.Add(tcBtnModifica1);
+                    //tr1.Cells.Add(tcBtnModifica1);
                     tr1.Cells.Add(tcBtnX1);
                     tblOdini.Rows.Add(tr1);
 

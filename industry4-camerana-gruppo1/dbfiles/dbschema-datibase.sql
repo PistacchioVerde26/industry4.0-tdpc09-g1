@@ -1,4 +1,4 @@
-USE [Industry4-prova]
+USE [Industry4-gruppo1]
 GO
 /****** Object:  Table [dbo].[Lavorazioni]    Script Date: 27/03/2014 20:52:00 ******/
 SET ANSI_NULLS ON
@@ -147,7 +147,7 @@ SET IDENTITY_INSERT [dbo].[OpzioniLavorazione] ON
 INSERT [dbo].[OpzioniLavorazione] ([idopz], [opzione], [fk_idtipolavorazione]) VALUES (1, N'piccolo', 1)
 INSERT [dbo].[OpzioniLavorazione] ([idopz], [opzione], [fk_idtipolavorazione]) VALUES (2, N'grande', 1)
 INSERT [dbo].[OpzioniLavorazione] ([idopz], [opzione], [fk_idtipolavorazione]) VALUES (3, N'rosso', 3)
-INSERT [dbo].[OpzioniLavorazione] ([idopz], [opzione], [fk_idtipolavorazione]) VALUES (4, N'blu', 3)
+INSERT [dbo].[OpzioniLavorazione] ([idopz], [opzione], [fk_idtipolavorazione]) VALUES (4, N'oro', 3)
 INSERT [dbo].[OpzioniLavorazione] ([idopz], [opzione], [fk_idtipolavorazione]) VALUES (5, N'plastica', 4)
 INSERT [dbo].[OpzioniLavorazione] ([idopz], [opzione], [fk_idtipolavorazione]) VALUES (6, N'acciaio', 4)
 SET IDENTITY_INSERT [dbo].[OpzioniLavorazione] OFF
