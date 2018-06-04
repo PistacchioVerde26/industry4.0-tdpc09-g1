@@ -113,7 +113,6 @@
     <Content Include="materiale.aspx" />
     <Content Include="newuser.aspx" />
     <Content Include="nuovordine.aspx" />
-    <Content Include="OrdiniInLavoro.aspx" />
     <Content Include="ordiniInseriti.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -230,13 +229,6 @@
     </Compile>
     <Compile Include="nuovordine.aspx.designer.cs">
       <DependentUpon>nuovordine.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OrdiniInLavoro.aspx.cs">
-      <DependentUpon>OrdiniInLavoro.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OrdiniInLavoro.aspx.designer.cs">
-      <DependentUpon>OrdiniInLavoro.aspx</DependentUpon>
     </Compile>
     <Compile Include="ordiniInseriti.aspx.cs">
       <DependentUpon>ordiniInseriti.aspx</DependentUpon>

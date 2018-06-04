@@ -195,7 +195,7 @@ namespace Industry4_camerana_gruppo1.App_Code.Dao
                 Or.DataInserimento = (DateTime)row["data"];
                 Or.UtenteID = (int)row["fk_utente"];
 
-                cmd.CommandText = string.Format(@"select ordini.idordine, ordini.data, lavorazioni.idlavorazione, opzionilavorazione.opzione 
+                cmd.CommandText = string.Format(@"select ordini.idordine, ordini.data, lavorazioni.idlavorazione, lavorazioni.stato, opzionilavorazione.opzione 
                                                 from ordini inner join lavorazioni on lavorazioni.fkordine = ordini.idordine 
                                                 inner join opzionilavorazione on opzionilavorazione.idopz = lavorazioni.fk_opzione 
                                                 where ordini.idordine = {0} order by lavorazioni.idlavorazione", Or.ID.ToString());
@@ -205,6 +205,8 @@ namespace Industry4_camerana_gruppo1.App_Code.Dao
                 foreach (DataRow dr in tempDT.Rows)
                 {
                     Lav = new Lavorazione();
+                    Lav.ID = (int)dr["idlavorazione"];
+                    Lav.Stato = (int)dr["stato"];
                     Lav.Note = (string)dr["opzione"];
                     Or.Lavorazioni.Add(Lav);
                 }
@@ -216,55 +218,68 @@ namespace Industry4_camerana_gruppo1.App_Code.Dao
             return listaOr;
         }
 
-        //public DataTable GetOrdiniLavoro()
-        //{
-        //    Ordine Or = new Ordine();
-        //    Lavorazione Lav = new Lavorazione();
-        //    List<Ordine> listaOr = new List<Ordine>();
+        public List<Ordine> GetOrdiniLavoro()
+        {
+            Ordine Or = new Ordine();
+            Lavorazione Lav = new Lavorazione();
+            List<Ordine> listaOr = new List<Ordine>();
 
-        //    DataTable dt = new DataTable();
-        //    DataTable tempDT = new DataTable();
+            DataTable dt = new DataTable();
+            DataTable tempDT = new DataTable();
 
-        //    DbEntity db = new DbEntity();
-        //    SqlCommand cmd = new SqlCommand();
+            DbEntity db = new DbEntity();
+            SqlCommand cmd = new SqlCommand();
 
-        //    List<int> oID = new List<int>();
+            List<int> oID = new List<int>();
 
-        //    cmd.CommandType = CommandType.Text;
+            cmd.CommandType = CommandType.Text;
 
-        //    cmd.CommandText = "select * from ordini";
-
-
-
-        //    dt = db.eseguiQuery(cmd);
-
-        //    foreach (DataRow row in dt.Rows)
-        //    {
-        //        Or = new Ordine();
-        //        Or.ID = (int)row["idordine"];
-        //        Or.DataInserimento = (DateTime)row["data"];
-        //        Or.UtenteID = (int)row["fk_utente"];
-
-        //        cmd.CommandText = string.Format(@"select * from ordini inner join lavorazioni on lavorazioni.fkordine=ordini.idordine 
-        //                                            inner join opzionilavorazione on opzionilavorazione.idopz = lavorazioni.fk_opzione
-        //                                            inner join tipolavorazione on tipolavorazione.idtipolav=opzionilavorazione.fk_idtipolavorazione where stato != 0");
-
-        //        tempDT = db.eseguiQuery(cmd);
-
-        //        foreach (DataRow dr in tempDT.Rows)
-        //        {
-        //            Lav = new Lavorazione();
-        //            Lav.Note = (string)dr["opzione"];
-        //            Or.Lavorazioni.Add(Lav);
-        //        }
-        //        //oID.Add((int)row["idordine"]);
-        //        listaOr.Add(Or);
-        //    }
+            cmd.CommandText = "select * from ordini";
 
 
-        //    return listaOr;
 
-        //}
+            dt = db.eseguiQuery(cmd);
+
+            foreach (DataRow row in dt.Rows)
+            {
+                Or = new Ordine();
+                Or.ID = (int)row["idordine"];
+                Or.DataInserimento = (DateTime)row["data"];
+                Or.UtenteID = (int)row["fk_utente"];
+
+                cmd.CommandText = string.Format(@"select * from ordini inner join lavorazioni on lavorazioni.fkordine=ordini.idordine 
+                                                    inner join opzionilavorazione on opzionilavorazione.idopz = lavorazioni.fk_opzione
+                                                    inner join tipolavorazione on tipolavorazione.idtipolav=opzionilavorazione.fk_idtipolavorazione where ordini.idordine={0}", Or.ID);
+
+                tempDT = db.eseguiQuery(cmd);
+
+
+                foreach (DataRow dr in tempDT.Rows)
+                {
+                    Lav = new Lavorazione();
+                    Lav.ID = (int)dr["idlavorazione"];
+                    Lav.Note = (string)dr["opzione"];
+                    Lav.Tipo = new TipoLavorazione((int)dr["idtipolav"], (string)dr["descrizione"]);
+                    Lav.Opzione = (string)dr["opzione"];
+                    Lav.OpzioneID = (int)dr["fk_opzione"];
+
+                    Lav.Inizio = dr.IsNull("inizio") ? default(DateTime) : (DateTime)dr["inizio"];
+                    Lav.Fine = dr.IsNull("fine") ? default(DateTime) : (DateTime)dr["fine"];
+                    Lav.Stato = (int)dr["stato"];
+                    Lav.OrdineID = (int)dr["fkordine"];
+                    Lav.PostazioneID = dr.IsNull("fk_postazione") ? -1 : (int)dr["fk_postazione"];
+                    Lav.DataOrdine = (DateTime)dr["data"];
+
+                    Or.Lavorazioni.Add(Lav);
+                }
+                //oID.Add((int)row["idordine"]);
+                listaOr.Add(Or);
+            }
+
+
+            return listaOr;
+
+        }
         public void DeleteByOrderID(int fkordine)
         {
             DbEntity db = new DbEntity();
