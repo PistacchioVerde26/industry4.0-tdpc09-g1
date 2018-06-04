@@ -84,7 +84,6 @@
     <Content Include="css\style.css" />
     <Content Include="css\tool.css" />
     <Content Include="dbfiles\dbschema-datibase.sql" />
-    <Content Include="dbfiles\dbschema.sql" />
     <Content Include="default.aspx" />
     <Content Include="etichettatura.aspx" />
     <Content Include="foratura.aspx" />
