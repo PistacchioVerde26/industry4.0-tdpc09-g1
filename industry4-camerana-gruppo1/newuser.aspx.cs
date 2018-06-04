@@ -14,7 +14,11 @@ namespace Industry4_camerana_gruppo1 {
 
         protected void Page_Load(object sender, EventArgs e) {
 
-            if(Ruoli == null) {
+            if (Session["utente"] == null) {
+                Response.Redirect("login.aspx");
+            }
+
+            if (Ruoli == null) {
                 Ruoli = new daoGeneric().GetAllRuoli();
 
                 drp_Ruolo.Items.Clear();

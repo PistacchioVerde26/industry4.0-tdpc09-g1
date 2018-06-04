@@ -13,7 +13,9 @@ namespace Industry4_camerana_gruppo1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Controllo utente loggato
+            if (Session["utente"] == null) {
+                Response.Redirect("login.aspx");
+            }
 
             pnl_Result.Visible = false;
             if (! IsPostBack) CaricaOpzioni();

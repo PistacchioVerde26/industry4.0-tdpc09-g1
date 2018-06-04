@@ -74,5 +74,50 @@ namespace Industry4_camerana_gruppo1 {
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Table tbl_OrderDetails;
+        
+        /// <summary>
+        /// Controllo pnl_tool.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pnl_tool;
+        
+        /// <summary>
+        /// Controllo img_foro.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image img_foro;
+        
+        /// <summary>
+        /// Controllo lbl_etichetta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_etichetta;
+        
+        /// <summary>
+        /// Controllo manico.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl manico;
+        
+        /// <summary>
+        /// Controllo inserto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl inserto;
     }
 }

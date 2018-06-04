@@ -17,11 +17,12 @@ namespace Industry4_camerana_gruppo1.App_Code.Dao
 
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = String.Format(@"SELECT Lavorazioni.*, OpzioniLavorazione.opzione, TipoLavorazione.*, Ordini.data
+            cmd.CommandText = String.Format(@"SELECT Lavorazioni.*, OpzioniLavorazione.opzione, TipoLavorazione.*, Ordini.data, Postazioni.tag AS ptag
                                             FROM Lavorazioni
                                             INNER JOIN OpzioniLavorazione ON OpzioniLavorazione.idopz = Lavorazioni.fk_opzione
                                             INNER JOIN TipoLavorazione ON TipoLavorazione.idtipolav = OpzioniLavorazione.fk_idtipolavorazione
                                             INNER JOIN Ordini ON Ordini.idordine = Lavorazioni.fkordine
+											LEFT JOIN Postazioni ON Postazioni.idpostazione = Lavorazioni.fk_postazione 
                                             WHERE Lavorazioni.fkordine = {0}", ID);
 
             DataTable dt = db.eseguiQuery(cmd);
@@ -44,6 +45,7 @@ namespace Industry4_camerana_gruppo1.App_Code.Dao
                     newLav.OrdineID = (int)dr["fkordine"];
                     newLav.PostazioneID = dr.IsNull("fk_postazione") ? -1 : (int)dr["fk_postazione"];
                     newLav.DataOrdine = (DateTime)dr["data"];
+                    newLav.PTag = dr.IsNull("ptag") ? "--" : (string)dr["ptag"];
                     lavorazioni.Add(newLav);
                 }
             }

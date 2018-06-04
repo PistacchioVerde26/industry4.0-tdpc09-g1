@@ -46,8 +46,6 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gestione
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Statistiche</a>
-                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="newuser.aspx">Nuovo utente</a>
                                 <a class="dropdown-item" href="addpostazione.aspx">Aggiungi postazione</a>
                                 <div class="dropdown-divider"></div>
@@ -59,7 +57,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Log-out</a>
+                            <a class="nav-link" href="logout.aspx">Log-out</a>
                         </li>
                     </ul>
                 </div>

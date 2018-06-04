@@ -153,8 +153,7 @@ namespace Industry4_camerana_gruppo1.App_Code.Dao
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = String.Format(@"SELECT Ordini.*
-                                            FROM Ordini WHERE fk_utente {0}
-                                            ", IDUtente);
+                                            FROM Ordini WHERE fk_utente = {0}", IDUtente);
 
             DataTable dt = db.eseguiQuery(cmd);
 
@@ -209,6 +208,35 @@ namespace Industry4_camerana_gruppo1.App_Code.Dao
             dt = db.eseguiQuery(cmd);
 
         }
+
+        public Ordine GetByLavorazione(int IDLav) {
+
+            DbEntity db = new DbEntity();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = String.Format(@"SELECT Ordini.*
+                                        FROM Ordini INNER JOIN Lavorazioni ON Lavorazioni.fkordine = Ordini.idordine
+                                        WHERE idlavorazione = {0}", IDLav);
+
+            DataTable dt = db.eseguiQuery(cmd);
+
+            Ordine newOrd = null;
+
+            if (dt.Rows.Count > 0) {
+                newOrd = new Ordine();
+
+                newOrd.ID = (int)dt.Rows[0]["idordine"];
+                newOrd.DataInserimento = (DateTime)dt.Rows[0]["data"]; //probabile conversione di tipo necessaria
+                                                                       //DateTime.TryParse(dr[""]);
+                newOrd.UtenteID = (int)dt.Rows[0]["fk_utente"];
+
+                newOrd.Lavorazioni = new daoLavorazioni().GetByOrdineID(newOrd.ID);
+            }
+            return newOrd;
+
+        }
+
     }
 
 }

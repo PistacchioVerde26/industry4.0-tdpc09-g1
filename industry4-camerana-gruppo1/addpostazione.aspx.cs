@@ -13,6 +13,11 @@ namespace Industry4_camerana_gruppo1 {
         static Dictionary<int, string> Tipi = null;
 
         protected void Page_Load(object sender, EventArgs e) {
+
+            if (Session["utente"] == null) {
+                Response.Redirect("login.aspx");
+            }
+
             if (Tipi == null) {
                 Tipi = new daoPostazioni().GetTipi();
 
