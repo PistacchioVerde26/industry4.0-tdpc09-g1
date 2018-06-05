@@ -350,7 +350,7 @@ namespace Industry4_camerana_gruppo1
                     tr1.Cells.Add(tcForo1);
                     tr1.Cells.Add(tcTesto1);
                     tr1.Cells.Add(tcRisultato1);
-                    if (tcRisultato1.Text != "Finito")
+                    if (tcRisultato1.Text == "In lavorazione ")
                     {
                         tblOdiniLavoro.Rows.Add(tr1);
                     }
