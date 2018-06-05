@@ -11,7 +11,7 @@ function ChangeInserto(select) {
     var value = select.options[select.selectedIndex].text;
     if(value === 'rosso')
         $("#inserto").css("fill", "#cc0000");
-    else if (value === 'giallo')
+    else if (value === 'blu')
         $("#inserto").css("fill", "#D9B52B");
 }
 
