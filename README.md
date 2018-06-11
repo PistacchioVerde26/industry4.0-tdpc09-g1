@@ -13,7 +13,7 @@ The assignmet had the following specs:
   - Seller (Can send in new orders and manage them)
   - Worker (Can operate on multiple workstations given the permissions)
   
-  The technolgies to be used were ASP.NET Framework C#, Javascript and MSSQL for the database
+  The technolgies to be used were ASP.NET C# Webforms, Javascript and MSSQL for the database
   The project as it is at the 03 June 2018 took about a total of 25-30 hours of work.
   
   To try it out you first have to create a database named Industry4-gruppo1 and populate it with the dbscheme and data script that can be found in the dbfiles folder. And then modify the connection string in the Web.config file.
